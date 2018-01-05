@@ -3,13 +3,14 @@ package com.takata.alteration.order.dao;
 import com.takata.alteration.order.domain.AlterationKirikaeOrderChangeContent;
 import com.takata.alteration.order.query.AlterationKirikaeOrderChangeContentQuery;
 import com.takata.common.dao.BaseDao;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author lzf
  **/
-
+@Repository
 public class AlterationKirikaeOrderChangeContentDao extends BaseDao {
 
     /**
