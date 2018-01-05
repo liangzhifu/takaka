@@ -46,7 +46,7 @@
                                 <button class="btn btn-small btn-danger" type="button" ng-click="voidAlterationKirikaeOrder()">
                                     <i class="icon-remove icon-on-right bigger-110"></i>作废
                                 </button>
-                                <button class="btn btn-small btn-purple" type="button" ng-click="voidAlterationKirikaeOrder()">
+                                <button class="btn btn-small btn-purple" type="button" ng-click="exportAlterationKirikaeOrderPDF()">
                                     <i class="icon-file icon-on-right bigger-110"></i>导出PDF
                                 </button>
                             </div>

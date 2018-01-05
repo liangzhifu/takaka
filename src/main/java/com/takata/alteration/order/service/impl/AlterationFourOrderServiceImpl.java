@@ -16,7 +16,7 @@ import java.util.List;
  * @author lzf
  **/
 @Service("alterationFourOrderService")
-    public class AlterationFourOrderServiceImpl implements AlterationFourOrderService {
+public class AlterationFourOrderServiceImpl implements AlterationFourOrderService {
 
     @Resource(name = "alterationFourOrderAttrDao")
     private AlterationFourOrderAttrDao alterationFourOrderAttrDao;
@@ -36,7 +36,7 @@ import java.util.List;
     }
 
     @Override
-    public AlterationFourOrder getAlterationFourOrder(Integer orderId) throws Exception {
+    public AlterationFourOrder getAlterationFourOrderByAlterationOrderId(Integer orderId) throws Exception {
         AlterationFourOrder alterationFourOrder = this.alterationFourOrderDao.selectAlterationFourOrder(orderId);
         List<AlterationFourOrderAttr> alterationFourOrderAttrList = this.alterationFourOrderAttrDao.selectAlterationFourOrderAttrList(alterationFourOrder.getId());
         alterationFourOrder.setAlterationFourOrderAttrList(alterationFourOrderAttrList);
@@ -44,7 +44,7 @@ import java.util.List;
     }
 
     @Override
-    public void AddAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception {
+    public void addAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception {
         FourTemplate fourTemplate = this.fourTemplateService.getFourTemplate();
         alterationFourOrder.setTemplateId(fourTemplate.getId());
         alterationFourOrder.setTemplateVersion(fourTemplate.getTemplateVersion());
@@ -52,5 +52,10 @@ import java.util.List;
         if(num != 1){
             throw new Exception("新增4M变更单异常！");
         }
+    }
+
+    @Override
+    public void editAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception {
+
     }
 }

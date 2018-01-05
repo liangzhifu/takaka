@@ -13,4 +13,19 @@ public class AlterationKirikaeOrderServiceImpl implements AlterationKirikaeOrder
     public void addAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception {
 
     }
+
+    @Override
+    public void editAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception {
+
+    }
+
+    @Override
+    public AlterationKirikaeOrder getAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception {
+        return null;
+    }
+
+    @Override
+    public AlterationKirikaeOrder getAlterationKirikaeOrderByAlterationOrderId(Integer orderId) throws Exception {
+        return null;
+    }
 }

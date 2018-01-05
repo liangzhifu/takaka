@@ -5,8 +5,12 @@
     <%@include file="../common/css.jsp"%>
     <%@include file="../common/js.jsp"%>
 </head>
-<body ng-controller="alterationKirikaeOrderListController" ng-cloak>
-    <form class="form-inline">
+<body ng-controller="alterationOrderAddOrEditController" ng-cloak>
+    <form class="form-inline" id="alterationOrderAddOrEditForm">
+        <input type="hidden" name="id">
+        <input type="hidden" name="orderChannel">
+        <input type="hidden" name="alterationFourOrder.id">
+        <input type="hidden" name="alterationKirikaeOrder.id">
         <div class="main-container container-fluid">
             <div class="main-content">
                 <div class="page-content">
@@ -18,7 +22,7 @@
                                         <i class="icon-edit"></i>4M信息
                                     </div>
                                 </div>
-                                <div class="modal-body" style="width: 100%; height: 35%; overflow-y: scroll;padding-top: 0px; padding-bottom: 0px;">
+                                <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label class="control-label" title="">发行日期：</label>
@@ -66,7 +70,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label class="control-label" title="">变更时间：</label>
-                                            <input class="form-control-order form-control" type="text" required="required"
+                                            <input class="form-control-order form-control" type="text" required="required" data-type="dateTime"
                                                    id="alterationOrder.alterationFourOrder.estimateChangeTime" name="alterationFourOrder.estimateChangeTime"
                                                    ng-model="alterationOrder.alterationFourOrder.estimateChangeTime">
                                         </div>
@@ -159,7 +163,7 @@
                                         <i class="icon-edit"></i>切替信息
                                     </div>
                                 </div>
-                                <div class="modal-body" style="width: 100%; height: 35%; overflow-y: scroll;padding-top: 0px; padding-bottom: 0px;">
+                                <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label class="control-label" title="">切替单类型：</label>
@@ -446,9 +450,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
-                        <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
-                            <button type="button" ng-click="addKirikaeOrder()"
+                    <div class="modal-body">
+                        <div class="modal-footer">
+                            <button type="button" ng-click="addAlterationOrder()"
                                     class="btn btn-small btn-primary">确定</button>
                             <button type="button"
                                     class="btn btn-small btn-primary" data-dismiss="modal">取消

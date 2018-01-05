@@ -1,5 +1,12 @@
-var kirikaeOrderListApp = angular.module("kirikaeOrderList", []);
-kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
+var alterationOrderAddOrEditApp = angular.module("alterationOrderAddOrEdit", []);
+alterationOrderAddOrEditApp.controller("alterationOrderAddOrEditController", ["$scope", "$location", function ($scope, $location) {
+    if(!($location.search().id == undefined || $location.search().id == null)){
+        $("#id").val(id);
+    }
+    if(!($location.search().orderChannel == undefined || $location.search().orderChannel == null)){
+        $("#orderChannel").val(orderChannel);
+    }
+
     $scope.fourOrderAttrIndex = 0;
     $scope.templateAttrList = [];
     $scope.systemUserList = [];
@@ -48,24 +55,17 @@ kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
             return false;
         }
         var flag = true;
-        //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList = new Array();
         for(var i = 0; i < $scope.templateAttrList.length; i++){
-            //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList[i] = {};
             var data = $scope.templateAttrList[i];
-            //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList[i].attrId = data.id;
             if($("#order_attr_checkbox_"+data.attrType+"_"+data.id).is(":checked")){
-                //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList[i].attrChecked = 1;
                 flag = false;
                 if(data.attrOther == 1){
                     var otherValue = $("#order_attr_checkbox_"+data.attrType+"_"+data.id+"_value").val();
-                    //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList[i].attrValue = otherValue;
                     if(otherValue == null || otherValue == ""){
                         alert("您选择了其他，输入框不能为空！");
                         return false;
                     }
                 }
-            }else {
-                //$scope.alterationOrder.alterationFourOrder.alterationFourOrderAttrList[i].attrChecked = 0;
             }
         }
         if(flag){
@@ -79,24 +79,26 @@ kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
         return true;
     };
 
-    $scope.addKirikaeOrder = function () {
+    $scope.addAlterationOrder = function () {
         if(!$scope.validFourOrder()){
             return;
         }
-        var orderId = $scope.alterationOrder.id;
+        if(!$scope.validKirikaeOrder()){
+            return;
+        }
+        var id = $("#id").val();
         var url = "";
         var comment = "";
-        if(orderId == undefined || orderId == null || orderId == ""){
-            url = "/alteration/order/addOrder.do";
-            comment = "确定新增切替变更单！";
+        if(id == undefined || id == null || id == ""){
+            url = "/alteration/order/add.do";
+            comment = "确定新增变更单！";
         }else {
-            url = "/alteration/order/editOrder.do";
-            comment = "确定修改切替变更单！";
+            url = "/alteration/order/edit.do";
+            comment = "确定修改变更单！";
         }
         var con = confirm(comment);
         if (con == true){
-            $scope.alterationOrder.orderChannel = 2;
-            $("#addOrEditKirikaeOrder").ajaxSubmit({
+            $("#alterationOrderAddOrEditForm").ajaxSubmit({
                 type: "post",
                 dataType : "json",
                 url : BASE_URL + url,
@@ -112,39 +114,11 @@ kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
                     alert("系统出现异常!!");
                 }
             });
-
-            /**
-             $.ajax({
-                method: 'post',
-                url: BASE_URL + url,
-                async: false,
-                data : $scope.alterationOrder,
-                success: function (resultJson) {
-                    var result = angular.fromJson(resultJson);
-                    if (result.success) {
-                        $scope.$apply();
-                    }else {
-                        alert(result.message);
-                    }
-                }
-            });**/
         }
     };
 
-    $(document).ready(function () {
-        $("input[data-type='date']").each(function(){
-            $(this).datetimepicker({
-                timepicker:false,
-                format:'Y-m-d'
-            });
-        });
-
-        $("#alterationOrder\\.alterationFourOrder\\.estimateChangeTime").datetimepicker({
-            timepicker:true,
-            minDate : new Date(),
-            format:'Y-m-d H:i:s'
-        });
-
+    //获取4m模板属性
+    $scope.getTemplateAttr = function () {
         $.ajax({
             method: 'post',
             url: BASE_URL + "/four/template/queryTemplateAttrList.do",
@@ -154,12 +128,16 @@ kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
                 if (result.success) {
                     $scope.templateAttrList = result.dataMapList;
                     $scope.$apply();
+                    $scope.getAllUser();
                 }else {
                     alert("请联系系统管理员！");
                 }
             }
         });
+    };
 
+    //获取所有用户
+    $scope.getAllUser = function () {
         $.ajax({
             method: 'post',
             url: BASE_URL + "/system/user/queryAllUser.do",
@@ -183,10 +161,45 @@ kirikaeOrderListApp.controller("kirikaeOrderListController", function ($scope) {
                 }
             }
         });
+    };
+
+    $scope.getAlterAtionOrder = function () {
+        var id = $("#id").val();
+        if(id == undefined || id == null || id == ""){
+            $.ajax({
+                method: 'post',
+                url: BASE_URL + "/system/user/queryAllUser.do",
+                async: false,
+                success: function (resultJson) {
+                    var result = angular.fromJson(resultJson);
+                    if (result.success) {
+
+                    }
+                }
+            });
+        }
+    };
+
+    $(document).ready(function () {
+        $("input[data-type='date']").each(function(){
+            $(this).datetimepicker({
+                timepicker:false,
+                format:'Y-m-d'
+            });
+        });
+
+        $("input[data-type='dateTime']").datetimepicker({
+            timepicker:true,
+            minDate : new Date(),
+            format:'Y-m-d H:i:s'
+        });
+
+        $scope.getTemplateAttr();
 
     });
-});
-kirikaeOrderListApp.filter('attrFilter', function() {
+}]);
+
+alterationOrderAddOrEditApp.filter('attrFilter', function() {
     return function(inputArray, attrType) {
         var array = [];
         for(var i = 0; i < inputArray.length ; i++){
@@ -199,4 +212,4 @@ kirikaeOrderListApp.filter('attrFilter', function() {
         return array;
     };
 });
-angular.bootstrap(document, [ 'kirikaeOrderList' ]);
+angular.bootstrap(document, [ 'alterationOrderAddOrEdit' ]);

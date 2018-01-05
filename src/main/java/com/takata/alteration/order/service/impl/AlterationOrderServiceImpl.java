@@ -3,6 +3,7 @@ package com.takata.alteration.order.service.impl;
 import com.takata.alteration.order.constant.AlterationOrderEnum;
 import com.takata.alteration.order.dao.AlterationOrderDao;
 import com.takata.alteration.order.domain.AlterationFourOrder;
+import com.takata.alteration.order.domain.AlterationKirikaeOrder;
 import com.takata.alteration.order.domain.AlterationOrder;
 import com.takata.alteration.order.service.AlterationFourOrderService;
 import com.takata.alteration.order.service.AlterationKirikaeOrderService;
@@ -33,8 +34,10 @@ import java.util.Date;
     @Override
     public AlterationOrder getAlterationOrder(AlterationOrder alterationOrder) throws Exception {
         alterationOrder = this.alterationOrderDao.selectAlterationOrder(alterationOrder);
-        AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrder(alterationOrder.getId());
+        AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setAlterationFourOrder(alterationFourOrder);
+        AlterationKirikaeOrder alterationKirikaeOrder = this.alterationKirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
+        alterationOrder.setAlterationKirikaeOrder(alterationKirikaeOrder);
         return alterationOrder;
     }
 
@@ -55,19 +58,24 @@ import java.util.Date;
         //新增4M变更单
         AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
         alterationFourOrder.setOrderId(alterationOrder.getId());
-        this.alterationFourOrderService.AddAlterationFourOrder(alterationFourOrder);
+        this.alterationFourOrderService.addAlterationFourOrder(alterationFourOrder);
 
         //新增切替变更单
-
+        AlterationKirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
+        alterationKirikaeOrder.setOrderId(alterationOrder.getId());
+        this.alterationKirikaeOrderService.addAlterationKirikaeOrder(alterationKirikaeOrder);
     }
 
     @Override
     public void editAlterationOrder(AlterationOrder alterationOrder) throws Exception {
-        this.alterationOrderDao.insertAlterationOrder(alterationOrder);
-
         //修改4M变更单
+        AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
+        alterationFourOrder.setOrderId(alterationOrder.getId());
+        this.alterationFourOrderService.editAlterationFourOrder(alterationFourOrder);
 
         //修改切替变更单
-
+        AlterationKirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
+        alterationKirikaeOrder.setOrderId(alterationOrder.getId());
+        this.alterationKirikaeOrderService.editAlterationKirikaeOrder(alterationKirikaeOrder);
     }
 }

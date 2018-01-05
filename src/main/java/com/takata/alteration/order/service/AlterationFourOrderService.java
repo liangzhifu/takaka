@@ -22,13 +22,20 @@ public interface AlterationFourOrderService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    AlterationFourOrder getAlterationFourOrder(Integer orderId) throws Exception;
+    AlterationFourOrder getAlterationFourOrderByAlterationOrderId(Integer orderId) throws Exception;
 
     /**
      * 新增4M变更单
      * @param alterationFourOrder 4M变更单实体信息
      * @throws Exception 异常
      */
-    void AddAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception;
+    void addAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception;
+
+    /**
+     * 修改4M变更单
+     * @param alterationFourOrder 4M变更单实体信息
+     * @throws Exception 异常
+     */
+    void editAlterationFourOrder(AlterationFourOrder alterationFourOrder) throws Exception;
 
 }

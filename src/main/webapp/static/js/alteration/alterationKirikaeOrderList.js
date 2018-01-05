@@ -59,16 +59,21 @@ alterationKirikaeOrderListApp.controller("alterationKirikaeOrderListController",
 
     //新增切替变更单
     $scope.addAlterationKirikaeOrder = function () {
-        window.location.href = BASE_URL + "/alteration/order/add.do";
+        window.location.href = BASE_URL + "/alteration/order/getAddOrEditDialog.do?orderChannel=2";
     };
 
     //修改切替变更单
-    $scope.addAlterationKirikaeOrder = function () {
+    $scope.editAlterationKirikaeOrder = function () {
 
     };
 
     //作废切替变更单
     $scope.voidAlterationKirikaeOrder = function () {
+
+    };
+
+    //导出切替单PDF
+    $scope.exportAlterationKirikaeOrderPDF = function () {
 
     };
 
