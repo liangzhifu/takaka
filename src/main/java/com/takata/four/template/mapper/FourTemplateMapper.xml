@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="FourTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.takata.four.template.domain.FourTemplate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="template_name" property="templateName" jdbcType="VARCHAR" />
+    <result column="cycle_id" property="cycleId" jdbcType="INTEGER" />
+    <result column="template_version" property="templateVersion" jdbcType="INTEGER" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_name, cycle_id, template_version, delete_state
+  </sql>
+  <select id="selectFourTemplate" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from four_template
+  </select>
+</mapper>

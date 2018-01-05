@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AlterationFourOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.takata.alteration.order.domain.AlterationFourOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="template_version" property="templateVersion" jdbcType="INTEGER" />
+    <result column="change_after_product_no" property="changeAfterProductNo" jdbcType="VARCHAR" />
+    <result column="change_befor_product_no" property="changeBeforProductNo" jdbcType="VARCHAR" />
+    <result column="real_change_time" property="realChangeTime" jdbcType="VARCHAR" />
+    <result column="estimate_change_time" property="estimateChangeTime" jdbcType="VARCHAR" />
+    <result column="release_date" property="releaseDate" jdbcType="VARCHAR" />
+    <result column="issue_number" property="issueNumber" jdbcType="VARCHAR" />
+    <result column="product_line" property="productLine" jdbcType="VARCHAR" />
+    <result column="car_name" property="carName" jdbcType="VARCHAR" />
+    <result column="installation_mat" property="installationMat" jdbcType="VARCHAR" />
+    <result column="change_content" property="changeContent" jdbcType="VARCHAR" />
+    <result column="cycle_id" property="cycleId" jdbcType="INTEGER" />
+    <result column="real_complete_time" property="realCompleteTime" jdbcType="TIMESTAMP" />
+    <result column="require_complete_time" property="requireCompleteTime" jdbcType="TIMESTAMP" />
+    <result column="is_delay" property="isDelay" jdbcType="INTEGER" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="delay_notice_time" property="delayNoticeTime" jdbcType="TIMESTAMP" />
+    <result column="alarm_time" property="alarmTime" jdbcType="TIMESTAMP" />
+    <result column="contract_state" property="contractState" jdbcType="VARCHAR" />
+    <result column="order_tache" property="orderTache" jdbcType="VARCHAR" />
+    <result column="contract_user" property="contractUser" jdbcType="INTEGER" />
+    <result column="confirm_order_state_code" property="confirmOrderStateCode" jdbcType="VARCHAR" />
+    <result column="is_agreement" property="isAgreement" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, template_id, template_version, change_after_product_no, change_befor_product_no, 
+    real_change_time, estimate_change_time, release_date, issue_number, product_line, 
+    car_name, installation_mat, change_content, cycle_id, real_complete_time, require_complete_time, 
+    is_delay, notice_time, delay_notice_time, alarm_time, contract_state, order_tache, 
+    contract_user, confirm_order_state_code, is_agreement
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.alteration.order.domain.AlterationFourOrder" >
+    select 
+    <include refid="Base_Column_List" />
+    from alteration_four_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAlterationFourOrderByorderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from alteration_four_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+  <insert id="insert" parameterType="com.takata.alteration.order.domain.AlterationFourOrder" >
+    insert into alteration_four_order (id, order_id, template_id, 
+      template_version, change_after_product_no, 
+      change_befor_product_no, real_change_time, estimate_change_time, 
+      release_date, issue_number, product_line, 
+      car_name, installation_mat, change_content, 
+      cycle_id, real_complete_time, require_complete_time, 
+      is_delay, notice_time, delay_notice_time, 
+      alarm_time, contract_state, order_tache, 
+      contract_user, confirm_order_state_code, is_agreement
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, 
+      #{templateVersion,jdbcType=INTEGER}, #{changeAfterProductNo,jdbcType=VARCHAR}, 
+      #{changeBeforProductNo,jdbcType=VARCHAR}, #{realChangeTime,jdbcType=VARCHAR}, #{estimateChangeTime,jdbcType=VARCHAR}, 
+      #{releaseDate,jdbcType=VARCHAR}, #{issueNumber,jdbcType=VARCHAR}, #{productLine,jdbcType=VARCHAR}, 
+      #{carName,jdbcType=VARCHAR}, #{installationMat,jdbcType=VARCHAR}, #{changeContent,jdbcType=VARCHAR}, 
+      #{cycleId,jdbcType=INTEGER}, #{realCompleteTime,jdbcType=TIMESTAMP}, #{requireCompleteTime,jdbcType=TIMESTAMP}, 
+      #{isDelay,jdbcType=INTEGER}, #{noticeTime,jdbcType=TIMESTAMP}, #{delayNoticeTime,jdbcType=TIMESTAMP}, 
+      #{alarmTime,jdbcType=TIMESTAMP}, #{contractState,jdbcType=VARCHAR}, #{orderTache,jdbcType=VARCHAR}, 
+      #{contractUser,jdbcType=INTEGER}, #{confirmOrderStateCode,jdbcType=VARCHAR}, #{isAgreement,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.takata.alteration.order.domain.AlterationFourOrder" >
+    insert into alteration_four_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="templateVersion != null" >
+        template_version,
+      </if>
+      <if test="changeAfterProductNo != null" >
+        change_after_product_no,
+      </if>
+      <if test="changeBeforProductNo != null" >
+        change_befor_product_no,
+      </if>
+      <if test="realChangeTime != null" >
+        real_change_time,
+      </if>
+      <if test="estimateChangeTime != null" >
+        estimate_change_time,
+      </if>
+      <if test="releaseDate != null" >
+        release_date,
+      </if>
+      <if test="issueNumber != null" >
+        issue_number,
+      </if>
+      <if test="productLine != null" >
+        product_line,
+      </if>
+      <if test="carName != null" >
+        car_name,
+      </if>
+      <if test="installationMat != null" >
+        installation_mat,
+      </if>
+      <if test="changeContent != null" >
+        change_content,
+      </if>
+      <if test="cycleId != null" >
+        cycle_id,
+      </if>
+      <if test="realCompleteTime != null" >
+        real_complete_time,
+      </if>
+      <if test="requireCompleteTime != null" >
+        require_complete_time,
+      </if>
+      <if test="isDelay != null" >
+        is_delay,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="delayNoticeTime != null" >
+        delay_notice_time,
+      </if>
+      <if test="alarmTime != null" >
+        alarm_time,
+      </if>
+      <if test="contractState != null" >
+        contract_state,
+      </if>
+      <if test="orderTache != null" >
+        order_tache,
+      </if>
+      <if test="contractUser != null" >
+        contract_user,
+      </if>
+      <if test="confirmOrderStateCode != null" >
+        confirm_order_state_code,
+      </if>
+      <if test="isAgreement != null" >
+        is_agreement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="templateVersion != null" >
+        #{templateVersion,jdbcType=INTEGER},
+      </if>
+      <if test="changeAfterProductNo != null" >
+        #{changeAfterProductNo,jdbcType=VARCHAR},
+      </if>
+      <if test="changeBeforProductNo != null" >
+        #{changeBeforProductNo,jdbcType=VARCHAR},
+      </if>
+      <if test="realChangeTime != null" >
+        #{realChangeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateChangeTime != null" >
+        #{estimateChangeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null" >
+        #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="issueNumber != null" >
+        #{issueNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productLine != null" >
+        #{productLine,jdbcType=VARCHAR},
+      </if>
+      <if test="carName != null" >
+        #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="installationMat != null" >
+        #{installationMat,jdbcType=VARCHAR},
+      </if>
+      <if test="changeContent != null" >
+        #{changeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleId != null" >
+        #{cycleId,jdbcType=INTEGER},
+      </if>
+      <if test="realCompleteTime != null" >
+        #{realCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requireCompleteTime != null" >
+        #{requireCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelay != null" >
+        #{isDelay,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayNoticeTime != null" >
+        #{delayNoticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmTime != null" >
+        #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractState != null" >
+        #{contractState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTache != null" >
+        #{orderTache,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUser != null" >
+        #{contractUser,jdbcType=INTEGER},
+      </if>
+      <if test="confirmOrderStateCode != null" >
+        #{confirmOrderStateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgreement != null" >
+        #{isAgreement,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.takata.alteration.order.domain.AlterationFourOrder" >
+    update alteration_four_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="templateVersion != null" >
+        template_version = #{templateVersion,jdbcType=INTEGER},
+      </if>
+      <if test="changeAfterProductNo != null" >
+        change_after_product_no = #{changeAfterProductNo,jdbcType=VARCHAR},
+      </if>
+      <if test="changeBeforProductNo != null" >
+        change_befor_product_no = #{changeBeforProductNo,jdbcType=VARCHAR},
+      </if>
+      <if test="realChangeTime != null" >
+        real_change_time = #{realChangeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="estimateChangeTime != null" >
+        estimate_change_time = #{estimateChangeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null" >
+        release_date = #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="issueNumber != null" >
+        issue_number = #{issueNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productLine != null" >
+        product_line = #{productLine,jdbcType=VARCHAR},
+      </if>
+      <if test="carName != null" >
+        car_name = #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="installationMat != null" >
+        installation_mat = #{installationMat,jdbcType=VARCHAR},
+      </if>
+      <if test="changeContent != null" >
+        change_content = #{changeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleId != null" >
+        cycle_id = #{cycleId,jdbcType=INTEGER},
+      </if>
+      <if test="realCompleteTime != null" >
+        real_complete_time = #{realCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requireCompleteTime != null" >
+        require_complete_time = #{requireCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelay != null" >
+        is_delay = #{isDelay,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delayNoticeTime != null" >
+        delay_notice_time = #{delayNoticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmTime != null" >
+        alarm_time = #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractState != null" >
+        contract_state = #{contractState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTache != null" >
+        order_tache = #{orderTache,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUser != null" >
+        contract_user = #{contractUser,jdbcType=INTEGER},
+      </if>
+      <if test="confirmOrderStateCode != null" >
+        confirm_order_state_code = #{confirmOrderStateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgreement != null" >
+        is_agreement = #{isAgreement,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.takata.alteration.order.domain.AlterationFourOrder" >
+    update alteration_four_order
+    set order_id = #{orderId,jdbcType=INTEGER},
+      template_id = #{templateId,jdbcType=INTEGER},
+      template_version = #{templateVersion,jdbcType=INTEGER},
+      change_after_product_no = #{changeAfterProductNo,jdbcType=VARCHAR},
+      change_befor_product_no = #{changeBeforProductNo,jdbcType=VARCHAR},
+      real_change_time = #{realChangeTime,jdbcType=VARCHAR},
+      estimate_change_time = #{estimateChangeTime,jdbcType=VARCHAR},
+      release_date = #{releaseDate,jdbcType=VARCHAR},
+      issue_number = #{issueNumber,jdbcType=VARCHAR},
+      product_line = #{productLine,jdbcType=VARCHAR},
+      car_name = #{carName,jdbcType=VARCHAR},
+      installation_mat = #{installationMat,jdbcType=VARCHAR},
+      change_content = #{changeContent,jdbcType=VARCHAR},
+      cycle_id = #{cycleId,jdbcType=INTEGER},
+      real_complete_time = #{realCompleteTime,jdbcType=TIMESTAMP},
+      require_complete_time = #{requireCompleteTime,jdbcType=TIMESTAMP},
+      is_delay = #{isDelay,jdbcType=INTEGER},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      delay_notice_time = #{delayNoticeTime,jdbcType=TIMESTAMP},
+      alarm_time = #{alarmTime,jdbcType=TIMESTAMP},
+      contract_state = #{contractState,jdbcType=VARCHAR},
+      order_tache = #{orderTache,jdbcType=VARCHAR},
+      contract_user = #{contractUser,jdbcType=INTEGER},
+      confirm_order_state_code = #{confirmOrderStateCode,jdbcType=VARCHAR},
+      is_agreement = #{isAgreement,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

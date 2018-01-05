@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="FourTemplateTacheMapper" >
+
+    <resultMap id="BaseResultMap" type="com.takata.four.tache.domain.FourTemplateTache" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="template_id" property="templateId" jdbcType="INTEGER" />
+        <result column="tache_name" property="tacheName" jdbcType="VARCHAR" />
+        <result column="template_version" property="templateVersion" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, template_id, tache_name, template_version
+    </sql>
+
+    <select id="selectFourTemplateTacheList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT ftt.`id`,
+        ftt.`template_id`,
+        ftt.`tache_name`,
+        ftt.`template_version`
+        FROM four_template ft, four_template_tache ftt
+        WHERE ft.`id` = ftt.`template_id`
+        AND ft.`template_version` = ftt.`template_version`
+        AND ft.`id` = #{templateId,jdbcType=INTEGER}
+        ORDER BY ftt.id
+    </select>
+
+</mapper>
