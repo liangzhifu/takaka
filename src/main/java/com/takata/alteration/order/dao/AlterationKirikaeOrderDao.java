@@ -15,8 +15,8 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public Integer insertAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder){
-        return this.writerSqlSession.insert("", alterationKirikaeOrder);
+    public Integer insertSelective(AlterationKirikaeOrder alterationKirikaeOrder){
+        return this.writerSqlSession.insert("AlterationKirikaeOrderMapper.insertSelective", alterationKirikaeOrder);
     }
 
     /**
@@ -24,8 +24,17 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public Integer updateAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder){
-        return this.writerSqlSession.update("", alterationKirikaeOrder);
+    public Integer updateByPrimaryKeySelective(AlterationKirikaeOrder alterationKirikaeOrder){
+        return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
+    }
+
+    /**
+     * 更新切替变更单
+     * @param alterationKirikaeOrder 切替变更单实体
+     * @return 返回结果
+     */
+    public Integer updateByPrimaryKey(AlterationKirikaeOrder alterationKirikaeOrder){
+        return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
     }
 
     /**
@@ -33,8 +42,8 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public AlterationKirikaeOrder selectAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder){
-        return this.readSqlSession.selectOne("", alterationKirikaeOrder);
+    public AlterationKirikaeOrder selectByPrimaryKey(AlterationKirikaeOrder alterationKirikaeOrder){
+        return this.readSqlSession.selectOne("AlterationKirikaeOrderMapper.selectByPrimaryKey", alterationKirikaeOrder);
     }
     
 }

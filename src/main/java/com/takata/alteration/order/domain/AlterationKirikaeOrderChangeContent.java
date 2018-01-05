@@ -20,7 +20,11 @@ public class AlterationKirikaeOrderChangeContent {
 
     private Integer beforeFileId;
 
+    private String beforeFileName;
+
     private Integer newFileId;
+
+    private String newFileName;
 
     private Integer deleteState;
 
