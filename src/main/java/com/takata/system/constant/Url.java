@@ -31,7 +31,7 @@ public interface Url {
     String ROLE_EDIT = BASE + ROLE + "/edit.do";
     String ROLE_DELETE = BASE + ROLE + "/delete.do";
     String ROLE_QUERYPAGELIST = BASE + ROLE + "/queryPageList.do";
-    String ROLE_ADDLIST = BASE + USERROLE + "/queryAddList.do";
+    String ROLE_ADDLIST = BASE + ROLE + "/queryAddList.do";
     //角色权限关联
     String ROLEPERMISSION_ADD = BASE + ROLEPERMISSION + "/add.do";
     String ROLEPERMISSION_DELETE = BASE + ROLEPERMISSION + "/delete.do";

@@ -128,7 +128,8 @@
     <select id="selectAddSystemRoleList" resultMap="BaseResultMap" parameterType="com.takata.system.user.query.SystemUserRoleQuery">
         SELECT <include refid="Base_Column_List" />
         FROM system_role
-        where id not IN
+        where `delete_state` = 0
+        and id not IN
         (select sur.`role_id`
         from system_user_role sur
         where sur.`delete_state` = 0
