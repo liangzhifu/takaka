@@ -4,6 +4,7 @@ import com.takata.common.shiro.Principal;
 import com.takata.common.shiro.PrincipalUtils;
 import com.takata.system.constant.Url;
 import com.takata.system.org.controller.SystemOrgController;
+import com.takata.system.user.domain.SystemUserOrg;
 import com.takata.system.user.query.SystemUserOrgQuery;
 import com.takata.system.user.service.SystemUserOrgService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,10 +35,10 @@ public class SystemUserOrgController {
     @RequestMapping(value = Url.USERORG_QUERYUSERROLELIST)
     @ResponseBody
     private Object querySystemUserRoleList(SystemUserOrgQuery systemUserOrgQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> dataMapList = this.systemUserOrgService.querySystemUserOrgList(systemUserOrgQuery);
-            map.put("dataMapList", dataMapList);
+            List<SystemUserOrg> systemUserOrgList = this.systemUserOrgService.listSystemUserOrg(systemUserOrgQuery);
+            map.put("dataMapList", systemUserOrgList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());

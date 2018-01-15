@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -30,9 +29,9 @@ public class SystemUserRoleServiceImpl implements SystemUserRoleService {
             SystemUserRole systemUserRole = new SystemUserRole();
             systemUserRole.setUserId(userId);
             systemUserRole.setRoleId(Integer.valueOf(roleId));
-            systemUserRole.setCreateBy(principal.getId());
+            systemUserRole.setCreateBy(principal != null ? principal.getId() : null);
             systemUserRole.setCreateTime(new Date());
-            systemUserRole.setUpdateBy(principal.getId());
+            systemUserRole.setUpdateBy(principal != null ? principal.getId() : null);
             systemUserRole.setUpdateTime(new Date());
             systemUserRole.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
             Integer count = this.systemUserRoleDao.insertSystemUserRole(systemUserRole);
@@ -43,20 +42,9 @@ public class SystemUserRoleServiceImpl implements SystemUserRoleService {
     }
 
     @Override
-    public void editSystemUserRole(SystemUserRole systemUserRole) throws Exception {
-        Principal principal = PrincipalUtils.getPrincipal();
-        systemUserRole.setUpdateBy(principal.getId());
-        systemUserRole.setUpdateTime(new Date());
-        Integer count = this.systemUserRoleDao.updateSystemUserRole(systemUserRole);
-        if (count != 1){
-            throw new Exception("修改用户角色关联异常！");
-        }
-    }
-
-    @Override
     public void deleteSystemUserRole(SystemUserRole systemUserRole) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemUserRole.setUpdateBy(principal.getId());
+        systemUserRole.setUpdateBy(principal != null ? principal.getId() : null);
         systemUserRole.setUpdateTime(new Date());
         systemUserRole.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
         Integer count = this.systemUserRoleDao.updateSystemUserRole(systemUserRole);
@@ -66,33 +54,28 @@ public class SystemUserRoleServiceImpl implements SystemUserRoleService {
     }
 
     @Override
-    public void deleteSystemUserRoleByUser(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
-        List<Map<String, Object>> mapList = this.querySystemUserRoleList(systemUserRoleQuery);
-        for (Map<String, Object> map : mapList){
-            SystemUserRole systemUserRole = new SystemUserRole();
-            systemUserRole.setId(Integer.valueOf(map.get("id").toString()));
+    public void deleteSystemUserRoleByUser(Integer userId) throws Exception {
+        SystemUserRoleQuery systemUserRoleQuery = new SystemUserRoleQuery();
+        systemUserRoleQuery.setUserId(userId);
+        List<SystemUserRole> systemUserRoleList = this.listSystemUserRole(systemUserRoleQuery);
+        for (SystemUserRole systemUserRole : systemUserRoleList){
             this.deleteSystemUserRole(systemUserRole);
         }
     }
 
     @Override
-    public List<Map<String, Object>> querySystemUserRolePageList(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
-        return this.systemUserRoleDao.selectSystemUserRolePageList(systemUserRoleQuery);
+    public void deleteSystemUserRoleByRole(Integer roleId) throws Exception {
+        SystemUserRoleQuery systemUserRoleQuery = new SystemUserRoleQuery();
+        systemUserRoleQuery.setRoleId(roleId);
+        List<SystemUserRole> systemUserRoleList = this.listSystemUserRole(systemUserRoleQuery);
+        for (SystemUserRole systemUserRole : systemUserRoleList){
+            this.deleteSystemUserRole(systemUserRole);
+        }
     }
 
     @Override
-    public Integer querySystemUserRoleCount(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
-        return this.systemUserRoleDao.selectSystemUserRoleCount(systemUserRoleQuery);
-    }
-
-    @Override
-    public List<Map<String, Object>> querySystemUserRoleList(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
+    public List<SystemUserRole> listSystemUserRole(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
         return this.systemUserRoleDao.selectSystemUserRoleList(systemUserRoleQuery);
-    }
-
-    @Override
-    public List<Map<String, Object>> queryAddRoleList(SystemUserRoleQuery systemUserRoleQuery) throws Exception {
-        return this.systemUserRoleDao.selectAddRoleList(systemUserRoleQuery);
     }
 
 }

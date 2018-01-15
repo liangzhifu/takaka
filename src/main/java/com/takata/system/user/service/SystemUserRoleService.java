@@ -17,13 +17,6 @@ public interface SystemUserRoleService {
     void addSystemUserRole(Integer userId, String[] roleIds) throws Exception;
 
     /**
-     * 修改用户角色关联信息
-     * @param systemUserRole 用户角色关联实体信息
-     * @throws Exception 异常
-     */
-    void editSystemUserRole(SystemUserRole systemUserRole) throws Exception;
-
-    /**
      * 删除用户角色关联
      * @param systemUserRole 用户角色关联实体信息
      * @throws Exception 异常
@@ -32,10 +25,17 @@ public interface SystemUserRoleService {
 
     /**
      * 删除用户--删除用户角色关联
-     * @param systemUserRoleQuery 查询条件
+     * @param userId 用户ID
      * @throws Exception 异常
      */
-    void deleteSystemUserRoleByUser(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
+    void deleteSystemUserRoleByUser(Integer userId) throws Exception;
+
+    /**
+     * 删除角色--删除用户角色关联
+     * @param roleId 用户ID
+     * @throws Exception 异常
+     */
+    void deleteSystemUserRoleByRole(Integer roleId) throws Exception;
 
     /**
      * 查询用户角色关联管理页面列表
@@ -43,30 +43,6 @@ public interface SystemUserRoleService {
      * @return 返回列表数据
      * @throws Exception 异常
      */
-    List<Map<String, Object>> querySystemUserRolePageList(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
-
-    /**
-     * 查询用户角色关联管理页面总数
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回总数
-     * @throws Exception 异常
-     */
-    Integer querySystemUserRoleCount(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
-
-    /**
-     * 查询用户角色关联管理页面列表
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回列表数据
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> querySystemUserRoleList(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
-
-    /**
-     * 查询可以加入的角色列表
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回结果
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> queryAddRoleList(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
+    List<SystemUserRole> listSystemUserRole(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
 
 }

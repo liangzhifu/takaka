@@ -39,34 +39,8 @@ public class SystemUserRoleDao extends BaseDao {
      * @param systemUserRoleQuery 查询条件
      * @return 返回列表数据
      */
-    public List<Map<String, Object>> selectSystemUserRolePageList(SystemUserRoleQuery systemUserRoleQuery){
-        return this.readSqlSession.selectList("", systemUserRoleQuery);
-    }
-
-    /**
-     * 查询用户角色关联管理页面总数
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回总数
-     */
-    public Integer selectSystemUserRoleCount(SystemUserRoleQuery systemUserRoleQuery){
-        return this.readSqlSession.selectOne("", systemUserRoleQuery);
-    }
-
-    /**
-     * 查询用户角色关联管理页面列表
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回列表数据
-     */
-    public List<Map<String, Object>> selectSystemUserRoleList(SystemUserRoleQuery systemUserRoleQuery){
+    public List<SystemUserRole> selectSystemUserRoleList(SystemUserRoleQuery systemUserRoleQuery){
         return this.readSqlSession.selectList("SystemUserRoleMapper.selectSystemUserRoleList", systemUserRoleQuery);
     }
 
-    /**
-     * 查询可以加入的角色
-     * @param systemUserRoleQuery 查询条件
-     * @return 返回结果
-     */
-    public List<Map<String, Object>> selectAddRoleList(SystemUserRoleQuery systemUserRoleQuery){
-        return this.readSqlSession.selectList("SystemUserRoleMapper.selectAddRoleList", systemUserRoleQuery);
-    }
 }

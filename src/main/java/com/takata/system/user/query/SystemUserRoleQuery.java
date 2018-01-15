@@ -1,18 +1,21 @@
 package com.takata.system.user.query;
 
+import lombok.Data;
+
 /**
  * @author lzf
  **/
-
+@Data
 public class SystemUserRoleQuery {
 
+    /**
+     * 用户ID
+     */
     private Integer userId;
 
-    public Integer getUserId() {
-        return userId;
-    }
+    /**
+     * 角色ID
+     */
+    private Integer roleId;
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

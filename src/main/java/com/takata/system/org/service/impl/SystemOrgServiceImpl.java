@@ -9,7 +9,6 @@ import com.takata.system.org.dao.SystemOrgDao;
 import com.takata.system.org.domain.SystemOrg;
 import com.takata.system.org.query.SystemOrgQuery;
 import com.takata.system.org.service.SystemOrgService;
-import com.takata.system.user.query.SystemUserOrgQuery;
 import com.takata.system.user.service.SystemUserOrgService;
 import org.springframework.stereotype.Service;
 
@@ -90,9 +89,7 @@ public class SystemOrgServiceImpl implements SystemOrgService {
         }
 
         //删除人员关联的组织
-        SystemUserOrgQuery systemUserOrgQuery = new SystemUserOrgQuery();
-        systemUserOrgQuery.setOrgId(systemOrg.getId());
-        this.systemUserOrgService.deleteSystemUserOrgByOrg(systemUserOrgQuery);
+        this.systemUserOrgService.deleteSystemUserOrgByOrg(systemOrg.getId());
 
         //删除子组织
         SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
@@ -115,9 +112,7 @@ public class SystemOrgServiceImpl implements SystemOrgService {
             }
 
             //删除人员关联的组织
-            SystemUserOrgQuery tempSystemUserOrgQuery = new SystemUserOrgQuery();
-            tempSystemUserOrgQuery.setOrgId(tempSystemOrg.getId());
-            this.systemUserOrgService.deleteSystemUserOrgByOrg(tempSystemUserOrgQuery);
+            this.systemUserOrgService.deleteSystemUserOrgByOrg(tempSystemOrg.getId());
         }
     }
 

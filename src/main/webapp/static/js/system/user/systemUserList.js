@@ -113,7 +113,7 @@ systemUserListApp.controller("systemUserListController", function ($scope) {
     $scope.addSystemUserRoleDialog = function () {
         $.ajax({
             method: 'post',
-            url: BASE_URL + "/system/userRole/add/queryList.do",
+            url: BASE_URL + "/system/role/queryAddList.do",
             data: {"userId":$scope.systemUser.id},
             async: false,
             success: function (resultJson) {

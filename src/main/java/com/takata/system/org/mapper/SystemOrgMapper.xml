@@ -17,7 +17,7 @@
     </resultMap>
     <sql id="Base_Column_List" >
         so.id, so.company_id, so.parent_id, so.org_name, so.org_path_code, so.org_type, so.delete_state, so.create_by, so.create_time,
-        so.update_by, so.update_time, (select parent.org_name from system_org parent where parent_id = so.parent_id) as parent_org_name
+        so.update_by, so.update_time, (select parent.org_name from system_org parent where parent.id = so.parent_id) as parent_org_name
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.system.org.domain.SystemOrg" >
         select

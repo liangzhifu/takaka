@@ -32,30 +32,9 @@ public class SystemUserRoleController {
     @RequestMapping(value = Url.USERROLE_QUERYLIST)
     @ResponseBody
     private Object querySystemUserRolePageList(SystemUserRoleQuery systemUserRoleQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> dataMapList = this.systemUserRoleService.querySystemUserRoleList(systemUserRoleQuery);
-            map.put("dataMapList", dataMapList);
-            map.put("success", true);
-        }catch (Exception e){
-            log.error(e.getMessage());
-            map.put("success", false);
-            map.put("message", e.getMessage());
-        }
-        return map;
-    }
-
-    /**
-     * 查询可以加入权限的列表
-     * @param systemUserRoleQuery 可以加入权限的列表查询条件
-     * @return 返回可以加入权限的列表信息和总数
-     */
-    @RequestMapping(value = Url.USERROLE_ADD_QUERYLIST)
-    @ResponseBody
-    private Object queryAddPermissionPageList(SystemUserRoleQuery systemUserRoleQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
-        try{
-            List<Map<String, Object>> dataMapList = this.systemUserRoleService.queryAddRoleList(systemUserRoleQuery);
+            List<SystemUserRole> dataMapList = this.systemUserRoleService.listSystemUserRole(systemUserRoleQuery);
             map.put("dataMapList", dataMapList);
             map.put("success", true);
         }catch (Exception e){
@@ -75,7 +54,7 @@ public class SystemUserRoleController {
     @RequestMapping(value = Url.USERROLE_ADD)
     @ResponseBody
     private Object addSystemUserRole(Integer userId, String roleIdStr){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             String[] roleIds = roleIdStr.split(",");
             this.systemUserRoleService.addSystemUserRole(userId, roleIds);
@@ -96,7 +75,7 @@ public class SystemUserRoleController {
     @RequestMapping(value = Url.USERROLE_DELETE)
     @ResponseBody
     private Object deleteSystemUserRole(SystemUserRole systemUserRole){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemUserRoleService.deleteSystemUserRole(systemUserRole);
             map.put("success", true);

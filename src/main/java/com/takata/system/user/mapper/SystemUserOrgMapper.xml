@@ -92,10 +92,8 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectSystemUserOrgList" resultType="java.util.HashMap" parameterType="com.takata.system.user.query.SystemUserOrgQuery">
-        select id,
-        org_id as orgId,
-        user_id as userId
+    <select id="selectSystemUserOrgList" resultMap="BaseResultMap" parameterType="com.takata.system.user.query.SystemUserOrgQuery">
+        select <include refid="Base_Column_List" />
         from system_user_org
         <where>
             delete_state = '0'

@@ -3,10 +3,10 @@ package com.takata.system.role.dao;
 import com.takata.common.dao.BaseDao;
 import com.takata.system.role.domain.SystemRole;
 import com.takata.system.role.query.SystemRoleQuery;
+import com.takata.system.user.query.SystemUserRoleQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -37,7 +37,7 @@ public class SystemRoleDao extends BaseDao {
      * @param systemRoleQuery 查询条件
      * @return 返回列表数据
      */
-    public List<Map<String, Object>> selectSystemRolePageList(SystemRoleQuery systemRoleQuery){
+    public List<SystemRole> selectSystemRolePageList(SystemRoleQuery systemRoleQuery){
         return this.readSqlSession.selectList("SystemRoleMapper.selectSystemRolePageList", systemRoleQuery);
     }
 
@@ -48,6 +48,15 @@ public class SystemRoleDao extends BaseDao {
      */
     public Integer selectSystemRoleCount(SystemRoleQuery systemRoleQuery){
         return this.readSqlSession.selectOne("SystemRoleMapper.selectSystemRoleCount", systemRoleQuery);
+    }
+
+    /**
+     * 查询角色管理页面列表
+     * @param systemUserRoleQuery 查询条件
+     * @return 返回列表数据
+     */
+    public List<SystemRole> selectAddSystemRoleList(SystemUserRoleQuery systemUserRoleQuery){
+        return this.readSqlSession.selectList("SystemRoleMapper.selectAddSystemRoleList", systemUserRoleQuery);
     }
 
 }

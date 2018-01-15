@@ -10,6 +10,8 @@
         <result column="update_by" property="updateBy" jdbcType="INTEGER" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+        <result column="role_name" property="roleName" jdbcType="INTEGER" />
+        <result column="explaination" property="explaination" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, user_id, role_id, create_by, create_time, update_by, update_time, delete_state
@@ -92,10 +94,10 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectSystemUserRoleList" resultType="java.util.HashMap" parameterType="com.takata.system.user.query.SystemUserRoleQuery">
+    <select id="selectSystemUserRoleList" resultMap="BaseResultMap" parameterType="com.takata.system.user.query.SystemUserRoleQuery">
         SELECT sur.`id`,
-        sur.`role_id` AS roleId,
-        sr.`role_name` AS roleName,
+        sur.`role_id`,
+        sr.`role_name`,
         sr.`explaination`
         FROM system_user_role sur, system_role sr
         <where> sur.`role_id` = sr.`id`
@@ -107,15 +109,4 @@
         </where>
     </select>
 
-    <select id="selectAddRoleList" resultType="java.util.HashMap" parameterType="com.takata.system.user.query.SystemUserRoleQuery">
-        SELECT id,
-        `role_name` AS roleName,
-        `explaination`
-        FROM system_role
-        WHERE id NOT IN
-        (SELECT sur.`role_id`
-        FROM system_user_role sur
-        WHERE sur.`delete_state` = 0
-        AND sur.`user_id` = #{userId, jdbcType=INTEGER})
-    </select>
 </mapper>

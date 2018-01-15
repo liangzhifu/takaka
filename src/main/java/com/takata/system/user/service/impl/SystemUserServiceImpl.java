@@ -5,9 +5,7 @@ import com.takata.common.shiro.Principal;
 import com.takata.common.shiro.PrincipalUtils;
 import com.takata.system.user.dao.SystemUserDao;
 import com.takata.system.user.domain.SystemUser;
-import com.takata.system.user.query.SystemUserOrgQuery;
 import com.takata.system.user.query.SystemUserQuery;
-import com.takata.system.user.query.SystemUserRoleQuery;
 import com.takata.system.user.service.SystemUserOrgService;
 import com.takata.system.user.service.SystemUserRoleService;
 import com.takata.system.user.service.SystemUserService;
@@ -65,7 +63,7 @@ public class SystemUserServiceImpl implements SystemUserService {
     @Override
     public Integer editSystemUser(SystemUser systemUser) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemUser.setUpdateBy(principal.getId());
+        systemUser.setUpdateBy(principal != null ? principal.getId() : null);
         systemUser.setUpdateTime(new Date());
         Integer count = this.systemUserDao.updateSystemUser(systemUser);
         if (count != 1){
@@ -77,7 +75,7 @@ public class SystemUserServiceImpl implements SystemUserService {
     @Override
     public Integer deleteSystemUser(SystemUser systemUser) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemUser.setUpdateBy(principal.getId());
+        systemUser.setUpdateBy(principal != null ? principal.getId() : null);
         systemUser.setUpdateTime(new Date());
         systemUser.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
         Integer count = this.systemUserDao.updateSystemUser(systemUser);
@@ -85,14 +83,10 @@ public class SystemUserServiceImpl implements SystemUserService {
             throw new Exception("删除用户异常！");
         }
         //删除用户关联的角色
-        SystemUserRoleQuery systemUserRoleQuery = new SystemUserRoleQuery();
-        systemUserRoleQuery.setUserId(systemUser.getId());
-        this.systemUserRoleService.deleteSystemUserRoleByUser(systemUserRoleQuery);
+        this.systemUserRoleService.deleteSystemUserRoleByUser(systemUser.getId());
 
         //删除用户关联的组织
-        SystemUserOrgQuery systemUserOrgQuery = new SystemUserOrgQuery();
-        systemUserOrgQuery.setUserId(systemUser.getId());
-        this.systemUserOrgService.deleteSystemUserOrgByOrg(systemUserOrgQuery);
+        this.systemUserOrgService.deleteSystemUserOrgByOrg(systemUser.getId());
         return count;
     }
 

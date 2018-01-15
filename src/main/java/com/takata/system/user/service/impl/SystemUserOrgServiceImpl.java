@@ -3,9 +3,7 @@ package com.takata.system.user.service.impl;
 import com.takata.common.constant.CommonEnum;
 import com.takata.common.shiro.Principal;
 import com.takata.common.shiro.PrincipalUtils;
-import com.takata.system.org.domain.SystemOrg;
 import com.takata.system.user.dao.SystemUserOrgDao;
-import com.takata.system.user.domain.SystemUser;
 import com.takata.system.user.domain.SystemUserOrg;
 import com.takata.system.user.query.SystemUserOrgQuery;
 import com.takata.system.user.service.SystemUserOrgService;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -32,9 +29,9 @@ public class SystemUserOrgServiceImpl implements SystemUserOrgService {
             SystemUserOrg systemUserOrg = new SystemUserOrg();
             systemUserOrg.setUserId(userId);
             systemUserOrg.setOrgId(Integer.valueOf(orgId));
-            systemUserOrg.setCreateBy(principal.getId());
+            systemUserOrg.setCreateBy(principal != null ? principal.getId() : null);
             systemUserOrg.setCreateTime(new Date());
-            systemUserOrg.setUpdateBy(principal.getId());
+            systemUserOrg.setUpdateBy(principal != null ? principal.getId() : null);
             systemUserOrg.setUpdateTime(new Date());
             systemUserOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
             Integer count = this.systemUserOrgDao.insertSystemUserOrg(systemUserOrg);
@@ -48,10 +45,8 @@ public class SystemUserOrgServiceImpl implements SystemUserOrgService {
     public void editSystemUserOrg(Integer userId, String[] orgIds) throws Exception {
         SystemUserOrgQuery systemUserOrgQuery = new SystemUserOrgQuery();
         systemUserOrgQuery.setUserId(userId);
-        List<Map<String, Object>> mapList = this.querySystemUserOrgList(systemUserOrgQuery);
-        for(Map<String, Object> map : mapList){
-            SystemUserOrg systemUserOrg = new SystemUserOrg();
-            systemUserOrg.setId(Integer.valueOf(map.get("id").toString()));
+        List<SystemUserOrg> systemUserOrgList = this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
+        for(SystemUserOrg systemUserOrg : systemUserOrgList){
             this.deleteSystemUserOrg(systemUserOrg);
         }
         this.addSystemUserOrg(userId, orgIds);
@@ -60,7 +55,7 @@ public class SystemUserOrgServiceImpl implements SystemUserOrgService {
     @Override
     public Integer deleteSystemUserOrg(SystemUserOrg systemUserOrg) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemUserOrg.setUpdateBy(principal.getId());
+        systemUserOrg.setUpdateBy(principal != null ? principal.getId() : null);
         systemUserOrg.setUpdateTime(new Date());
         systemUserOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
         Integer count = this.systemUserOrgDao.updateSystemUserOrg(systemUserOrg);
@@ -71,27 +66,27 @@ public class SystemUserOrgServiceImpl implements SystemUserOrgService {
     }
 
     @Override
-    public void deleteSystemUserOrgByUser(SystemUserOrgQuery systemUserOrgQuery) throws Exception {
-        List<Map<String, Object>> mapList = this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
-        for (Map<String, Object> map : mapList){
-            SystemUserOrg systemUserOrg = new SystemUserOrg();
-            systemUserOrg.setId(Integer.valueOf(map.get("id").toString()));
+    public void deleteSystemUserOrgByUser(Integer userId) throws Exception {
+        SystemUserOrgQuery systemUserOrgQuery = new SystemUserOrgQuery();
+        systemUserOrgQuery.setUserId(userId);
+        List<SystemUserOrg> systemUserOrgList = this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
+        for (SystemUserOrg systemUserOrg : systemUserOrgList){
             this.deleteSystemUserOrg(systemUserOrg);
         }
     }
 
     @Override
-    public void deleteSystemUserOrgByOrg(SystemUserOrgQuery systemUserOrgQuery) throws Exception {
-        List<Map<String, Object>> mapList = this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
-        for (Map<String, Object> map : mapList){
-            SystemUserOrg systemUserOrg = new SystemUserOrg();
-            systemUserOrg.setId(Integer.valueOf(map.get("id").toString()));
+    public void deleteSystemUserOrgByOrg(Integer orgId) throws Exception {
+        SystemUserOrgQuery systemUserOrgQuery = new SystemUserOrgQuery();
+        systemUserOrgQuery.setOrgId(orgId);
+        List<SystemUserOrg> systemUserOrgList = this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
+        for (SystemUserOrg systemUserOrg : systemUserOrgList){
             this.deleteSystemUserOrg(systemUserOrg);
         }
     }
 
     @Override
-    public List<Map<String, Object>> querySystemUserOrgList(SystemUserOrgQuery systemUserOrgQuery) throws Exception {
+    public List<SystemUserOrg> listSystemUserOrg(SystemUserOrgQuery systemUserOrgQuery) throws Exception {
         return this.systemUserOrgDao.selectSystemUserOrgList(systemUserOrgQuery);
     }
 

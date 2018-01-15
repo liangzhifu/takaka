@@ -4,6 +4,7 @@ import com.takata.system.constant.Url;
 import com.takata.system.role.domain.SystemRole;
 import com.takata.system.role.query.SystemRoleQuery;
 import com.takata.system.role.service.SystemRoleService;
+import com.takata.system.user.query.SystemUserRoleQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,10 +44,10 @@ public class SystemRoleController {
     private Object queryPageList(SystemRoleQuery systemUserQuery){
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
-            List<Map<String, Object>> dataMapList = this.systemRoleService.listSystemRolePage(systemUserQuery);
+            List<SystemRole> systemRoleList = this.systemRoleService.listSystemRolePage(systemUserQuery);
             Integer totalCount = this.systemRoleService.countSystemRole(systemUserQuery);
             Integer totalPage = totalCount / systemUserQuery.getSize() + (totalCount % systemUserQuery.getSize() > 0 ? 1 : 0);
-            map.put("dataMapList", dataMapList);
+            map.put("dataMapList", systemRoleList);
             map.put("totalCount", totalCount);
             map.put("totalPage", totalPage);
             map.put("success", true);
@@ -109,6 +110,27 @@ public class SystemRoleController {
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemRoleService.deleteSystemRole(systemRole);
+            map.put("success", true);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            map.put("success", false);
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 查询可以加入权限的列表
+     * @param systemUserRoleQuery 可以加入权限的列表查询条件
+     * @return 返回可以加入权限的列表信息和总数
+     */
+    @RequestMapping(value = Url.ROLE_ADDLIST)
+    @ResponseBody
+    private Object queryAddSystemRoleList(SystemUserRoleQuery systemUserRoleQuery){
+        Map<String, Object> map = new HashMap<String, Object>(2);
+        try{
+            List<SystemRole> systemRoleList = this.systemRoleService.listAddRole(systemUserRoleQuery);
+            map.put("dataMapList", systemRoleList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());

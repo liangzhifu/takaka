@@ -2,9 +2,9 @@ package com.takata.system.role.service;
 
 import com.takata.system.role.domain.SystemRole;
 import com.takata.system.role.query.SystemRoleQuery;
+import com.takata.system.user.query.SystemUserRoleQuery;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SystemRoleService {
 
@@ -38,7 +38,7 @@ public interface SystemRoleService {
      * @return 返回列表数据
      * @throws Exception 异常
      */
-    List<Map<String, Object>> listSystemRolePage(SystemRoleQuery systemRoleQuery) throws Exception;
+    List<SystemRole> listSystemRolePage(SystemRoleQuery systemRoleQuery) throws Exception;
 
     /**
      * 查询角色管理页面总数
@@ -47,5 +47,13 @@ public interface SystemRoleService {
      * @throws Exception 异常
      */
     Integer countSystemRole(SystemRoleQuery systemRoleQuery) throws Exception;
-    
+
+    /**
+     * 查询可以加入的角色列表
+     * @param systemUserRoleQuery 查询条件
+     * @return 返回结果
+     * @throws Exception 异常
+     */
+    List<SystemRole> listAddRole(SystemUserRoleQuery systemUserRoleQuery) throws Exception;
+
 }

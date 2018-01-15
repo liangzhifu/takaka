@@ -45,7 +45,9 @@ public class SystemOrgController {
     private Object queryAllSystemOrgList(){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
+            Principal principal = PrincipalUtils.getPrincipal();
             SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
+            systemOrgQuery.setCompanyId(principal.getCompanyId());
             List<SystemOrg> systemOrgList = this.systemOrgService.listSystemOrg(systemOrgQuery);
             map.put("dataMapList", systemOrgList);
             map.put("success", true);
@@ -150,7 +152,9 @@ public class SystemOrgController {
     private Object queryKirikaeList(){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
+            Principal principal = PrincipalUtils.getPrincipal();
             SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
+            systemOrgQuery.setCompanyId(principal.getCompanyId());
             systemOrgQuery.setOrgType(SystemOrgEnum.OrgTypeEnum.ORG_TYPE_THREE.getCode());
             List<SystemOrg> systemOrgList = this.systemOrgService.listSystemOrg(systemOrgQuery);
             map.put("systemOrgKirikaeList", systemOrgList);
