@@ -3,6 +3,7 @@ package com.takata.system.org.controller;
 import com.takata.common.shiro.Principal;
 import com.takata.common.shiro.PrincipalUtils;
 import com.takata.system.constant.Url;
+import com.takata.system.org.constant.SystemOrgEnum;
 import com.takata.system.org.domain.SystemOrg;
 import com.takata.system.org.query.SystemOrgQuery;
 import com.takata.system.org.service.SystemOrgService;
@@ -44,8 +45,9 @@ public class SystemOrgController {
     private Object queryAllSystemOrgList(){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> dataMapList = this.systemOrgService.queryAllSystemOrgList();
-            map.put("dataMapList", dataMapList);
+            SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
+            List<SystemOrg> systemOrgList = this.systemOrgService.listSystemOrg(systemOrgQuery);
+            map.put("dataMapList", systemOrgList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());
@@ -67,8 +69,8 @@ public class SystemOrgController {
             Principal principal = PrincipalUtils.getPrincipal();
             SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
             systemOrgQuery.setCompanyId(principal.getCompanyId());
-            List<Map<String, Object>> dataMapList = this.systemOrgService.queryCompanyOrgTree(systemOrgQuery);
-            map.put("dataMapList", dataMapList);
+            List<SystemOrg> systemOrgList = this.systemOrgService.listSystemOrg(systemOrgQuery);
+            map.put("dataMapList", systemOrgList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());
@@ -86,7 +88,7 @@ public class SystemOrgController {
     @RequestMapping(value = Url.ORG_ADD)
     @ResponseBody
     private Object addSystemOrg(SystemOrg systemOrg){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemOrgService.addSystemOrg(systemOrg);
             map.put("success", true);
@@ -107,7 +109,7 @@ public class SystemOrgController {
     @RequestMapping(value = Url.ORG_EDIT)
     @ResponseBody
     private Object editSystemOrg(SystemOrg systemOrg){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemOrgService.editSystemOrg(systemOrg);
             map.put("success", true);
@@ -127,7 +129,7 @@ public class SystemOrgController {
     @RequestMapping(value = Url.ORG_DELETE)
     @ResponseBody
     private Object deleteSystemOrg(SystemOrg systemOrg){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemOrgService.deleteSystemOrg(systemOrg);
             map.put("success", true);
@@ -148,8 +150,10 @@ public class SystemOrgController {
     private Object queryKirikaeList(){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> mapList = this.systemOrgService.listSystemOrgKirikae();
-            map.put("systemOrgKirikaeList", mapList);
+            SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
+            systemOrgQuery.setOrgType(SystemOrgEnum.OrgTypeEnum.ORG_TYPE_THREE.getCode());
+            List<SystemOrg> systemOrgList = this.systemOrgService.listSystemOrg(systemOrgQuery);
+            map.put("systemOrgKirikaeList", systemOrgList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());

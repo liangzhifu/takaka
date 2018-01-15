@@ -33,25 +33,11 @@ public interface SystemOrgService {
     void deleteSystemOrg(SystemOrg systemOrg) throws Exception;
 
     /**
-     * 查询当前用户分公司下的所有组织
+     * 查询组织列表
      * @param systemOrgQuery 查询条件
-     * @return 返回列表数据
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> queryCompanyOrgTree(SystemOrgQuery systemOrgQuery) throws Exception;
-
-    /**
-     * 查询所有组织
      * @return 返回结果
      * @throws Exception 异常
      */
-    List<Map<String, Object>> queryAllSystemOrgList() throws Exception;
-
-    /**
-     * 查询所有切替组织
-     * @return 返回结果
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> listSystemOrgKirikae() throws Exception;
+    List<SystemOrg> listSystemOrg(SystemOrgQuery systemOrgQuery) throws Exception;
 
 }

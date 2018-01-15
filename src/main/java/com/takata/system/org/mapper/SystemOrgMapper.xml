@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.takata.system.org.domain.SystemOrg" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="parent_org_name" property="parentOrgName" jdbcType="VARCHAR" />
         <result column="company_id" property="companyId" jdbcType="INTEGER" />
         <result column="org_name" property="orgName" jdbcType="VARCHAR" />
         <result column="org_path_code" property="orgPathCode" jdbcType="VARCHAR" />
@@ -15,13 +16,13 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, company_id, parent_id, org_name, org_path_code, org_type, delete_state, create_by, create_time,
-        update_by, update_time
+        so.id, so.company_id, so.parent_id, so.org_name, so.org_path_code, so.org_type, so.delete_state, so.create_by, so.create_time,
+        so.update_by, so.update_time, (select parent.org_name from system_org parent where parent_id = so.parent_id) as parent_org_name
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.system.org.domain.SystemOrg" >
         select
         <include refid="Base_Column_List" />
-        from system_org
+        from system_org so
         where id = #{id,jdbcType=INTEGER}
     </select>
 
@@ -120,20 +121,8 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectAllSystemOrgList" resultType="java.util.HashMap">
-        SELECT so.`id`,
-        so.`parent_id` AS parentId,
-        so.`org_type` AS orgType,
-        so.`org_name` AS orgName
-        FROM system_org so
-        WHERE so.`delete_state` = '0'
-    </select>
-
-    <select id="selectSystemOrgList" resultType="java.util.HashMap" parameterType="com.takata.system.org.query.SystemOrgQuery">
-        SELECT so.`id`,
-        so.`parent_id` AS parentId,
-        so.`org_type` AS orgType,
-        so.`org_name` AS orgName
+    <select id="selectSystemOrgList" resultMap="BaseResultMap" parameterType="com.takata.system.org.query.SystemOrgQuery">
+        SELECT <include refid="Base_Column_List" />
         FROM system_org so
         <where>
             so.`delete_state` = '0'
@@ -143,19 +132,11 @@
             <if test="orgPathCode != null" >
                 and so.org_path_code like concat(#{orgPathCode, jdbcType=VARCHAR}, '%')
             </if>
+            <if test="orgType != null" >
+                and so.`org_type` = #{orgType,jdbcType=INTEGER}
+            </if>
         </where>
+        order by so.parent_id, so.id
     </select>
 
-    <select id="selectSystemOrgKirikaeList" resultType="java.util.HashMap">
-        select so.`id`,
-        so.`parent_id` as parentId,
-        so.`org_name` as orgName,
-        parent.`org_name` as parentOrgName
-        from system_org so, system_org parent
-        where so.`parent_id` = parent.`id`
-        and so.`delete_state` = '0'
-        and parent.`delete_state` = '0'
-        and so.`org_type` = 3
-        order by so.`parent_id`
-    </select>
 </mapper>

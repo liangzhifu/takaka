@@ -25,10 +25,10 @@ public interface KirikaeOrgQuestionService {
 
     /**
      * 删除组织--删除组织切替问题点关联
-     * @param kirikaeOrgQuestionQuery 查询条件
+     * @param orgId 组织ID
      * @throws Exception 异常
      */
-    void deleteKirikaeOrgQuestionByOrg(KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery) throws Exception;
+    void deleteKirikaeOrgQuestionByOrg(Integer orgId) throws Exception;
 
     /**
      * 删除切替问题点--删除组织切替问题点关联

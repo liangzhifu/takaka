@@ -1,30 +1,26 @@
 package com.takata.system.org.query;
 
+import lombok.Data;
+
 /**
  * @author lzf
  **/
-
+@Data
 public class SystemOrgQuery {
 
-    //分公司ID
+    /**
+     * 分公司ID
+     */
     private Integer companyId;
 
-    //路径
+    /**
+     * 路径
+     */
     private String orgPathCode;
 
-    public Integer getCompanyId() {
-        return companyId;
-    }
+    /**
+     * 组织类型
+     */
+    private Integer orgType;
 
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
-
-    public String getOrgPathCode() {
-        return orgPathCode;
-    }
-
-    public void setOrgPathCode(String orgPathCode) {
-        this.orgPathCode = orgPathCode;
-    }
 }

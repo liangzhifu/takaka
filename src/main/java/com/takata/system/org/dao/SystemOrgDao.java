@@ -42,27 +42,12 @@ public class SystemOrgDao extends BaseDao {
     }
 
     /**
-     * 查询所有组织
-     * @return 返回结果
-     */
-    public List<Map<String, Object>> selectAllSystemOrgList(){
-        return this.readSqlSession.selectList("SystemOrgMapper.selectAllSystemOrgList");
-    }
-
-    /**
      * 查询组织管理页面列表
      * @param systemOrgQuery 查询条件
      * @return 返回列表数据
      */
-    public List<Map<String, Object>> selectSystemOrgList(SystemOrgQuery systemOrgQuery){
+    public List<SystemOrg> selectSystemOrgList(SystemOrgQuery systemOrgQuery){
         return this.readSqlSession.selectList("SystemOrgMapper.selectSystemOrgList", systemOrgQuery);
     }
 
-    /**
-     * 查询所有的切替组织
-     * @return 返回结果
-     */
-    public List<Map<String, Object>> selectSystemOrgKirikaeList(){
-        return this.readSqlSession.selectList("SystemOrgMapper.selectSystemOrgKirikaeList");
-    }
 }

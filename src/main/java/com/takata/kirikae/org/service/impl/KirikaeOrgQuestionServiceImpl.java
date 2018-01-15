@@ -56,7 +56,9 @@ public class KirikaeOrgQuestionServiceImpl implements KirikaeOrgQuestionService 
     }
 
     @Override
-    public void deleteKirikaeOrgQuestionByOrg(KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery) throws Exception {
+    public void deleteKirikaeOrgQuestionByOrg(Integer orgId) throws Exception {
+        KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery = new KirikaeOrgQuestionQuery();
+        kirikaeOrgQuestionQuery.setOrgId(orgId);
         List<Map<String, Object>> mapList = this.kirikaeOrgQuestionDao.selectKirikaeOrgQuestionList(kirikaeOrgQuestionQuery);
         for (Map<String, Object> map : mapList){
             KirikaeOrgQuestion kirikaeOrgQuestion = new KirikaeOrgQuestion();

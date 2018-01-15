@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -76,7 +75,7 @@ public class SystemOrgServiceImpl implements SystemOrgService {
     public void deleteSystemOrg(SystemOrg systemOrg) throws Exception {
         systemOrg = this.systemOrgDao.selectByPrimaryKey(systemOrg);
         Principal principal = PrincipalUtils.getPrincipal();
-        systemOrg.setUpdateBy(principal.getId());
+        systemOrg.setUpdateBy(principal != null ? principal.getId() : null);
         systemOrg.setUpdateTime(new Date());
         systemOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
 
@@ -101,16 +100,14 @@ public class SystemOrgServiceImpl implements SystemOrgService {
         //删除子组织
         SystemOrgQuery systemOrgQuery = new SystemOrgQuery();
         systemOrgQuery.setOrgPathCode(systemOrg.getOrgPathCode());
-        List<Map<String, Object>> mapList = this.systemOrgDao.selectSystemOrgList(systemOrgQuery);
-        for(Map<String, Object> map : mapList){
-            SystemOrg tempSystemOrg = new SystemOrg();
-            tempSystemOrg.setId(Integer.valueOf(map.get("id").toString()));
+        List<SystemOrg> systemOrgList = this.systemOrgDao.selectSystemOrgList(systemOrgQuery);
+        for(SystemOrg tempSystemOrg : systemOrgList){
             tempSystemOrg.setUpdateBy(principal.getId());
             tempSystemOrg.setUpdateTime(new Date());
             tempSystemOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
 
             //删除组织--删除组织关联的切替确认内容
-            orgType = Integer.valueOf(map.get("orgType").toString());
+            orgType = tempSystemOrg.getOrgType();
             if (orgType.intValue() == SystemOrgEnum.OrgTypeEnum.ORG_TYPE_THREE.getCode()){
                 KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery = new KirikaeOrgQuestionQuery();
                 kirikaeOrgQuestionQuery.setOrgId(tempSystemOrg.getId());
@@ -130,17 +127,8 @@ public class SystemOrgServiceImpl implements SystemOrgService {
     }
 
     @Override
-    public List<Map<String, Object>> queryCompanyOrgTree(SystemOrgQuery systemOrgQuery) throws Exception {
+    public List<SystemOrg> listSystemOrg(SystemOrgQuery systemOrgQuery) throws Exception {
         return this.systemOrgDao.selectSystemOrgList(systemOrgQuery);
     }
 
-    @Override
-    public List<Map<String, Object>> queryAllSystemOrgList() throws Exception {
-        return this.systemOrgDao.selectAllSystemOrgList();
-    }
-
-    @Override
-    public List<Map<String, Object>> listSystemOrgKirikae() throws Exception {
-        return this.systemOrgDao.selectSystemOrgKirikaeList();
-    }
 }
