@@ -1,5 +1,6 @@
 package com.takata.system.holiday.domain;
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Date;
 /**
  * @author lzf
  **/
-
+@Data
 public class SystemHoliday {
 
     private Integer id;
@@ -15,19 +16,4 @@ public class SystemHoliday {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date holiday;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getHoliday() {
-        return holiday;
-    }
-
-    public void setHoliday(Date holiday) {
-        this.holiday = holiday;
-    }
 }

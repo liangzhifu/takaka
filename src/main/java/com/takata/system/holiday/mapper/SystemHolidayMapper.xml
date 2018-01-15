@@ -41,18 +41,17 @@
 
     <sql id="WHERE_SQL">
         <where>
-            <if test="holidayStart != null and holidayStart != ''" >
-                and DATE_FORMAT(`holiday`,'%y-%M-%d') &gt;= DATE_FORMAT(#{holidayStart},'%y-%M-%d')
+            <if test="holidayStart != null" >
+                and DATE_FORMAT(`holiday`,'%Y-%m-%d') &gt;= DATE_FORMAT(#{holidayStart},'%Y-%m-%d')
             </if>
-            <if test="holidayEnd != null and holidayEnd != ''" >
-                and DATE_FORMAT(`holiday`,'%y-%M-%d') &lt;= DATE_FORMAT(#{holidayEnd},'%y-%M-%d')
+            <if test="holidayEnd != null" >
+                and DATE_FORMAT(`holiday`,'%Y-%m-%d') &lt;= DATE_FORMAT(#{holidayEnd},'%Y-%m-%d')
             </if>
         </where>
     </sql>
 
-    <select id="selectSystemHolidayListPage" resultType="java.util.HashMap" parameterType="com.takata.system.holiday.query.SystemHolidayQuery">
-        SELECT id,
-        holiday
+    <select id="selectSystemHolidayListPage" resultMap="BaseResultMap" parameterType="com.takata.system.holiday.query.SystemHolidayQuery">
+        SELECT <include refid="Base_Column_List" />
         FROM system_holiday
         <include refid="WHERE_SQL"></include>
         order by holiday
@@ -65,16 +64,11 @@
         <include refid="WHERE_SQL"></include>
     </select>
 
-    <select id="selectSystemHolidayList" resultType="java.util.Date">
-        SELECT holiday.`holiday`
-        from system_holiday holiday
-        where DATE_FORMAT(holiday.`holiday`,'%Y-%m-%d') &gt;= DATE_FORMAT(sysdate(),'%Y-%m-%d')
-    </select>
-
-    <select id="selectSystemHolidayListFromBeginDate" resultType="java.util.Date" parameterType="java.lang.String">
-        SELECT holiday.`holiday`
-        from system_holiday holiday
-        where DATE_FORMAT(holiday.`holiday`,'%Y-%m-%d') &gt;= #{beginDate}
+    <select id="selectSystemHolidayList" resultMap="BaseResultMap" parameterType="com.takata.system.holiday.query.SystemHolidayQuery">
+        SELECT <include refid="Base_Column_List" />
+        FROM system_holiday
+        <include refid="WHERE_SQL"></include>
+        order by holiday
     </select>
 
 </mapper>

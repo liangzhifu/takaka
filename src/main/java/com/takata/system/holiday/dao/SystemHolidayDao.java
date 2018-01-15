@@ -5,9 +5,7 @@ import com.takata.system.holiday.domain.SystemHoliday;
 import com.takata.system.holiday.query.SystemHolidayQuery;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -48,25 +46,17 @@ public class SystemHolidayDao extends BaseDao {
      * @param systemHolidayQuery 查询条件
      * @return 返回结果
      */
-    public List<Map<String, Object>> selectSystemHolidayListPage(SystemHolidayQuery systemHolidayQuery){
+    public List<SystemHoliday> selectSystemHolidayPageList(SystemHolidayQuery systemHolidayQuery){
         return this.readSqlSession.selectList("SystemHolidayMapper.selectSystemHolidayListPage", systemHolidayQuery);
     }
 
     /**
-     * 查询从当前时间的节假日
+     * 获取节假日列表
+     * @param systemHolidayQuery 查询条件
      * @return 返回结果
      */
-    public List<Date> selectSystemHolidayList(){
-        return this.readSqlSession.selectList("SystemHolidayMapper.selectSystemHolidayList");
-    }
-
-    /**
-     * 查询从某个时间开始的节假日
-     * @param beginDate 开始时间
-     * @return 返回结果
-     */
-    public List<Date> selectSystemHolidayListFromBeginDate(String beginDate){
-        return this.readSqlSession.selectList("SystemHolidayMapper.selectSystemHolidayListFromBeginDate", beginDate);
+    public List<SystemHoliday> selectSystemHolidayList(SystemHolidayQuery systemHolidayQuery){
+        return this.readSqlSession.selectList("SystemHolidayMapper.selectSystemHolidayList", systemHolidayQuery);
     }
 
 }

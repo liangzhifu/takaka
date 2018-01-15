@@ -30,12 +30,17 @@ public class SystemHolidayServiceImpl implements SystemHolidayService {
     }
 
     @Override
-    public List<Map<String, Object>> querySystemHolidayListPage(SystemHolidayQuery systemHolidayQuery) throws Exception {
-        return this.systemHolidayDao.selectSystemHolidayListPage(systemHolidayQuery);
+    public List<SystemHoliday> listSystemHolidayPage(SystemHolidayQuery systemHolidayQuery) throws Exception {
+        return this.systemHolidayDao.selectSystemHolidayPageList(systemHolidayQuery);
     }
 
     @Override
-    public Integer querySystemHolidayCount(SystemHolidayQuery systemHolidayQuery) throws Exception {
+    public Integer countSystemHoliday(SystemHolidayQuery systemHolidayQuery) throws Exception {
         return this.systemHolidayDao.selectSystemHolidayCount(systemHolidayQuery);
+    }
+
+    @Override
+    public List<SystemHoliday> listSystemHoliday(SystemHolidayQuery systemHolidayQuery) throws Exception {
+        return this.systemHolidayDao.selectSystemHolidayList(systemHolidayQuery);
     }
 }

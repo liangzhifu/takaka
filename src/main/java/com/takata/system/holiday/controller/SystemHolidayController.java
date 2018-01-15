@@ -36,12 +36,12 @@ public class SystemHolidayController {
     @RequestMapping(value = Url.HOLIDAY_QUERYPAGELIST)
     @ResponseBody
     public Object getSystemHolidayPageList(SystemHolidayQuery systemHolidayQuery){
-        Map<String, Object> map = new HashMap<String, Object>(2);
+        Map<String, Object> map = new HashMap<String, Object>(4);
         try{
-            List<Map<String, Object>> dataMapList = this.systemHolidayService.querySystemHolidayListPage(systemHolidayQuery);
-            Integer totalCount = this.systemHolidayService.querySystemHolidayCount(systemHolidayQuery);
+            List<SystemHoliday> systemHolidayList = this.systemHolidayService.listSystemHolidayPage(systemHolidayQuery);
+            Integer totalCount = this.systemHolidayService.countSystemHoliday(systemHolidayQuery);
             Integer totalPage = totalCount / systemHolidayQuery.getSize() + (totalCount % systemHolidayQuery.getSize() > 0 ? 1 : 0);
-            map.put("dataMapList", dataMapList);
+            map.put("dataMapList", systemHolidayList);
             map.put("totalCount", totalCount);
             map.put("totalPage", totalPage);
             map.put("success", true);

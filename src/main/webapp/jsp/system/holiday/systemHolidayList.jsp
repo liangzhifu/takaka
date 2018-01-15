@@ -50,7 +50,7 @@
                             <tbody>
                             <tr ng-repeat="data in systemHolidayList">
                                 <td>
-                                    {{data.holiday}}
+                                    {{data.holiday | date:"yyyy-MM-dd"}}
                                 </td>
                                 <td>
                                     <button class="btn btn-mini btn-danger" type="button" ng-click="deleteSystemHoliday(data.id)">

@@ -32,7 +32,7 @@ public interface SystemHolidayService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    public List<Map<String, Object>> querySystemHolidayListPage(SystemHolidayQuery systemHolidayQuery) throws Exception;
+    public List<SystemHoliday> listSystemHolidayPage(SystemHolidayQuery systemHolidayQuery) throws Exception;
 
     /**
      * 获取节假日数量
@@ -40,6 +40,14 @@ public interface SystemHolidayService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    public Integer querySystemHolidayCount(SystemHolidayQuery systemHolidayQuery) throws Exception;
+    public Integer countSystemHoliday(SystemHolidayQuery systemHolidayQuery) throws Exception;
+
+    /**
+     * 获取节假日列表--分页
+     * @param systemHolidayQuery 查询条件
+     * @return 返回结果
+     * @throws Exception 异常
+     */
+    public List<SystemHoliday> listSystemHoliday(SystemHolidayQuery systemHolidayQuery) throws Exception;
 
 }
