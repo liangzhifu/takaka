@@ -3,7 +3,6 @@ package com.takata.system.org.service.impl;
 import com.takata.common.constant.CommonEnum;
 import com.takata.common.shiro.Principal;
 import com.takata.common.shiro.PrincipalUtils;
-import com.takata.kirikae.org.query.KirikaeOrgQuestionQuery;
 import com.takata.kirikae.org.service.KirikaeOrgQuestionService;
 import com.takata.system.org.constant.SystemOrgEnum;
 import com.takata.system.org.dao.SystemOrgDao;
@@ -39,9 +38,9 @@ public class SystemOrgServiceImpl implements SystemOrgService {
         parentOrg.setId(systemOrg.getParentId());
         parentOrg = this.systemOrgDao.selectByPrimaryKey(parentOrg);
         Principal principal = PrincipalUtils.getPrincipal();
-        systemOrg.setCreateBy(principal.getId());
+        systemOrg.setCreateBy(principal != null ? principal.getId() : null);
         systemOrg.setCreateTime(new Date());
-        systemOrg.setUpdateBy(principal.getId());
+        systemOrg.setUpdateBy(principal != null ? principal.getId() : null);
         systemOrg.setUpdateTime(new Date());
         systemOrg.setCompanyId(parentOrg.getCompanyId());
         systemOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
@@ -63,7 +62,7 @@ public class SystemOrgServiceImpl implements SystemOrgService {
     @Override
     public void editSystemOrg(SystemOrg systemOrg) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemOrg.setUpdateBy(principal.getId());
+        systemOrg.setUpdateBy(principal != null ? principal.getId() : null);
         systemOrg.setUpdateTime(new Date());
         Integer count = this.systemOrgDao.updateSystemOrg(systemOrg);
         if (count != 1){
@@ -82,9 +81,7 @@ public class SystemOrgServiceImpl implements SystemOrgService {
         //删除组织--删除组织关联的切替确认内容
         Integer orgType = systemOrg.getOrgType();
         if (orgType.intValue() == SystemOrgEnum.OrgTypeEnum.ORG_TYPE_THREE.getCode()){
-            KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery = new KirikaeOrgQuestionQuery();
-            kirikaeOrgQuestionQuery.setOrgId(systemOrg.getId());
-            this.kirikaeOrgQuestionService.deleteKirikaeOrgQuestionByOrg(kirikaeOrgQuestionQuery);
+            this.kirikaeOrgQuestionService.deleteKirikaeOrgQuestionByOrg(systemOrg.getId());
         }
 
         Integer count = this.systemOrgDao.updateSystemOrg(systemOrg);
@@ -102,16 +99,14 @@ public class SystemOrgServiceImpl implements SystemOrgService {
         systemOrgQuery.setOrgPathCode(systemOrg.getOrgPathCode());
         List<SystemOrg> systemOrgList = this.systemOrgDao.selectSystemOrgList(systemOrgQuery);
         for(SystemOrg tempSystemOrg : systemOrgList){
-            tempSystemOrg.setUpdateBy(principal.getId());
+            tempSystemOrg.setUpdateBy(principal != null ? principal.getId() : null);
             tempSystemOrg.setUpdateTime(new Date());
             tempSystemOrg.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
 
             //删除组织--删除组织关联的切替确认内容
             orgType = tempSystemOrg.getOrgType();
             if (orgType.intValue() == SystemOrgEnum.OrgTypeEnum.ORG_TYPE_THREE.getCode()){
-                KirikaeOrgQuestionQuery kirikaeOrgQuestionQuery = new KirikaeOrgQuestionQuery();
-                kirikaeOrgQuestionQuery.setOrgId(tempSystemOrg.getId());
-                this.kirikaeOrgQuestionService.deleteKirikaeOrgQuestionByOrg(kirikaeOrgQuestionQuery);
+                this.kirikaeOrgQuestionService.deleteKirikaeOrgQuestionByOrg(tempSystemOrg.getId());
             }
 
             Integer tempCount = this.systemOrgDao.updateSystemOrg(tempSystemOrg);
