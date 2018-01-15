@@ -71,23 +71,10 @@ public class SystemUserDao extends BaseDao {
     }
 
     /**
-     * 查询部长权限
-     * @param systemUser
+     * 查询用户列表
+     * @param systemUserQuery
      * @return
      */
-    public Integer selectMinisterJurisdiction(SystemUser systemUser){
-        return this.readSqlSession.selectOne("SystemUserMapper.selectMinisterJurisdiction", systemUser);
-    }
-
-    /**
-     * 查询用户管理页面列表
-     * @param systemUserQuery 查询条件
-     * @return 返回列表数据
-     */
-    public List<Map<String, Object>> selectSystemUserCompleteList(SystemUserQuery systemUserQuery){
-        return this.readSqlSession.selectList("SystemUserMapper.selectSystemUserCompleteList", systemUserQuery);
-    }
-
     public List<SystemUser> selectSystemUserList(SystemUserQuery systemUserQuery) {
         return this.readSqlSession.selectList("SystemUserMapper.selectSystemUserList", systemUserQuery);
     }

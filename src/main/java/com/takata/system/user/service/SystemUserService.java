@@ -38,15 +38,7 @@ public interface SystemUserService {
      * @return 返回列表数据
      * @throws Exception 异常
      */
-    List<Map<String, Object>> querySystemUserPageList(SystemUserQuery systemUserQuery) throws Exception;
-
-    /**
-     * 查询用户管理页面列表
-     * @param systemUserQuery 查询条件
-     * @return 返回列表数据
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> querySystemUserCompleteList(SystemUserQuery systemUserQuery) throws Exception;
+    List<Map<String, Object>> listSystemUserPage(SystemUserQuery systemUserQuery) throws Exception;
 
     /**
      * 查询用户管理页面总数
@@ -54,7 +46,7 @@ public interface SystemUserService {
      * @return 返回总数
      * @throws Exception 异常
      */
-    Integer querySystemUserCount(SystemUserQuery systemUserQuery) throws Exception;
+    Integer countSystemUser(SystemUserQuery systemUserQuery) throws Exception;
 
     /**
      * 检查用户是否存在
@@ -70,7 +62,7 @@ public interface SystemUserService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    SystemUser querySystemUserByUserCode(SystemUser systemUser);
+    SystemUser getSystemUserByUserCode(SystemUser systemUser);
 
     /**
      * 修改用户密码
@@ -79,7 +71,7 @@ public interface SystemUserService {
      * @param newPassword 新密码
      * @throws Exception 异常
      */
-    void editUserPassworkd(Integer id, String oldPassword, String newPassword) throws Exception;
+    void editUserPassword(Integer id, String oldPassword, String newPassword) throws Exception;
 
     /**
      * 查询用户信息

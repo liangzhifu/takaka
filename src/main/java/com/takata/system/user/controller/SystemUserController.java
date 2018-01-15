@@ -48,8 +48,8 @@ public class SystemUserController {
         try{
             Principal principal = PrincipalUtils.getPrincipal();
             systemUserQuery.setCompanyId(principal.getCompanyId());
-            List<Map<String, Object>> dataMapList = this.systemUserService.querySystemUserPageList(systemUserQuery);
-            Integer totalCount = this.systemUserService.querySystemUserCount(systemUserQuery);
+            List<Map<String, Object>> dataMapList = this.systemUserService.listSystemUserPage(systemUserQuery);
+            Integer totalCount = this.systemUserService.countSystemUser(systemUserQuery);
             Integer totalPage = totalCount / systemUserQuery.getSize() + (totalCount % systemUserQuery.getSize() > 0 ? 1 : 0);
             map.put("dataMapList", dataMapList);
             map.put("totalCount", totalCount);
@@ -135,25 +135,7 @@ public class SystemUserController {
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
             Principal principal = PrincipalUtils.getPrincipal();
-            this.systemUserService.editUserPassworkd(principal.getId(), oldPassword, newPassword);
-            map.put("success", true);
-        }catch (Exception e){
-            log.error(e.getMessage());
-            map.put("success", false);
-            map.put("message", e.getMessage());
-        }
-        return map;
-    }
-
-    @RequestMapping(value = Url.USER_QUERYCOMPLETELIST)
-    @ResponseBody
-    private Object queryList(SystemUserQuery systemUserQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
-        try{
-            Principal principal = PrincipalUtils.getPrincipal();
-            systemUserQuery.setCompanyId(principal.getCompanyId());
-            List<Map<String, Object>> dataMapList = this.systemUserService.querySystemUserCompleteList(systemUserQuery);
-            map.put("dataMapList", dataMapList);
+            this.systemUserService.editUserPassword(principal.getId(), oldPassword, newPassword);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());

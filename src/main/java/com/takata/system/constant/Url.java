@@ -41,7 +41,6 @@ public interface Url {
     String USER_ADD = BASE + USER + "/add.do";
     String USER_EDIT = BASE + USER + "/edit.do";
     String USER_DELETE = BASE + USER + "/delete.do";
-    String USER_QUERYCOMPLETELIST = BASE + USER + "/queryCompleteList.do";
     String USER_QUERYPAGELIST = BASE + USER + "/queryPageList.do";
     String USER_EDITPASSWORD = BASE + USER + "/editPassword.do";
     String USER_QUERYALLUSER = BASE + USER + "/queryAllUser.do";

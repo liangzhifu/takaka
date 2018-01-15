@@ -189,16 +189,6 @@
         <include refid="WHERE_SQL_PAGELIST"></include>
     </select>
 
-    <!-- 系统管理-用户管理，用户分页列表 -->
-    <select id="selectSystemUserCompleteList" resultType="java.util.HashMap" parameterType="com.takata.system.user.query.SystemUserQuery">
-        SELECT
-        id as `value`,
-        user_name as `label`
-        FROM system_user su
-        <include refid="WHERE_SQL_PAGELIST"></include>
-        ORDER BY su.`USER_NAME`
-    </select>
-
     <select id="selectMinisterJurisdiction" resultType="java.lang.Integer" parameterType="com.takata.system.user.domain.SystemUser">
         SELECT COUNT(1)
         FROM system_user_role sur, system_role_permission srp

@@ -36,12 +36,12 @@ public class SystemUserServiceImpl implements SystemUserService {
     @Override
     public Integer addSystemUser(SystemUser systemUser) throws Exception {
         //查看是否存在
-        SystemUser oldSystemUser = this.querySystemUserByUserCode(systemUser);
+        SystemUser oldSystemUser = this.getSystemUserByUserCode(systemUser);
         if(oldSystemUser != null){
             throw new Exception("添加用户异常！用户已存在！");
         }
 
-        Map<String, Object> map = null;//this.sqlServerDao.selectSqlServerUser(systemUser.getUserCode());
+        Map<String, Object> map = null;
         if(null == null){
             throw new Exception("添加用户异常！用户在上海数据库中不存在！");
         }
@@ -97,37 +97,28 @@ public class SystemUserServiceImpl implements SystemUserService {
     }
 
     @Override
-    public List<Map<String, Object>> querySystemUserPageList(SystemUserQuery systemUserQuery) throws Exception {
+    public List<Map<String, Object>> listSystemUserPage(SystemUserQuery systemUserQuery) throws Exception {
         return this.systemUserDao.selectSystemUserPageList(systemUserQuery);
     }
 
     @Override
-    public List<Map<String, Object>> querySystemUserCompleteList(SystemUserQuery systemUserQuery) throws Exception {
-        return this.systemUserDao.selectSystemUserCompleteList(systemUserQuery);
-    }
-
-    @Override
-    public Integer querySystemUserCount(SystemUserQuery systemUserQuery) throws Exception {
+    public Integer countSystemUser(SystemUserQuery systemUserQuery) throws Exception {
         return this.systemUserDao.selectSystemUserCount(systemUserQuery);
     }
 
     @Override
     public boolean checkUserCode(SystemUser systemUser) throws Exception {
         systemUser = this.systemUserDao.selectSystemUserByUserCode(systemUser);
-        if(systemUser == null){
-            return false;
-        }else {
-            return true;
-        }
+        return systemUser != null;
     }
 
     @Override
-    public SystemUser querySystemUserByUserCode(SystemUser systemUser) {
+    public SystemUser getSystemUserByUserCode(SystemUser systemUser) {
         return this.systemUserDao.selectSystemUserByUserCode(systemUser);
     }
 
     @Override
-    public void editUserPassworkd(Integer id, String oldPassword, String newPassword) throws Exception {
+    public void editUserPassword(Integer id, String oldPassword, String newPassword) throws Exception {
         SystemUser systemUser = new SystemUser();
         systemUser.setId(id);
         systemUser = this.systemUserDao.selectSystemUser(systemUser);
