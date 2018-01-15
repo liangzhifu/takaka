@@ -182,7 +182,7 @@ systemRoleListApp.controller("systemRoleListController", function ($scope) {
     $scope.addSystemRolePermissionDialog = function () {
         $.ajax({
             method: 'post',
-            url: BASE_URL + "/system/rolePermission/add/queryPageList.do",
+            url: BASE_URL + "/system/permission/queryAddList.do",
             data: {"roleId":$scope.systemRole.id},
             async: false,
             success: function (resultJson) {

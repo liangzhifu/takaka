@@ -17,14 +17,6 @@ public interface SystemRolePermissionService {
     void addSystemRolePermission(Integer roleId, String[] permissionIds) throws Exception;
 
     /**
-     * 修改角色权限关联信息
-     * @param systemRolePermission 角色权限关联实体信息
-     * @return 返回结果
-     * @throws Exception 异常
-     */
-    Integer editSystemRolePermission(SystemRolePermission systemRolePermission) throws Exception;
-
-    /**
      * 删除角色关联
      * @param systemRolePermission 角色权限关联实体
      * @return 返回结果
@@ -46,30 +38,6 @@ public interface SystemRolePermissionService {
      * @return 返回列表数据
      * @throws Exception 异常
      */
-    List<Map<String, Object>> querySystemRolePermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
-
-    /**
-     * 查询角色权限关联管理页面总数
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回总数
-     * @throws Exception 异常
-     */
-    Integer querySystemRolePermissionCount(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
-
-    /**
-     * 查询可以关联的权限列表
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回列表数据
-     * @throws Exception 异常
-     */
-    List<Map<String, Object>> queryAddPermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
-
-    /**
-     * 查询可以关联的权限列表总数
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回总数
-     * @throws Exception 异常
-     */
-    Integer queryAddPermissionCount(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
+    List<SystemRolePermission> listSystemRolePermission(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
     
 }

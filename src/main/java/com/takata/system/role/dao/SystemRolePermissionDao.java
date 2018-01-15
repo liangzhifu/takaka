@@ -35,47 +35,11 @@ public class SystemRolePermissionDao extends BaseDao {
     }
 
     /**
-     * 查询角色权限关联管理页面列表
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回列表数据
-     */
-    public List<Map<String, Object>> selectSystemRolePermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery){
-        return this.readSqlSession.selectList("SystemRolePermissionMapper.selectSystemRolePermissionPageList", systemRolePermissionQuery);
-    }
-
-    /**
-     * 查询角色权限关联管理页面总数
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回总数
-     */
-    public Integer selectSystemRolePermissionCount(SystemRolePermissionQuery systemRolePermissionQuery){
-        return this.readSqlSession.selectOne("SystemRolePermissionMapper.selectSystemRolePermissionCount", systemRolePermissionQuery);
-    }
-
-    /**
-     * 查询未加入的权限管理页面列表
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回列表数据
-     */
-    public List<Map<String, Object>> selectAddPermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery){
-        return this.readSqlSession.selectList("SystemRolePermissionMapper.selectAddPermissionPageList", systemRolePermissionQuery);
-    }
-
-    /**
-     * 查询未加入的权限总数
-     * @param systemRolePermissionQuery 查询条件
-     * @return 返回总数
-     */
-    public Integer selectAddPermissionCount(SystemRolePermissionQuery systemRolePermissionQuery){
-        return this.readSqlSession.selectOne("SystemRolePermissionMapper.selectAddPermissionCount", systemRolePermissionQuery);
-    }
-
-    /**
      * 查询角色权限关联列表
      * @param systemRolePermissionQuery 查询条件
      * @return 返回列表数据
      */
-    public List<Map<String, Object>> selectSystemRolePermissionList(SystemRolePermissionQuery systemRolePermissionQuery){
+    public List<SystemRolePermission> selectSystemRolePermissionList(SystemRolePermissionQuery systemRolePermissionQuery){
         return this.readSqlSession.selectList("SystemRolePermissionMapper.selectSystemRolePermissionList", systemRolePermissionQuery);
     }
     

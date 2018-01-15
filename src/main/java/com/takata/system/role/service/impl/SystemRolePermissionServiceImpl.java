@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -27,9 +26,9 @@ public class SystemRolePermissionServiceImpl implements SystemRolePermissionServ
     public void addSystemRolePermission(Integer roleId, String[] permissionIds) throws Exception {
         SystemRolePermission systemRolePermission = new SystemRolePermission();
         Principal principal = PrincipalUtils.getPrincipal();
-        systemRolePermission.setCreateBy(principal.getId());
+        systemRolePermission.setCreateBy(principal != null ? principal.getId() : null);
         systemRolePermission.setCreateTime(new Date());
-        systemRolePermission.setUpdateBy(principal.getId());
+        systemRolePermission.setUpdateBy(principal != null ? principal.getId() : null);
         systemRolePermission.setUpdateTime(new Date());
         systemRolePermission.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
         for (String permissionId : permissionIds){
@@ -44,21 +43,9 @@ public class SystemRolePermissionServiceImpl implements SystemRolePermissionServ
     }
 
     @Override
-    public Integer editSystemRolePermission(SystemRolePermission systemRolePermission) throws Exception {
-        Principal principal = PrincipalUtils.getPrincipal();
-        systemRolePermission.setUpdateBy(principal.getId());
-        systemRolePermission.setUpdateTime(new Date());
-        Integer count = this.systemRolePermissionDao.updateSystemRolePermission(systemRolePermission);
-        if (count != 1){
-            throw new Exception("修改角色权限关联异常！");
-        }
-        return count;
-    }
-
-    @Override
     public void deleteSystemRolePermission(SystemRolePermission systemRolePermission) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemRolePermission.setUpdateBy(principal.getId());
+        systemRolePermission.setUpdateBy(principal != null ? principal.getId() : null);
         systemRolePermission.setUpdateTime(new Date());
         systemRolePermission.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
         Integer count = this.systemRolePermissionDao.updateSystemRolePermission(systemRolePermission);
@@ -71,31 +58,15 @@ public class SystemRolePermissionServiceImpl implements SystemRolePermissionServ
     public void deleteSystemPermissionByRole(Integer roleId) throws Exception {
         SystemRolePermissionQuery systemRolePermissionQuery = new SystemRolePermissionQuery();
         systemRolePermissionQuery.setRoleId(roleId);
-        List<Map<String, Object>> mapList = this.systemRolePermissionDao.selectSystemRolePermissionList(systemRolePermissionQuery);
-        SystemRolePermission systemRolePermission = new SystemRolePermission();
-        for (Map<String, Object> map : mapList){
-            systemRolePermission.setId(Integer.valueOf(map.get("id").toString()));
+        List<SystemRolePermission> systemRolePermissionList = this.systemRolePermissionDao.selectSystemRolePermissionList(systemRolePermissionQuery);
+        for (SystemRolePermission systemRolePermission : systemRolePermissionList){
             this.deleteSystemRolePermission(systemRolePermission);
         }
     }
 
     @Override
-    public List<Map<String, Object>> querySystemRolePermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
-        return this.systemRolePermissionDao.selectSystemRolePermissionPageList(systemRolePermissionQuery);
+    public List<SystemRolePermission> listSystemRolePermission(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
+        return this.systemRolePermissionDao.selectSystemRolePermissionList(systemRolePermissionQuery);
     }
 
-    @Override
-    public Integer querySystemRolePermissionCount(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
-        return this.systemRolePermissionDao.selectSystemRolePermissionCount(systemRolePermissionQuery);
-    }
-
-    @Override
-    public List<Map<String, Object>> queryAddPermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
-        return this.systemRolePermissionDao.selectAddPermissionPageList(systemRolePermissionQuery);
-    }
-
-    @Override
-    public Integer queryAddPermissionCount(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
-        return this.systemRolePermissionDao.selectAddPermissionCount(systemRolePermissionQuery);
-    }
 }

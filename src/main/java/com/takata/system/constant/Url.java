@@ -20,6 +20,10 @@ public interface Url {
     String ROLEMENU = "/roleMenu";
     String ROLEPERMISSION = "/rolePermission";
     String HOLIDAY = "/holiday";
+    String PERMISSION = "/permission";
+
+    //权限
+    String PERMISSION_ADDLIST = BASE + PERMISSION + "/queryAddList.do";
 
     //角色
     String ROLE_DIALOG = BASE + ROLE + "/getDialog.do";
@@ -30,8 +34,7 @@ public interface Url {
     //角色权限关联
     String ROLEPERMISSION_ADD = BASE + ROLEPERMISSION + "/add.do";
     String ROLEPERMISSION_DELETE = BASE + ROLEPERMISSION + "/delete.do";
-    String ROLEPERMISSION_QUERYPAGELIST = BASE + ROLEPERMISSION + "/queryPageList.do";
-    String ROLEPERMISSION_ADD_QUERYPAGELIST = BASE + ROLEPERMISSION + "/add/queryPageList.do";
+    String ROLEPERMISSION_QUERYLIST = BASE + ROLEPERMISSION + "/queryList.do";
     //角色菜单关联
     String ROLEMENU_QUERYROLEMENULIST = BASE + ROLEMENU + "/querySystemRoleMenuList.do";
     String ROLEMENU_ADD = BASE + ROLEMENU + "/add.do";

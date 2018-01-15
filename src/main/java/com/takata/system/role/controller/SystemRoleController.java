@@ -4,7 +4,6 @@ import com.takata.system.constant.Url;
 import com.takata.system.role.domain.SystemRole;
 import com.takata.system.role.query.SystemRoleQuery;
 import com.takata.system.role.service.SystemRoleService;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +66,7 @@ public class SystemRoleController {
     @RequestMapping(value = Url.ROLE_ADD)
     @ResponseBody
     private Object addSystemRole(SystemRole systemRole){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemRoleService.addSystemRole(systemRole);
             map.put("success", true);
@@ -87,7 +86,7 @@ public class SystemRoleController {
     @RequestMapping(value = Url.ROLE_EDIT)
     @ResponseBody
     private Object editSystemRole(SystemRole systemRole){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemRoleService.editSystemRole(systemRole);
             map.put("success", true);
@@ -107,7 +106,7 @@ public class SystemRoleController {
     @RequestMapping(value = Url.ROLE_DELETE)
     @ResponseBody
     private Object deleteSystemRole(SystemRole systemRole){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemRoleService.deleteSystemRole(systemRole);
             map.put("success", true);

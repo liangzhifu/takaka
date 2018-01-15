@@ -1,7 +1,6 @@
 package com.takata.system.role.controller;
 
 import com.takata.system.constant.Url;
-import com.takata.system.role.domain.SystemRole;
 import com.takata.system.role.domain.SystemRolePermission;
 import com.takata.system.role.query.SystemRolePermissionQuery;
 import com.takata.system.role.service.SystemRolePermissionService;
@@ -30,34 +29,13 @@ public class SystemRolePermissionController {
      * @param systemRolePermissionQuery 角色权限关联列表页面查询条件
      * @return 返回角色权限关联分页列表信息和总数
      */
-    @RequestMapping(value = Url.ROLEPERMISSION_QUERYPAGELIST)
+    @RequestMapping(value = Url.ROLEPERMISSION_QUERYLIST)
     @ResponseBody
-    private Object querySystemRolePermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+    private Object querySystemRolePermissionList(SystemRolePermissionQuery systemRolePermissionQuery){
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> dataMapList = this.systemRolePermissionService.querySystemRolePermissionPageList(systemRolePermissionQuery);
-            map.put("dataMapList", dataMapList);
-            map.put("success", true);
-        }catch (Exception e){
-            log.error(e.getMessage());
-            map.put("success", false);
-            map.put("message", e.getMessage());
-        }
-        return map;
-    }
-
-    /**
-     * 查询可以加入权限的列表
-     * @param systemRolePermissionQuery 可以加入权限的列表查询条件
-     * @return 返回可以加入权限的列表信息和总数
-     */
-    @RequestMapping(value = Url.ROLEPERMISSION_ADD_QUERYPAGELIST)
-    @ResponseBody
-    private Object queryAddPermissionPageList(SystemRolePermissionQuery systemRolePermissionQuery){
-        Map<String, Object> map = new HashMap<String, Object>(4);
-        try{
-            List<Map<String, Object>> dataMapList = this.systemRolePermissionService.queryAddPermissionPageList(systemRolePermissionQuery);
-            map.put("dataMapList", dataMapList);
+            List<SystemRolePermission> systemRolePermissionList = this.systemRolePermissionService.listSystemRolePermission(systemRolePermissionQuery);
+            map.put("dataMapList", systemRolePermissionList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());
@@ -76,7 +54,7 @@ public class SystemRolePermissionController {
     @RequestMapping(value = Url.ROLEPERMISSION_ADD)
     @ResponseBody
     private Object addSystemRolePermission(Integer roleId, String permissionIdStr){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             String[] permissionIds = permissionIdStr.split(",");
             this.systemRolePermissionService.addSystemRolePermission(roleId, permissionIds);
@@ -97,7 +75,7 @@ public class SystemRolePermissionController {
     @RequestMapping(value = Url.ROLEPERMISSION_DELETE)
     @ResponseBody
     private Object deleteSystemRolePermission(SystemRolePermission systemRolePermission){
-        Map<String, Object> map = new HashMap<String, Object>(4);
+        Map<String, Object> map = new HashMap<String, Object>(2);
         try{
             this.systemRolePermissionService.deleteSystemRolePermission(systemRolePermission);
             map.put("success", true);
