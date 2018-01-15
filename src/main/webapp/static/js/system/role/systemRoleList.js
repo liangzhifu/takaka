@@ -132,7 +132,7 @@ systemRoleListApp.controller("systemRoleListController", function ($scope) {
     $scope.searchSystemRolePermission = function (roleId) {
         $.ajax({
             method: 'post',
-            url: BASE_URL + "/system/rolePermission/queryPageList.do",
+            url: BASE_URL + "/system/rolePermission/queryList.do",
             data: {"roleId":roleId},
             async: false,
             success: function (resultJson) {

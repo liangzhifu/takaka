@@ -91,9 +91,8 @@
         select srp.`id`, srp.`permisssion_id`, srp.`role_id`, sp.`explaination`, sp.`permission_name`
         FROM system_role_permission srp, system_permission sp
         <where>
-            srp.permission_id = sp.id
-            and srp.`delete_state` = 0
-            and sp.`delete_state` = 0
+            srp.permisssion_id = sp.id
+            and srp.delete_state = 0
             <if test="roleId != null">
                 AND srp.`role_id` = #{roleId, jdbcType=INTEGER}
             </if>
