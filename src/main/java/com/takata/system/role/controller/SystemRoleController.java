@@ -44,8 +44,8 @@ public class SystemRoleController {
     private Object queryPageList(SystemRoleQuery systemUserQuery){
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
-            List<Map<String, Object>> dataMapList = this.systemRoleService.querySystemRolePageList(systemUserQuery);
-            Integer totalCount = this.systemRoleService.querySystemRoleCount(systemUserQuery);
+            List<Map<String, Object>> dataMapList = this.systemRoleService.listSystemRolePage(systemUserQuery);
+            Integer totalCount = this.systemRoleService.countSystemRole(systemUserQuery);
             Integer totalPage = totalCount / systemUserQuery.getSize() + (totalCount % systemUserQuery.getSize() > 0 ? 1 : 0);
             map.put("dataMapList", dataMapList);
             map.put("totalCount", totalCount);

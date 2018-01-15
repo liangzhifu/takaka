@@ -71,9 +71,7 @@ public class SystemRoleServiceImpl implements SystemRoleService {
             throw new Exception("删除角色异常！");
         }
         //删除角色权限
-        SystemRoleMenuQuery systemRoleMenuQuery = new SystemRoleMenuQuery();
-        systemRoleMenuQuery.setRoleId(systemRole.getId());
-        this.systemRoleMenuService.deleteSystemRoleMenuByRole(systemRoleMenuQuery);
+        this.systemRoleMenuService.deleteSystemRoleMenuByRole(systemRole.getId());
 
         //删除角色菜单
         SystemRolePermissionQuery systemRolePermissionQuery = new SystemRolePermissionQuery();
@@ -84,12 +82,12 @@ public class SystemRoleServiceImpl implements SystemRoleService {
     }
 
     @Override
-    public List<Map<String, Object>> querySystemRolePageList(SystemRoleQuery systemRoleQuery) throws Exception {
+    public List<Map<String, Object>> listSystemRolePage(SystemRoleQuery systemRoleQuery) throws Exception {
         return this.systemRoleDao.selectSystemRolePageList(systemRoleQuery);
     }
 
     @Override
-    public Integer querySystemRoleCount(SystemRoleQuery systemRoleQuery) throws Exception {
+    public Integer countSystemRole(SystemRoleQuery systemRoleQuery) throws Exception {
         return this.systemRoleDao.selectSystemRoleCount(systemRoleQuery);
     }
 

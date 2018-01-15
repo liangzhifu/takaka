@@ -38,7 +38,7 @@ public interface SystemRoleService {
      * @return 返回列表数据
      * @throws Exception 异常
      */
-    List<Map<String, Object>> querySystemRolePageList(SystemRoleQuery systemRoleQuery) throws Exception;
+    List<Map<String, Object>> listSystemRolePage(SystemRoleQuery systemRoleQuery) throws Exception;
 
     /**
      * 查询角色管理页面总数
@@ -46,6 +46,6 @@ public interface SystemRoleService {
      * @return 返回总数
      * @throws Exception 异常
      */
-    Integer querySystemRoleCount(SystemRoleQuery systemRoleQuery) throws Exception;
+    Integer countSystemRole(SystemRoleQuery systemRoleQuery) throws Exception;
     
 }

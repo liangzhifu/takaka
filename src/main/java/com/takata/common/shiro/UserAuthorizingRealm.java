@@ -34,7 +34,7 @@ public class UserAuthorizingRealm extends AuthorizingRealm {
         String userCode = token.getUsername();
         SystemUser systemUser = new SystemUser();
         systemUser.setUserCode(userCode);
-        systemUser = this.systemUserService.querySystemUserByUserCode(systemUser);
+        systemUser = this.systemUserService.getSystemUserByUserCode(systemUser);
         if(systemUser.getId() != null){
             byte[] salt = systemUser.getUserPassword().getBytes();
             return new SimpleAuthenticationInfo(new Principal(systemUser), systemUser.getUserPassword(), ByteSource.Util.bytes(salt), this.getName());

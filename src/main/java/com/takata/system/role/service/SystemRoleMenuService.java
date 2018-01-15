@@ -25,17 +25,17 @@ public interface SystemRoleMenuService {
 
     /**
      * 删除角色所对应的角色菜单关联
-     * @param systemRoleMenuQuery 查询条件
+     * @param roleId 角色ID
      * @throws Exception 异常
      */
-    void deleteSystemRoleMenuByRole(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception;
+    void deleteSystemRoleMenuByRole(Integer roleId) throws Exception;
 
     /**
      * 删除菜单所对应的角色菜单关联
-     * @param systemRoleMenuQuery 查询条件
+     * @param menuId 菜单ID
      * @throws Exception 异常
      */
-    void deleteSystemRoleMenuByMenu(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception;
+    void deleteSystemRoleMenuByMenu(Integer menuId) throws Exception;
 
     /**
      * 查询角色对应的所有菜单
@@ -43,6 +43,6 @@ public interface SystemRoleMenuService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    List<Map<String, Object>> querySystemRoleMenuList(SystemRoleMenuQuery systemRoleMenuQuery)throws Exception;
+    List<SystemRoleMenu> listSystemRoleMenu(SystemRoleMenuQuery systemRoleMenuQuery)throws Exception;
 
 }

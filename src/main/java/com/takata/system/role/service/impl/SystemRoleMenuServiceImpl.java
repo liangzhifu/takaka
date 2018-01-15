@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -26,16 +25,14 @@ public class SystemRoleMenuServiceImpl implements SystemRoleMenuService {
     @Override
     public void addSystemRoleMenu(Integer roleId, String[] menuIds) throws Exception {
         //删除旧的角色菜单关联
-        SystemRoleMenuQuery systemRoleMenuQuery = new SystemRoleMenuQuery();
-        systemRoleMenuQuery.setRoleId(roleId);
-        this.deleteSystemRoleMenuByRole(systemRoleMenuQuery);
+        this.deleteSystemRoleMenuByRole(roleId);
 
         //增加新的角色菜单关联
         SystemRoleMenu systemRoleMenu = new SystemRoleMenu();
         Principal principal = PrincipalUtils.getPrincipal();
-        systemRoleMenu.setCreateBy(principal.getId());
+        systemRoleMenu.setCreateBy(principal != null ? principal.getId() : null);
         systemRoleMenu.setCreateTime(new Date());
-        systemRoleMenu.setUpdateBy(principal.getId());
+        systemRoleMenu.setUpdateBy(principal != null ? principal.getId() : null);
         systemRoleMenu.setUpdateTime(new Date());
         systemRoleMenu.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
         for (String menuId : menuIds){
@@ -52,7 +49,7 @@ public class SystemRoleMenuServiceImpl implements SystemRoleMenuService {
     @Override
     public void deleteSystemRoleMenu(SystemRoleMenu systemRoleMenu) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        systemRoleMenu.setUpdateBy(principal.getId());
+        systemRoleMenu.setUpdateBy(principal != null ? principal.getId() : null);
         systemRoleMenu.setUpdateTime(new Date());
         systemRoleMenu.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
         Integer count = this.systemRoleMenuDao.updateSystemRoleMenu(systemRoleMenu);
@@ -62,29 +59,27 @@ public class SystemRoleMenuServiceImpl implements SystemRoleMenuService {
     }
 
     @Override
-    public void deleteSystemRoleMenuByRole(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception {
-        List<Map<String, Object>> mapList = this.querySystemRoleMenuList(systemRoleMenuQuery);
-        SystemRoleMenu systemRoleMenu = new SystemRoleMenu();
-        for (Map<String, Object> map : mapList){
-            Integer id = Integer.valueOf(String.valueOf(map.get("id")));
-            systemRoleMenu.setId(id);
+    public void deleteSystemRoleMenuByRole(Integer roleId) throws Exception {
+        SystemRoleMenuQuery systemRoleMenuQuery = new SystemRoleMenuQuery();
+        systemRoleMenuQuery.setRoleId(roleId);
+        List<SystemRoleMenu> systemRoleMenuList = this.listSystemRoleMenu(systemRoleMenuQuery);
+        for (SystemRoleMenu systemRoleMenu : systemRoleMenuList){
             this.deleteSystemRoleMenu(systemRoleMenu);
         }
     }
 
     @Override
-    public void deleteSystemRoleMenuByMenu(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception {
-        List<Map<String, Object>> mapList = this.querySystemRoleMenuList(systemRoleMenuQuery);
-        SystemRoleMenu systemRoleMenu = new SystemRoleMenu();
-        for (Map<String, Object> map : mapList){
-            Integer id = Integer.valueOf(String.valueOf(map.get("id")));
-            systemRoleMenu.setId(id);
+    public void deleteSystemRoleMenuByMenu(Integer menuId) throws Exception {
+        SystemRoleMenuQuery systemRoleMenuQuery = new SystemRoleMenuQuery();
+        systemRoleMenuQuery.setMenuId(menuId);
+        List<SystemRoleMenu> systemRoleMenuList = this.listSystemRoleMenu(systemRoleMenuQuery);
+        for (SystemRoleMenu systemRoleMenu : systemRoleMenuList){
             this.deleteSystemRoleMenu(systemRoleMenu);
         }
     }
 
     @Override
-    public List<Map<String, Object>> querySystemRoleMenuList(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception {
+    public List<SystemRoleMenu> listSystemRoleMenu(SystemRoleMenuQuery systemRoleMenuQuery) throws Exception {
         return this.systemRoleMenuDao.selectSystemRoleMenuList(systemRoleMenuQuery);
     }
 }

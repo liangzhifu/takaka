@@ -6,7 +6,6 @@ import com.takata.system.role.query.SystemRoleMenuQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author lzf
@@ -37,7 +36,7 @@ public class SystemRoleMenuDao extends BaseDao {
      * @param systemRoleMenuQuery 查询条件
      * @return 返回结果
      */
-    public List<Map<String, Object>> selectSystemRoleMenuList(SystemRoleMenuQuery systemRoleMenuQuery){
+    public List<SystemRoleMenu> selectSystemRoleMenuList(SystemRoleMenuQuery systemRoleMenuQuery){
         return this.readSqlSession.selectList("SystemRoleMenuMapper.selectSystemRoleMenuList", systemRoleMenuQuery);
     }
 

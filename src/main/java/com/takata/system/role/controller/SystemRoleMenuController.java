@@ -1,6 +1,7 @@
 package com.takata.system.role.controller;
 
 import com.takata.system.constant.Url;
+import com.takata.system.role.domain.SystemRoleMenu;
 import com.takata.system.role.query.SystemRoleMenuQuery;
 import com.takata.system.role.query.SystemRoleQuery;
 import com.takata.system.role.service.SystemRoleMenuService;
@@ -32,11 +33,11 @@ public class SystemRoleMenuController {
      */
     @RequestMapping(value = Url.ROLEMENU_QUERYROLEMENULIST)
     @ResponseBody
-    private Object querySystemRolePageList(SystemRoleMenuQuery systemRoleMenurQuery){
+    private Object querySystemRoleMenuList(SystemRoleMenuQuery systemRoleMenurQuery){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-            List<Map<String, Object>> dataMapList = this.systemRoleMenuService.querySystemRoleMenuList(systemRoleMenurQuery);
-            map.put("dataMapList", dataMapList);
+            List<SystemRoleMenu> systemRoleMenuList = this.systemRoleMenuService.listSystemRoleMenu(systemRoleMenurQuery);
+            map.put("dataMapList", systemRoleMenuList);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());
@@ -54,7 +55,7 @@ public class SystemRoleMenuController {
      */
     @RequestMapping(value = Url.ROLEMENU_ADD)
     @ResponseBody
-    private Object addSystemRolePermission(Integer roleId, String menuIdStr){
+    private Object addSystemRoleMenu(Integer roleId, String menuIdStr){
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
             String[] menuIds = null;

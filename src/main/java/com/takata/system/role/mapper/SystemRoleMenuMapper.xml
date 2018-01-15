@@ -94,16 +94,15 @@
     </update>
 
     <select id="selectSystemRoleMenuList" resultType="java.util.HashMap" parameterType="com.takata.system.role.query.SystemRoleMenuQuery">
-        SELECT srm.`id`,
-        srm.`role_id` AS roleId,
-        srm.`menu_id` AS menuId
-        FROM system_role_menu srm
-        WHERE srm.`delete_state` = '0'
+        select
+        <include refid="Base_Column_List" />
+        FROM system_role_menu
+        WHERE `delete_state` = '0'
         <if test="roleId != null">
-            AND srm.`role_id` = #{roleId,jdbcType=INTEGER}
+            AND `role_id` = #{roleId,jdbcType=INTEGER}
         </if>
         <if test="menuId != null">
-            AND srm.`menu_id` = #{menuId,jdbcType=INTEGER}
+            AND `menu_id` = #{menuId,jdbcType=INTEGER}
         </if>
     </select>
 </mapper>
