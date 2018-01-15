@@ -74,9 +74,7 @@ public class SystemRoleServiceImpl implements SystemRoleService {
         this.systemRoleMenuService.deleteSystemRoleMenuByRole(systemRole.getId());
 
         //删除角色菜单
-        SystemRolePermissionQuery systemRolePermissionQuery = new SystemRolePermissionQuery();
-        systemRolePermissionQuery.setRoleId(systemRole.getId());
-        this.systemRolePermissionService.deleteSystemPermissionByRole(systemRolePermissionQuery);
+        this.systemRolePermissionService.deleteSystemPermissionByRole(systemRole.getId());
 
         return count;
     }

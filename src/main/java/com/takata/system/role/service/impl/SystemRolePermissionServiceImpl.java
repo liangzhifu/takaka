@@ -68,7 +68,9 @@ public class SystemRolePermissionServiceImpl implements SystemRolePermissionServ
     }
 
     @Override
-    public void deleteSystemPermissionByRole(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception {
+    public void deleteSystemPermissionByRole(Integer roleId) throws Exception {
+        SystemRolePermissionQuery systemRolePermissionQuery = new SystemRolePermissionQuery();
+        systemRolePermissionQuery.setRoleId(roleId);
         List<Map<String, Object>> mapList = this.systemRolePermissionDao.selectSystemRolePermissionList(systemRolePermissionQuery);
         SystemRolePermission systemRolePermission = new SystemRolePermission();
         for (Map<String, Object> map : mapList){

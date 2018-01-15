@@ -34,11 +34,11 @@ public interface SystemRolePermissionService {
 
     /**
      * 删除角色--删除对应角色权限关联
-     * @param systemRolePermissionQuery 角色ID
+     * @param roleId 角色ID
      * @return 返回结果
      * @throws Exception 异常
      */
-    void deleteSystemPermissionByRole(SystemRolePermissionQuery systemRolePermissionQuery) throws Exception;
+    void deleteSystemPermissionByRole(Integer roleId) throws Exception;
 
     /**
      * 查询角色权限关联管理页面列表
