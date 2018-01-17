@@ -176,5 +176,5 @@
     </div>
 </form>
 </body>
-<script src="<%=request.getContextPath()%>/static/js/alteration/alterationKirikaeOrderList.js"></script>
+<script src="<%=request.getContextPath()%>/static/js/kirikae/order/alterationKirikaeOrderList.js"></script>
 </html>

@@ -16,10 +16,10 @@ import java.util.List;
 /**
  * @author lzf
  **/
-@Service("alterationKirikaeOrderChangeContentService")
+@Service("kirikaeOrderChangeContentService")
 public class KirikaeOrderChangeContentServiceImpl implements KirikaeOrderChangeContentService {
 
-    @Resource(name = "alterationKirikaeOrderChangeContentDao")
+    @Resource(name = "kirikaeOrderChangeContentDao")
     private KirikaeOrderChangeContentDao kirikaeOrderChangeContentDao;
 
     @Override

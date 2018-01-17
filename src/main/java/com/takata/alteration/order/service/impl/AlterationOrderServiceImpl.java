@@ -20,7 +20,7 @@ import java.util.Date;
  * @author lzf
  **/
 @Service("alterationOrderService")
-        public class AlterationOrderServiceImpl implements AlterationOrderService {
+public class AlterationOrderServiceImpl implements AlterationOrderService {
 
     @Resource(name = "alterationOrderDao")
     private AlterationOrderDao alterationOrderDao;
@@ -28,7 +28,7 @@ import java.util.Date;
     @Resource(name = "alterationFourOrderService")
     private AlterationFourOrderService alterationFourOrderService;
 
-    @Resource(name = "alterationKirikaeOrderService")
+    @Resource(name = "kirikaeOrderService")
     private KirikaeOrderService kirikaeOrderService;
 
     @Override

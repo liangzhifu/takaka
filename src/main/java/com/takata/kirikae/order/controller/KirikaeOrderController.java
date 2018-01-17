@@ -1,6 +1,8 @@
 package com.takata.kirikae.order.controller;
 
-import com.takata.alteration.constant.Url;
+import com.takata.alteration.order.domain.AlterationOrder;
+import com.takata.alteration.order.service.AlterationOrderService;
+import com.takata.kirikae.constant.Url;
 import com.takata.kirikae.order.query.KirikaeOrderQuery;
 import com.takata.kirikae.order.service.KirikaeOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,16 +21,19 @@ import java.util.Map;
 @Controller
 public class KirikaeOrderController {
 
-    @Resource(name = "alterationKirikaeOrderService")
+    @Resource(name = "kirikaeOrderService")
     private KirikaeOrderService kirikaeOrderService;
+
+    @Resource(name = "alterationOrderService")
+    private AlterationOrderService alterationOrderService;
 
     /**
      * 获取切替单列表页面
      * @return 返回结果
      */
-    @RequestMapping(value = Url.KIRIKAEORDER_DIALOG)
-    private String getDialog(){
-        return "alteration/alterationKirikaeOrderList";
+    @RequestMapping(value = Url.ORDER_PAGEINOF_DIALOG)
+    private String getPageInfoDialog(){
+        return "kirikae/order/kirikaeOrderList";
     }
 
 
@@ -37,7 +42,7 @@ public class KirikaeOrderController {
      * @param kirikaeOrderQuery 查询条件
      * @return 返回结果
      */
-    @RequestMapping(value = Url.KIRIKAEORDER_PAGEINFO)
+    @RequestMapping(value = Url.ORDER_PAGEINOF)
     @ResponseBody
     private Object getPageInfo(KirikaeOrderQuery kirikaeOrderQuery){
         Map<String, Object> map = new HashMap<String, Object>(4);
@@ -54,4 +59,76 @@ public class KirikaeOrderController {
         return map;
     }
 
+    /**
+     * 获取切替单新增修改页面
+     * @return 返回结果
+     */
+    @RequestMapping(value = Url.ORDER_ADD_DIALOG)
+    private String getAddDialog(){
+        return "kirikae/order/kirikaeOrderList";
+    }
+
+    /**
+     * 新增变更单
+     * @param alterationOrder 变更单实体
+     * @httpServletRequest 请求参数
+     * @return 返回结果
+     */
+    @RequestMapping(value = Url.ORDER_ADD)
+    @ResponseBody
+    private Object addOrder(AlterationOrder alterationOrder){
+        Map<String, Object> map = new HashMap<String, Object>(2);
+        try{
+            this.alterationOrderService.addAlterationOrder(alterationOrder);
+            map.put("success", true);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            map.put("success", false);
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 修改变更单
+     * @param alterationOrder 变更单实体
+     * @return 返回结果
+     */
+    @RequestMapping(value = Url.ORDER_EDIT)
+    @ResponseBody
+    private Object editOrder(AlterationOrder alterationOrder){
+        Map<String, Object> map = new HashMap<String, Object>(2);
+        try{
+
+            map.put("success", true);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            map.put("success", false);
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
+
+    /**
+     * 获取变更单
+     * @param orderId 变更单ID
+     * @return 返回结果
+     */
+    @RequestMapping(value = Url.ORDER_DETAIL)
+    @ResponseBody
+    private Object gerOrderDetail(Integer orderId){
+        Map<String, Object> map = new HashMap<String, Object>(2);
+        try{
+            AlterationOrder alterationOrder = new AlterationOrder();
+            alterationOrder.setId(orderId);
+            alterationOrder = this.alterationOrderService.getAlterationOrder(alterationOrder);
+            map.put("alterationOrder", alterationOrder);
+            map.put("success", true);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            map.put("success", false);
+            map.put("message", e.getMessage());
+        }
+        return map;
+    }
 }

@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>切替变更单管理页面</title>
-    <%@include file="../common/css.jsp"%>
-    <%@include file="../common/js.jsp"%>
+    <%@include file="../../common/css.jsp"%>
+    <%@include file="../../common/js.jsp"%>
 </head>
 <body ng-controller="alterationKirikaeOrderListController" ng-cloak>
     <form class="form-inline">

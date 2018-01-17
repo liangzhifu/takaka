@@ -10,10 +10,10 @@ import javax.annotation.Resource;
 /**
  * @author lzf
  **/
-@Service("alterationKirikaeOrderService")
+@Service("kirikaeOrderService")
 public class KirikaeOrderServiceImpl implements KirikaeOrderService {
 
-    @Resource(name = "alterationKirikaeOrderDao")
+    @Resource(name = "kirikaeOrderDao")
     private KirikaeOrderDao kirikaeOrderDao;
 
     @Override
