@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="AlterationKirikaeOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.takata.alteration.order.domain.AlterationKirikaeOrder" >
+  <resultMap id="BaseResultMap" type="com.takata.kirikae.order.domain.KirikaeOrder" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_id" property="orderId" jdbcType="INTEGER" />
     <result column="tk_no" property="tkNo" jdbcType="VARCHAR" />
@@ -46,15 +46,15 @@
     customer_eo, parts_number_change, presence_required, design_change_timing, desing_change_type, 
     manufacture_internal, manufacture_prepared, kirikae_order_type
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrder" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.domain.KirikaeOrder" >
     select 
     <include refid="Base_Column_List" />
-    from alteration_kirikae_order
+    from kirikae_order
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <insert id="insertSelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrder" useGeneratedKeys="true" keyProperty="id">
-    insert into alteration_kirikae_order
+  <insert id="insertSelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrder" useGeneratedKeys="true" keyProperty="id">
+    insert into kirikae_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -264,8 +264,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrder" >
-    update alteration_kirikae_order
+  <update id="updateByPrimaryKeySelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrder" >
+    update kirikae_order
     <set >
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=INTEGER},
@@ -369,8 +369,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrder" >
-    update alteration_kirikae_order
+  <update id="updateByPrimaryKey" parameterType="com.takata.kirikae.order.domain.KirikaeOrder" >
+    update kirikae_order
     set order_id = #{orderId,jdbcType=INTEGER},
       tk_no = #{tkNo,jdbcType=VARCHAR},
       design_change_no = #{designChangeNo,jdbcType=VARCHAR},

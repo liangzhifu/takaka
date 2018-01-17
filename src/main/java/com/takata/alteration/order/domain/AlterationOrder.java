@@ -1,5 +1,6 @@
 package com.takata.alteration.order.domain;
 
+import com.takata.kirikae.order.domain.KirikaeOrder;
 import lombok.Data;
 
 import java.util.Date;
@@ -30,6 +31,6 @@ public class AlterationOrder {
 
     private AlterationFourOrder alterationFourOrder;
 
-    private AlterationKirikaeOrder alterationKirikaeOrder;
+    private KirikaeOrder alterationKirikaeOrder;
 
 }

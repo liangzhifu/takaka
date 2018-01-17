@@ -1,6 +1,6 @@
-package com.takata.alteration.order.dao;
+package com.takata.kirikae.order.dao;
 
-import com.takata.alteration.order.domain.AlterationKirikaeOrder;
+import com.takata.kirikae.order.domain.KirikaeOrder;
 import com.takata.common.dao.BaseDao;
 import org.springframework.stereotype.Repository;
 
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Repository;
  * @author lzf
  **/
 @Repository
-public class AlterationKirikaeOrderDao extends BaseDao {
+public class KirikaeOrderDao extends BaseDao {
 
     /**
      * 新增切替变更单
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public Integer insertSelective(AlterationKirikaeOrder alterationKirikaeOrder){
+    public Integer insertSelective(KirikaeOrder alterationKirikaeOrder){
         return this.writerSqlSession.insert("AlterationKirikaeOrderMapper.insertSelective", alterationKirikaeOrder);
     }
 
@@ -24,7 +24,7 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public Integer updateByPrimaryKeySelective(AlterationKirikaeOrder alterationKirikaeOrder){
+    public Integer updateByPrimaryKeySelective(KirikaeOrder alterationKirikaeOrder){
         return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
     }
 
@@ -33,7 +33,7 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public Integer updateByPrimaryKey(AlterationKirikaeOrder alterationKirikaeOrder){
+    public Integer updateByPrimaryKey(KirikaeOrder alterationKirikaeOrder){
         return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
     }
 
@@ -42,7 +42,7 @@ public class AlterationKirikaeOrderDao extends BaseDao {
      * @param alterationKirikaeOrder 切替变更单实体
      * @return 返回结果
      */
-    public AlterationKirikaeOrder selectByPrimaryKey(AlterationKirikaeOrder alterationKirikaeOrder){
+    public KirikaeOrder selectByPrimaryKey(KirikaeOrder alterationKirikaeOrder){
         return this.readSqlSession.selectOne("AlterationKirikaeOrderMapper.selectByPrimaryKey", alterationKirikaeOrder);
     }
     

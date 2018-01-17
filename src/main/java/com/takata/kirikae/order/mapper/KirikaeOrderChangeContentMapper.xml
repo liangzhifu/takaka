@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AlterationKirikaeOrderChangeContentMapper">
-  <resultMap id="BaseResultMap" type="com.takata.alteration.order.domain.AlterationKirikaeOrderChangeContent">
+  <resultMap id="BaseResultMap" type="com.takata.kirikae.order.domain.KirikaeOrderChangeContent">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="before_change" jdbcType="VARCHAR" property="beforeChange" />
     <result column="after_change" jdbcType="VARCHAR" property="afterChange" />
@@ -20,15 +20,15 @@
     id, before_change, after_change, before_file_id, new_file_id, delete_state, create_by, 
     create_time, update_by, update_time, kirikae_order_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderChangeContent" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.takata.kirikae.order.domain.KirikaeOrderChangeContent" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from alteration_kirikae_order_change_content
+    from kirikae_order_change_content
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <insert id="insertSelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderChangeContent">
-    insert into alteration_kirikae_order_change_content
+  <insert id="insertSelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrderChangeContent">
+    insert into kirikae_order_change_content
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -101,8 +101,8 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderChangeContent">
-    update alteration_kirikae_order_change_content
+  <update id="updateByPrimaryKeySelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrderChangeContent">
+    update kirikae_order_change_content
     <set>
       <if test="beforeChange != null">
         before_change = #{beforeChange,jdbcType=VARCHAR},
@@ -138,12 +138,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAlterationKirikaeOrderChangeContentList" resultMap="BaseResultMap" parameterType="com.takata.alteration.order.query.AlterationKirikaeOrderChangeContentQuery">
+  <select id="selectAlterationKirikaeOrderChangeContentList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderChangeContentQuery">
     select id, before_change, after_change, before_file_id, new_file_id, delete_state, create_by,
         create_time, update_by, update_time, kirikae_order_id,
         (select file_name from file_upload fu where fu.id = akocc.before_file_id) as before_file_name,
         (select file_name from file_upload fu where fu.id = akocc.new_file_id) as new_file_name
-        from alteration_kirikae_order_change_content akocc
+        from kirikae_order_change_content akocc
         where akocc.delete_state = 0
         and akocc.kirikae_order_id = #{kirikaeOrderId,jdbcType=INTEGER}
   </select>

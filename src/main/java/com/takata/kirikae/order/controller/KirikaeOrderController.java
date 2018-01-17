@@ -1,8 +1,8 @@
-package com.takata.alteration.order.controller;
+package com.takata.kirikae.order.controller;
 
 import com.takata.alteration.constant.Url;
-import com.takata.alteration.order.query.AlterationKirikaeOrderQuery;
-import com.takata.alteration.order.service.AlterationKirikaeOrderService;
+import com.takata.kirikae.order.query.KirikaeOrderQuery;
+import com.takata.kirikae.order.service.KirikaeOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,10 @@ import java.util.Map;
  **/
 @Slf4j
 @Controller
-public class AlterationKirikaeOrderController {
+public class KirikaeOrderController {
 
     @Resource(name = "alterationKirikaeOrderService")
-    private AlterationKirikaeOrderService alterationKirikaeOrderService;
+    private KirikaeOrderService kirikaeOrderService;
 
     /**
      * 获取切替单列表页面
@@ -34,12 +34,12 @@ public class AlterationKirikaeOrderController {
 
     /**
      * 获取切替单列表页面信息
-     * @param alterationKirikaeOrderQuery 查询条件
+     * @param kirikaeOrderQuery 查询条件
      * @return 返回结果
      */
     @RequestMapping(value = Url.KIRIKAEORDER_PAGEINFO)
     @ResponseBody
-    private Object getPageInfo(AlterationKirikaeOrderQuery alterationKirikaeOrderQuery){
+    private Object getPageInfo(KirikaeOrderQuery kirikaeOrderQuery){
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
             map.put("dataMapList", null);

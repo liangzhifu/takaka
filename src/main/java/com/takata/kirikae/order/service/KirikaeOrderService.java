@@ -1,22 +1,22 @@
-package com.takata.alteration.order.service;
+package com.takata.kirikae.order.service;
 
-import com.takata.alteration.order.domain.AlterationKirikaeOrder;
+import com.takata.kirikae.order.domain.KirikaeOrder;
 
-public interface AlterationKirikaeOrderService {
+public interface KirikaeOrderService {
 
     /**
      * 新增切替变更单
      * @param alterationKirikaeOrder 切替变更单实体
      * @throws Exception 返回异常
      */
-    void addAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception;
+    void addAlterationKirikaeOrder(KirikaeOrder alterationKirikaeOrder) throws Exception;
 
     /**
      * 修改切替变更单
      * @param alterationKirikaeOrder 切替变更单实体
      * @throws Exception 返回异常
      */
-    void editAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception;
+    void editAlterationKirikaeOrder(KirikaeOrder alterationKirikaeOrder) throws Exception;
 
     /**
      * 获取切替变更单
@@ -24,7 +24,7 @@ public interface AlterationKirikaeOrderService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    AlterationKirikaeOrder getAlterationKirikaeOrder(AlterationKirikaeOrder alterationKirikaeOrder) throws Exception;
+    KirikaeOrder getAlterationKirikaeOrder(KirikaeOrder alterationKirikaeOrder) throws Exception;
 
     /**
      * 获取切替变更单--通过变更单ID
@@ -32,6 +32,6 @@ public interface AlterationKirikaeOrderService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    AlterationKirikaeOrder getAlterationKirikaeOrderByAlterationOrderId(Integer orderId) throws Exception;
+    KirikaeOrder getAlterationKirikaeOrderByAlterationOrderId(Integer orderId) throws Exception;
 
 }

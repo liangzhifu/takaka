@@ -3,10 +3,10 @@ package com.takata.alteration.order.service.impl;
 import com.takata.alteration.order.constant.AlterationOrderEnum;
 import com.takata.alteration.order.dao.AlterationOrderDao;
 import com.takata.alteration.order.domain.AlterationFourOrder;
-import com.takata.alteration.order.domain.AlterationKirikaeOrder;
+import com.takata.kirikae.order.domain.KirikaeOrder;
 import com.takata.alteration.order.domain.AlterationOrder;
 import com.takata.alteration.order.service.AlterationFourOrderService;
-import com.takata.alteration.order.service.AlterationKirikaeOrderService;
+import com.takata.kirikae.order.service.KirikaeOrderService;
 import com.takata.alteration.order.service.AlterationOrderService;
 import com.takata.common.constant.CommonEnum;
 import com.takata.common.shiro.Principal;
@@ -29,14 +29,14 @@ import java.util.Date;
     private AlterationFourOrderService alterationFourOrderService;
 
     @Resource(name = "alterationKirikaeOrderService")
-    private AlterationKirikaeOrderService alterationKirikaeOrderService;
+    private KirikaeOrderService kirikaeOrderService;
 
     @Override
     public AlterationOrder getAlterationOrder(AlterationOrder alterationOrder) throws Exception {
         alterationOrder = this.alterationOrderDao.selectAlterationOrder(alterationOrder);
         AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setAlterationFourOrder(alterationFourOrder);
-        AlterationKirikaeOrder alterationKirikaeOrder = this.alterationKirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
+        KirikaeOrder alterationKirikaeOrder = this.kirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setAlterationKirikaeOrder(alterationKirikaeOrder);
         return alterationOrder;
     }
@@ -61,9 +61,9 @@ import java.util.Date;
         this.alterationFourOrderService.addAlterationFourOrder(alterationFourOrder);
 
         //新增切替变更单
-        AlterationKirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
+        KirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
         alterationKirikaeOrder.setOrderId(alterationOrder.getId());
-        this.alterationKirikaeOrderService.addAlterationKirikaeOrder(alterationKirikaeOrder);
+        this.kirikaeOrderService.addAlterationKirikaeOrder(alterationKirikaeOrder);
     }
 
     @Override
@@ -74,8 +74,8 @@ import java.util.Date;
         this.alterationFourOrderService.editAlterationFourOrder(alterationFourOrder);
 
         //修改切替变更单
-        AlterationKirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
+        KirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
         alterationKirikaeOrder.setOrderId(alterationOrder.getId());
-        this.alterationKirikaeOrderService.editAlterationKirikaeOrder(alterationKirikaeOrder);
+        this.kirikaeOrderService.editAlterationKirikaeOrder(alterationKirikaeOrder);
     }
 }

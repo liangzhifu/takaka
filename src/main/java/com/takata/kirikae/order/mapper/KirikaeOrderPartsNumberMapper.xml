@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="AlterationKirikaeOrderPartsNumberMapper" >
-  <resultMap id="BaseResultMap" type="com.takata.alteration.order.domain.AlterationKirikaeOrderPartsNumber" >
+  <resultMap id="BaseResultMap" type="com.takata.kirikae.order.domain.KirikaeOrderPartsNumber" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="old_parts_number" property="oldPartsNumber" jdbcType="VARCHAR" />
     <result column="new_patts_number" property="newPattsNumber" jdbcType="VARCHAR" />
@@ -16,15 +16,15 @@
     id, old_parts_number, new_patts_number, delete_state, create_by, create_time, update_by, 
     update_time, kirikae_order_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderPartsNumber" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.domain.KirikaeOrderPartsNumber" >
     select 
     <include refid="Base_Column_List" />
-    from alteration_kirikae_order_parts_number
+    from kirikae_order_parts_number
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <insert id="insertSelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderPartsNumber" >
-    insert into alteration_kirikae_order_parts_number
+  <insert id="insertSelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrderPartsNumber" >
+    insert into kirikae_order_parts_number
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -84,8 +84,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.takata.alteration.order.domain.AlterationKirikaeOrderPartsNumber" >
-    update alteration_kirikae_order_parts_number
+  <update id="updateByPrimaryKeySelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrderPartsNumber" >
+    update kirikae_order_parts_number
     <set >
       <if test="oldPartsNumber != null" >
         old_parts_number = #{oldPartsNumber,jdbcType=VARCHAR},
@@ -115,10 +115,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAlterationKirikaeOrderPartsNumberList" resultMap="BaseResultMap" parameterType="com.takata.alteration.order.query.AlterationKirikaeOrderPartsNumberQuery">
+  <select id="selectAlterationKirikaeOrderPartsNumberList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderPartsNumberQuery">
     select
     <include refid="Base_Column_List" />
-    from alteration_kirikae_order_parts_number akopn
+    from kirikae_order_parts_number akopn
     where akopn.`delete_state` = 0
     and akopn.`kirikae_order_id` = #{kirikaeOrderId,jdbcType=INTEGER}
   </select>

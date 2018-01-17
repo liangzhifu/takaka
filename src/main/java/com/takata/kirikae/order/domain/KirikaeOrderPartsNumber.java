@@ -1,4 +1,4 @@
-package com.takata.alteration.order.domain;
+package com.takata.kirikae.order.domain;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * @author lzf
  **/
 @Data
-public class AlterationKirikaeOrderPartsNumber {
+public class KirikaeOrderPartsNumber {
 
     private Integer id;
 
