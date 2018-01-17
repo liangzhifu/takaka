@@ -37,16 +37,16 @@
                                 <button class="btn btn-small btn-purple" type="button" ng-click="pageTool.search()">
                                     <i class="icon-search icon-on-right bigger-110"></i>查找
                                 </button>
-                                <button class="btn btn-small btn-success" type="button" ng-click="addAlterationKirikaeOrder()">
+                                <button class="btn btn-small btn-success" type="button" ng-click="addKirikaeOrder()">
                                     <i class="icon-plus-sign icon-on-right bigger-110"></i>新增
                                 </button>
-                                <button class="btn btn-small btn-info" type="button" ng-click="editAlterationKirikaeOrder()">
+                                <button class="btn btn-small btn-info" type="button" ng-click="editKirikaeOrder()">
                                     <i class="icon-edit icon-on-right bigger-110"></i>修改
                                 </button>
-                                <button class="btn btn-small btn-danger" type="button" ng-click="voidAlterationKirikaeOrder()">
+                                <button class="btn btn-small btn-danger" type="button" ng-click="voidKirikaeOrder()">
                                     <i class="icon-remove icon-on-right bigger-110"></i>作废
                                 </button>
-                                <button class="btn btn-small btn-purple" type="button" ng-click="exportAlterationKirikaeOrderPDF()">
+                                <button class="btn btn-small btn-purple" type="button" ng-click="exportKirikaeOrderPDF()">
                                     <i class="icon-file icon-on-right bigger-110"></i>导出PDF
                                 </button>
                             </div>
@@ -123,5 +123,5 @@
         </div>
     </form>
 </body>
-<script src="<%=request.getContextPath()%>/static/js/alteration/alterationKirikaeOrderList.js"></script>
+<script src="<%=request.getContextPath()%>/static/js/kirikae/order/kirikaeOrderList.js"></script>
 </html>

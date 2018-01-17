@@ -65,7 +65,7 @@ public class KirikaeOrderController {
      */
     @RequestMapping(value = Url.ORDER_ADD_DIALOG)
     private String getAddDialog(){
-        return "kirikae/order/kirikaeOrderList";
+        return "kirikae/order/kirikaeOrderAddOrEdit";
     }
 
     /**

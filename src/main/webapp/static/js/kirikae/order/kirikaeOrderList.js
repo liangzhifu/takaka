@@ -2,7 +2,7 @@ var alterationKirikaeOrderListApp = angular.module("alterationKirikaeOrderList",
 alterationKirikaeOrderListApp.controller("alterationKirikaeOrderListController", function ($scope) {
     $scope.alterationKirikaeOrderList = [];
     $scope.pageTool = {
-        "url" : BASE_URL + "/alteration/kirikaeOrder/getPageInfo.do"
+        "url" : BASE_URL + "/kirikae/Order/queryPageInfo.do"
     };
     $scope.pageTool.searchForm = {};
     $scope.pageTool.firstPage = function () {
@@ -58,22 +58,22 @@ alterationKirikaeOrderListApp.controller("alterationKirikaeOrderListController",
     };
 
     //新增切替变更单
-    $scope.addAlterationKirikaeOrder = function () {
-        window.location.href = BASE_URL + "/alteration/order/getAddOrEditDialog.do?orderChannel=2";
+    $scope.addKirikaeOrder = function () {
+        window.location.href = BASE_URL + "/kirikae/order/getAddDialog.do?orderChannel=2";
     };
 
     //修改切替变更单
-    $scope.editAlterationKirikaeOrder = function () {
+    $scope.editKirikaeOrder = function () {
 
     };
 
     //作废切替变更单
-    $scope.voidAlterationKirikaeOrder = function () {
+    $scope.voidKirikaeOrder = function () {
 
     };
 
     //导出切替单PDF
-    $scope.exportAlterationKirikaeOrderPDF = function () {
+    $scope.exportKirikaeOrderPDF = function () {
 
     };
 

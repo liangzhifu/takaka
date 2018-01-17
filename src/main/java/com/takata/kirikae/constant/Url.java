@@ -8,12 +8,12 @@ public interface Url {
     String ORGQUESTION= "/orgQuestion";
 
     //定单
-    String ORDER_ADD_DIALOG = BASE + ORDER + "/getDialog.do";
+    String ORDER_ADD_DIALOG = BASE + ORDER + "/getAddDialog.do";
     String ORDER_ADD = BASE + ORDER + "/add.do";
     String ORDER_EDIT = BASE + ORDER + "/edit.do";
     String ORDER_DETAIL = BASE + ORDER + "/detail.do";
     String ORDER_PAGEINOF = BASE + ORDER + "/queryPageInfo.do";
-    String ORDER_PAGEINOF_DIALOG = BASE + ORDER + "/queryPageInfoDialog.do";
+    String ORDER_PAGEINOF_DIALOG = BASE + ORDER + "/getPageInfoDialog.do";
 
     //切替问题点
     String QUESTION_DIALOG = BASE + QUESTION + "/getDialog.do";
