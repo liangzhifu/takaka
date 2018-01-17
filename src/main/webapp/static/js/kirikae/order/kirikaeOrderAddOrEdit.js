@@ -9,10 +9,10 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
 
     $scope.systemUserList = [];
     $scope.alterationOrder = {
-        "alterationFourOrder" : {
-            "alterationFourOrderAttrList" : []
-        },
-        "alterationKirikaeOrder" : {}
+        "kirikaeOrder" : {
+            "kirikaeOrderChangeContentList" : [],
+            "kirikaeOrderPartsNumberList" : []
+        }
     };
 
     $scope.validKirikaeOrder = function () {
@@ -52,6 +52,30 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
                 }
             });
         }
+    };
+
+    $scope.addKirikaeOrderChangeContent = function () {
+        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList.length] = {};
+    };
+
+    $scope.delKirikaeOrderChangeContent = function (index) {
+        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList.splice(index, 1);
+    };
+
+    $scope.uploadBeforeFile = function (index) {
+
+    };
+
+    $scope.uploadNewFile = function (index) {
+
+    };
+
+    $scope.addKirikaeOrderPartsNumber = function () {
+        $scope.alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[$scope.alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList.length] = {};
+    };
+
+    $scope.delKirikaeOrderPartsNumber = function (index) {
+        $scope.alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList.splice(index, 1);
     };
 
     $scope.getAlterAtionOrder = function () {

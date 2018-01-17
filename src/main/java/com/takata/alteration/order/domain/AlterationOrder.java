@@ -31,6 +31,6 @@ public class AlterationOrder {
 
     private AlterationFourOrder alterationFourOrder;
 
-    private KirikaeOrder alterationKirikaeOrder;
+    private KirikaeOrder kirikaeOrder;
 
 }

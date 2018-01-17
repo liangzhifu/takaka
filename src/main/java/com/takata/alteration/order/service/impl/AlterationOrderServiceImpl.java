@@ -36,8 +36,8 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
         alterationOrder = this.alterationOrderDao.selectAlterationOrder(alterationOrder);
         AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setAlterationFourOrder(alterationFourOrder);
-        KirikaeOrder alterationKirikaeOrder = this.kirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
-        alterationOrder.setAlterationKirikaeOrder(alterationKirikaeOrder);
+        KirikaeOrder kirikaeOrder = this.kirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
+        alterationOrder.setKirikaeOrder(kirikaeOrder);
         return alterationOrder;
     }
 
@@ -61,9 +61,9 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
         this.alterationFourOrderService.addAlterationFourOrder(alterationFourOrder);
 
         //新增切替变更单
-        KirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
-        alterationKirikaeOrder.setOrderId(alterationOrder.getId());
-        this.kirikaeOrderService.addAlterationKirikaeOrder(alterationKirikaeOrder);
+        KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
+        kirikaeOrder.setOrderId(alterationOrder.getId());
+        this.kirikaeOrderService.addAlterationKirikaeOrder(kirikaeOrder);
     }
 
     @Override
@@ -74,8 +74,8 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
         this.alterationFourOrderService.editAlterationFourOrder(alterationFourOrder);
 
         //修改切替变更单
-        KirikaeOrder alterationKirikaeOrder = alterationOrder.getAlterationKirikaeOrder();
-        alterationKirikaeOrder.setOrderId(alterationOrder.getId());
-        this.kirikaeOrderService.editAlterationKirikaeOrder(alterationKirikaeOrder);
+        KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
+        kirikaeOrder.setOrderId(alterationOrder.getId());
+        this.kirikaeOrderService.editAlterationKirikaeOrder(kirikaeOrder);
     }
 }
