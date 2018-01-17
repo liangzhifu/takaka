@@ -16,7 +16,7 @@ public class FileUploadDao extends BaseDao {
      * @return 1成功，0不成功
      */
     public Integer insertSelective(FileUpload fileUpload){
-        return this.writerSqlSession.insert("fileUpload.insertSelective", fileUpload);
+        return this.writerSqlSession.insert("FileUploadMapper.insertSelective", fileUpload);
     }
 
     /**
@@ -25,7 +25,7 @@ public class FileUploadDao extends BaseDao {
      * @return 返回结果
      */
     public FileUpload selectByPrimaryKey(FileUpload fileUpload){
-        return this.readSqlSession.selectOne("fileUpload.selectByPrimaryKey", fileUpload);
+        return this.readSqlSession.selectOne("FileUploadMapper.selectByPrimaryKey", fileUpload);
     }
 
 }

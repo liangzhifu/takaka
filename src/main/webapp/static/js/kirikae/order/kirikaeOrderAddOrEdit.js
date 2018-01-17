@@ -62,12 +62,43 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
         $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList.splice(index, 1);
     };
 
-    $scope.uploadBeforeFile = function (index) {
+    $scope.file = {
+        "uploadFile" : "",
+        "fileType" : "",
+        "fileIndex" : ""
+    };
 
+    $scope.uploadBeforeFile = function (index) {
+        $("#uploadFile").val('');
+        $("#fileUploadModal").modal("show");
+        $scope.file.fileType = "beforeFile";
+        $scope.file.fileIndex = index;
     };
 
     $scope.uploadNewFile = function (index) {
+        $("#uploadFile").val('');
+        $("#fileUploadModal").modal("show");
+        $scope.file.fileType = "newFile";
+        $scope.file.fileIndex = index;
+    };
 
+    $scope.uplodFile = function () {
+        if($("#uploadFile").val()){
+            $("#excelForm").ajaxSubmit({
+                success:function(data){
+                    alert(data.message);
+                    if($scope.file.fileType == "beforeFile"){
+                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFileId = data.fileId;
+                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFile = data.fileName;
+                    }else {
+                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFileId = data.fileId;
+                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFile = data.fileName;
+                    }
+                    $("#fileUploadModal").modal("hide");
+                }
+            });
+            $("#uploadFile").val('');
+        }
     };
 
     $scope.addKirikaeOrderPartsNumber = function () {

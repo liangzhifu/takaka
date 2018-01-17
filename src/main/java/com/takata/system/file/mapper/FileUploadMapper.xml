@@ -19,7 +19,7 @@
     from file_upload
     where FILE_ID = #{fileId,jdbcType=INTEGER}
   </select>
-  <insert id="insertSelective" parameterType="model.FileUpload" useGeneratedKeys="true" keyProperty="fileId" >
+  <insert id="insertSelective" parameterType="com.takata.system.file.domain.FileUpload" useGeneratedKeys="true" keyProperty="fileId" >
     insert into file_upload
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="fileId != null" >

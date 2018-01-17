@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/third/jBox/jBox.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/third/chosen/chosen.css" type="text/css">
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/static/style/common/button.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/style/common/common.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/style/common/common-table.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/static/style/common/fileinput.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/static/style/common/style.css" />
 
