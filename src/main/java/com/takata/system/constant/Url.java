@@ -21,6 +21,7 @@ public interface Url {
     String ROLEPERMISSION = "/rolePermission";
     String HOLIDAY = "/holiday";
     String PERMISSION = "/permission";
+    String FILE = "/file";
 
     //权限
     String PERMISSION_ADDLIST = BASE + PERMISSION + "/queryAddList.do";
@@ -83,5 +84,9 @@ public interface Url {
     String CONFIG_QUERYLIST = BASE + CONFIG + "/queryList.do";
     String CONFIG_QUERYPAGELIST = BASE + CONFIG + "/queryPageList.do";
     String CONFIG_QUERYCODELIST = BASE + CONFIG + "/queryCodeList.do";
+
+    //文件上传
+    String FILE_FILEUPLOAD = BASE + FILE + "/fileUpload.do";
+    String FILE_FILEDOWNLOAD = BASE + FILE + "/fileDownload.do";
 
 }
