@@ -26,8 +26,8 @@ public class KirikaeOrderPartsNumberServiceImpl implements KirikaeOrderPartsNumb
     public void addKirikaeOrderPartsNumberList(List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
         for(KirikaeOrderPartsNumber kirikaeOrderPartsNumber : kirikaeOrderPartsNumberList){
-            kirikaeOrderPartsNumber.setUpdateBy(principal.getId());
-            kirikaeOrderPartsNumber.setUpdateTime(new Date());
+            kirikaeOrderPartsNumber.setCreateBy(principal.getId());
+            kirikaeOrderPartsNumber.setCreateTime(new Date());
             kirikaeOrderPartsNumber.setUpdateBy(principal.getId());
             kirikaeOrderPartsNumber.setUpdateTime(new Date());
             kirikaeOrderPartsNumber.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());

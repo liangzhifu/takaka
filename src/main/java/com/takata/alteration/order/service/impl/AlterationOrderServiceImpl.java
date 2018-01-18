@@ -36,7 +36,7 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
         alterationOrder = this.alterationOrderDao.selectAlterationOrder(alterationOrder);
         AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setAlterationFourOrder(alterationFourOrder);
-        KirikaeOrder kirikaeOrder = this.kirikaeOrderService.getAlterationKirikaeOrderByAlterationOrderId(alterationOrder.getId());
+        KirikaeOrder kirikaeOrder = this.kirikaeOrderService.getKirikaeOrderByAlterationOrderId(alterationOrder.getId());
         alterationOrder.setKirikaeOrder(kirikaeOrder);
         return alterationOrder;
     }
@@ -65,7 +65,7 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
             //新增切替变更单
             KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
             kirikaeOrder.setOrderId(alterationOrder.getId());
-            this.kirikaeOrderService.addAlterationKirikaeOrder(kirikaeOrder);
+            this.kirikaeOrderService.addKirikaeOrder(kirikaeOrder);
         }
     }
 
@@ -79,6 +79,6 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
         //修改切替变更单
         KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
         kirikaeOrder.setOrderId(alterationOrder.getId());
-        this.kirikaeOrderService.editAlterationKirikaeOrder(kirikaeOrder);
+        this.kirikaeOrderService.editKirikaeOrder(kirikaeOrder);
     }
 }

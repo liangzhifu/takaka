@@ -406,4 +406,33 @@
       kirikae_order_type = #{kirikaeOrderType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="WHERE_PAGE">
+    <where>
+      ao.`id` = ko.`order_id`
+      AND ao.`delete_state` = 0
+    </where>
+  </sql>
+
+  <select id="selectKirikaeOrderPageList" resultType="java.util.HashMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderQuery">
+    SELECT ao.id AS alterationOrderId,
+    ko.`id` AS kirikaeOrderId,
+    ko.kirikae_order_type as kirikaeOrderType,
+    ko.tk_no as tkNo,
+    ko.design_change_no as designChangeNo,
+    ko.customer as customer,
+    ko.vehicle_name as vehicleName,
+    ko.destination as destination,
+    ao.order_state as orderState
+    FROM alteration_order ao, kirikae_order ko
+    <include refid="WHERE_PAGE"></include>
+    order by ao.id DESC
+    LIMIT #{start}, #{size}
+  </select>
+
+  <select id="selectKirikaeOrderCount" resultType="java.lang.Integer" parameterType="com.takata.kirikae.order.query.KirikaeOrderQuery">
+    SELECT count(1)
+    FROM alteration_order ao, kirikae_order ko
+    <include refid="WHERE_PAGE"></include>
+  </select>
 </mapper>

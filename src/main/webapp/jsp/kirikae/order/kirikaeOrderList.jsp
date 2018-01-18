@@ -79,7 +79,7 @@
                                 </td>
                                 <td>
                                     <span ng-if="data.kirikaeOrderType == 1">量产前</span>
-                                    <span ng-if="data.kirikaeOrderType == 1">量产后</span>
+                                    <span ng-if="data.kirikaeOrderType == 2">量产后</span>
                                 </td>
                                 <td>{{data.tkNo}}</td>
                                 <td>{{data.designChangeNo}}</td>

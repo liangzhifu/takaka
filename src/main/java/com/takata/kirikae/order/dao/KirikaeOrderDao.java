@@ -2,7 +2,11 @@ package com.takata.kirikae.order.dao;
 
 import com.takata.kirikae.order.domain.KirikaeOrder;
 import com.takata.common.dao.BaseDao;
+import com.takata.kirikae.order.query.KirikaeOrderQuery;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author lzf
@@ -45,5 +49,22 @@ public class KirikaeOrderDao extends BaseDao {
     public KirikaeOrder selectByPrimaryKey(KirikaeOrder alterationKirikaeOrder){
         return this.readSqlSession.selectOne("KirikaeOrderMapper.selectByPrimaryKey", alterationKirikaeOrder);
     }
-    
+
+    /**
+     * 查询切替单列表--分页
+     * @param kirikaeOrderQuery 查询条件
+     * @return 返回结果
+     */
+    public List<Map<String, Object>> selectKirikaeOrderPageList(KirikaeOrderQuery kirikaeOrderQuery){
+        return this.readSqlSession.selectList("KirikaeOrderMapper.selectKirikaeOrderPageList", kirikaeOrderQuery);
+    }
+
+    /**
+     * 查询切替单数量
+     * @param kirikaeOrderQuery 查询条件
+     * @return 返回结果
+     */
+    public Integer selectKirikaeOrderCount(KirikaeOrderQuery kirikaeOrderQuery){
+        return this.readSqlSession.selectOne("KirikaeOrderMapper.selectKirikaeOrderCount", kirikaeOrderQuery);
+    }
 }

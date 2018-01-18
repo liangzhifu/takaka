@@ -2,7 +2,7 @@ var alterationKirikaeOrderListApp = angular.module("alterationKirikaeOrderList",
 alterationKirikaeOrderListApp.controller("alterationKirikaeOrderListController", function ($scope) {
     $scope.alterationKirikaeOrderList = [];
     $scope.pageTool = {
-        "url" : BASE_URL + "/kirikae/Order/queryPageInfo.do"
+        "url" : BASE_URL + "/kirikae/order/queryPageInfo.do"
     };
     $scope.pageTool.searchForm = {};
     $scope.pageTool.firstPage = function () {

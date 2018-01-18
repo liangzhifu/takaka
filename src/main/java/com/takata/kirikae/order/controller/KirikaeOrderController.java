@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,9 +48,12 @@ public class KirikaeOrderController {
     private Object getPageInfo(KirikaeOrderQuery kirikaeOrderQuery){
         Map<String, Object> map = new HashMap<String, Object>(4);
         try{
-            map.put("dataMapList", null);
-            map.put("totalCount", 0);
-            map.put("totalPage", 0);
+            List<Map<String, Object>> dataMapList = this.kirikaeOrderService.listKirikaeOrderPage(kirikaeOrderQuery);
+            Integer totalCount = this.kirikaeOrderService.countKirikaeOrder(kirikaeOrderQuery);
+            Integer totalPage = totalCount / kirikaeOrderQuery.getSize() + (totalCount % kirikaeOrderQuery.getSize() > 0 ? 1 : 0);
+            map.put("dataMapList", dataMapList);
+            map.put("totalCount", totalCount);
+            map.put("totalPage", totalPage);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());
