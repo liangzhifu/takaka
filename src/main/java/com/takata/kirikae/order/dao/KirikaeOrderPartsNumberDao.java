@@ -36,7 +36,7 @@ public class KirikaeOrderPartsNumberDao extends BaseDao {
      * @param kirikaeOrderPartsNumberQuery 查询条件
      * @return 返回结果
      */
-    public List<KirikaeOrderPartsNumber> selectAlterationKirikaeOrderPartsNumberList(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery){
-        return this.readSqlSession.selectList("KirikaeOrderPartsNumberMapper.selectAlterationKirikaeOrderPartsNumberList", kirikaeOrderPartsNumberQuery);
+    public List<KirikaeOrderPartsNumber> selectKirikaeOrderPartsNumberList(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery){
+        return this.readSqlSession.selectList("KirikaeOrderPartsNumberMapper.selectKirikaeOrderPartsNumberList", kirikaeOrderPartsNumberQuery);
     }
 }

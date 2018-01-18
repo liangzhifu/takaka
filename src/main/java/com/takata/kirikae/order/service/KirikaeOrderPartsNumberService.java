@@ -12,14 +12,14 @@ public interface KirikaeOrderPartsNumberService {
      * @param alterationKirikaeOrderPartsNumberList 品号变更实体列表
      * @throws Exception 异常
      */
-    void addAlterationKirikaeOrderPartsNumberList(List<KirikaeOrderPartsNumber> alterationKirikaeOrderPartsNumberList) throws Exception;
+    void addKirikaeOrderPartsNumberList(List<KirikaeOrderPartsNumber> alterationKirikaeOrderPartsNumberList) throws Exception;
 
     /**
      * 删除切替单的所有品号变更
      * @param kirikaeOrderId 切替单ID
      * @throws Exception 异常
      */
-    void deleteAlterationKirikaeOrderPartsNumberByKirikaeOrderId(Integer kirikaeOrderId) throws Exception;
+    void deleteKirikaeOrderPartsNumberByKirikaeOrderId(Integer kirikaeOrderId) throws Exception;
 
     /**
      * 查询品号变更列表
@@ -27,6 +27,6 @@ public interface KirikaeOrderPartsNumberService {
      * @return 返回结果
      * @throws Exception 异常
      */
-    List<KirikaeOrderPartsNumber> listAlterationKirikaeOrderPartsNumber(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery) throws Exception;
+    List<KirikaeOrderPartsNumber> listKirikaeOrderPartsNumber(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery) throws Exception;
 
 }

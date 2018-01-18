@@ -15,20 +15,20 @@ public class KirikaeOrderChangeContentDao extends BaseDao {
 
     /**
      * 新增设变内容
-     * @param alterationKirikaeOrderChangeContent 设变内容实体
+     * @param kKirikaeOrderChangeContent 设变内容实体
      * @return 返回结果
      */
-    public Integer insertSelective(KirikaeOrderChangeContent alterationKirikaeOrderChangeContent){
-        return this.writerSqlSession.insert("KirikaeOrderChangeContentMapper.insertSelective", alterationKirikaeOrderChangeContent);
+    public Integer insertSelective(KirikaeOrderChangeContent kKirikaeOrderChangeContent){
+        return this.writerSqlSession.insert("KirikaeOrderChangeContentMapper.insertSelective", kKirikaeOrderChangeContent);
     }
 
     /**
      * 修改设变内容
-     * @param alterationKirikaeOrderChangeContent 设变内容实体
+     * @param kKirikaeOrderChangeContent 设变内容实体
      * @return 返回结果
      */
-    public Integer updateByPrimaryKeySelective(KirikaeOrderChangeContent alterationKirikaeOrderChangeContent){
-        return this.writerSqlSession.update("KirikaeOrderChangeContentMapper.updateByPrimaryKeySelective", alterationKirikaeOrderChangeContent);
+    public Integer updateByPrimaryKeySelective(KirikaeOrderChangeContent kKirikaeOrderChangeContent){
+        return this.writerSqlSession.update("KirikaeOrderChangeContentMapper.updateByPrimaryKeySelective", kKirikaeOrderChangeContent);
     }
 
     /**
@@ -36,8 +36,8 @@ public class KirikaeOrderChangeContentDao extends BaseDao {
      * @param kirikaeOrderChangeContentQuery 查询条件
      * @return 返回结果
      */
-    public List<KirikaeOrderChangeContent> selectAlterationKirikaeOrderChangeContentList(KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery){
-        return this.readSqlSession.selectList("KirikaeOrderChangeContentMapper.selectAlterationKirikaeOrderChangeContentList", kirikaeOrderChangeContentQuery);
+    public List<KirikaeOrderChangeContent> selectKirikaeOrderChangeContentList(KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery){
+        return this.readSqlSession.selectList("KirikaeOrderChangeContentMapper.selectKirikaeOrderChangeContentList", kirikaeOrderChangeContentQuery);
     }
 
 }

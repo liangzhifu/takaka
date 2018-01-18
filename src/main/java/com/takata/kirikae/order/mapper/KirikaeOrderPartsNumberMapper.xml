@@ -115,7 +115,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAlterationKirikaeOrderPartsNumberList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderPartsNumberQuery">
+  <select id="selectKirikaeOrderPartsNumberList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderPartsNumberQuery">
     select
     <include refid="Base_Column_List" />
     from kirikae_order_parts_number akopn

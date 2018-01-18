@@ -138,7 +138,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAlterationKirikaeOrderChangeContentList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderChangeContentQuery">
+  <select id="selectKirikaeOrderChangeContentList" resultMap="BaseResultMap" parameterType="com.takata.kirikae.order.query.KirikaeOrderChangeContentQuery">
     select id, before_change, after_change, before_file_id, new_file_id, delete_state, create_by,
         create_time, update_by, update_time, kirikae_order_id,
         (select file_name from file_upload fu where fu.id = akocc.before_file_id) as before_file_name,

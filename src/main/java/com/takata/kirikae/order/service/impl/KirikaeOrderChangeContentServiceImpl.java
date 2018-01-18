@@ -23,15 +23,15 @@ public class KirikaeOrderChangeContentServiceImpl implements KirikaeOrderChangeC
     private KirikaeOrderChangeContentDao kirikaeOrderChangeContentDao;
 
     @Override
-    public void addAlterationKirikaeOrderChangeContentList(List<KirikaeOrderChangeContent> alterationKirikaeOrderChangeContentList) throws Exception {
+    public void addKirikaeOrderChangeContentList(List<KirikaeOrderChangeContent> kirikaeOrderChangeContentList) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        for(KirikaeOrderChangeContent alterationKirikaeOrderChangeContent : alterationKirikaeOrderChangeContentList){
-            alterationKirikaeOrderChangeContent.setCreateBy(principal.getId());
-            alterationKirikaeOrderChangeContent.setCreateTime(new Date());
-            alterationKirikaeOrderChangeContent.setUpdateBy(principal.getId());
-            alterationKirikaeOrderChangeContent.setUpdateTime(new Date());
-            alterationKirikaeOrderChangeContent.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
-            Integer num = this.kirikaeOrderChangeContentDao.insertSelective(alterationKirikaeOrderChangeContent);
+        for(KirikaeOrderChangeContent kirikaeOrderChangeContent : kirikaeOrderChangeContentList){
+            kirikaeOrderChangeContent.setCreateBy(principal.getId());
+            kirikaeOrderChangeContent.setCreateTime(new Date());
+            kirikaeOrderChangeContent.setUpdateBy(principal.getId());
+            kirikaeOrderChangeContent.setUpdateTime(new Date());
+            kirikaeOrderChangeContent.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
+            Integer num = this.kirikaeOrderChangeContentDao.insertSelective(kirikaeOrderChangeContent);
             if(num == 0){
                 throw new Exception("新增切替单变更内容异常！");
             }
@@ -39,16 +39,16 @@ public class KirikaeOrderChangeContentServiceImpl implements KirikaeOrderChangeC
     }
 
     @Override
-    public void deleteAlterationKirikaeOrderChangeContentByKirikaeOrderId(Integer kirikaeOrderId) throws Exception {
+    public void deleteKirikaeOrderChangeContentByKirikaeOrderId(Integer kirikaeOrderId) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
         KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery = new KirikaeOrderChangeContentQuery();
         kirikaeOrderChangeContentQuery.setKirikaeOrderId(kirikaeOrderId);
-        List<KirikaeOrderChangeContent> alterationKirikaeOrderChangeContentList = this.kirikaeOrderChangeContentDao.selectAlterationKirikaeOrderChangeContentList(kirikaeOrderChangeContentQuery);
-        for(KirikaeOrderChangeContent alterationKirikaeOrderChangeContent : alterationKirikaeOrderChangeContentList){
-            alterationKirikaeOrderChangeContent.setUpdateBy(principal.getId());
-            alterationKirikaeOrderChangeContent.setUpdateTime(new Date());
-            alterationKirikaeOrderChangeContent.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
-            Integer num = this.kirikaeOrderChangeContentDao.updateByPrimaryKeySelective(alterationKirikaeOrderChangeContent);
+        List<KirikaeOrderChangeContent> kirikaeOrderChangeContentList = this.kirikaeOrderChangeContentDao.selectKirikaeOrderChangeContentList(kirikaeOrderChangeContentQuery);
+        for(KirikaeOrderChangeContent kirikaeOrderChangeContent : kirikaeOrderChangeContentList){
+            kirikaeOrderChangeContent.setUpdateBy(principal.getId());
+            kirikaeOrderChangeContent.setUpdateTime(new Date());
+            kirikaeOrderChangeContent.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
+            Integer num = this.kirikaeOrderChangeContentDao.updateByPrimaryKeySelective(kirikaeOrderChangeContent);
             if(num == 0){
                 throw new Exception("更新切替单变更内容异常！");
             }
@@ -56,8 +56,8 @@ public class KirikaeOrderChangeContentServiceImpl implements KirikaeOrderChangeC
     }
 
     @Override
-    public List<KirikaeOrderChangeContent> listAlterationKirikaeOrderChangeContent(KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery) throws Exception {
-        return this.kirikaeOrderChangeContentDao.selectAlterationKirikaeOrderChangeContentList(kirikaeOrderChangeContentQuery);
+    public List<KirikaeOrderChangeContent> listKirikaeOrderChangeContent(KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery) throws Exception {
+        return this.kirikaeOrderChangeContentDao.selectKirikaeOrderChangeContentList(kirikaeOrderChangeContentQuery);
     }
 
 }

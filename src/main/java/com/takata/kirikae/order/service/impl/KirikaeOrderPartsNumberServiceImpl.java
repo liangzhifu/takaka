@@ -23,15 +23,15 @@ public class KirikaeOrderPartsNumberServiceImpl implements KirikaeOrderPartsNumb
     private KirikaeOrderPartsNumberDao kirikaeOrderPartsNumberDao;
 
     @Override
-    public void addAlterationKirikaeOrderPartsNumberList(List<KirikaeOrderPartsNumber> alterationKirikaeOrderPartsNumberList) throws Exception {
+    public void addKirikaeOrderPartsNumberList(List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList) throws Exception {
         Principal principal = PrincipalUtils.getPrincipal();
-        for(KirikaeOrderPartsNumber alterationKirikaeOrderPartsNumber : alterationKirikaeOrderPartsNumberList){
-            alterationKirikaeOrderPartsNumber.setUpdateBy(principal.getId());
-            alterationKirikaeOrderPartsNumber.setUpdateTime(new Date());
-            alterationKirikaeOrderPartsNumber.setUpdateBy(principal.getId());
-            alterationKirikaeOrderPartsNumber.setUpdateTime(new Date());
-            alterationKirikaeOrderPartsNumber.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
-            Integer num = this.kirikaeOrderPartsNumberDao.insertSelective(alterationKirikaeOrderPartsNumber);
+        for(KirikaeOrderPartsNumber kirikaeOrderPartsNumber : kirikaeOrderPartsNumberList){
+            kirikaeOrderPartsNumber.setUpdateBy(principal.getId());
+            kirikaeOrderPartsNumber.setUpdateTime(new Date());
+            kirikaeOrderPartsNumber.setUpdateBy(principal.getId());
+            kirikaeOrderPartsNumber.setUpdateTime(new Date());
+            kirikaeOrderPartsNumber.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_NO.getCode());
+            Integer num = this.kirikaeOrderPartsNumberDao.insertSelective(kirikaeOrderPartsNumber);
             if(num == 0){
                 throw new Exception("新增品号变革异常！");
             }
@@ -39,15 +39,15 @@ public class KirikaeOrderPartsNumberServiceImpl implements KirikaeOrderPartsNumb
     }
 
     @Override
-    public void deleteAlterationKirikaeOrderPartsNumberByKirikaeOrderId(Integer kirikaeOrderId) throws Exception {
+    public void deleteKirikaeOrderPartsNumberByKirikaeOrderId(Integer kirikaeOrderId) throws Exception {
         KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery = new KirikaeOrderPartsNumberQuery();
-        List<KirikaeOrderPartsNumber> alterationKirikaeOrderPartsNumberList = this.kirikaeOrderPartsNumberDao.selectAlterationKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberQuery);
+        List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList = this.kirikaeOrderPartsNumberDao.selectKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberQuery);
         Principal principal = PrincipalUtils.getPrincipal();
-        for(KirikaeOrderPartsNumber alterationKirikaeOrderPartsNumber : alterationKirikaeOrderPartsNumberList){
-            alterationKirikaeOrderPartsNumber.setUpdateBy(principal.getId());
-            alterationKirikaeOrderPartsNumber.setUpdateTime(new Date());
-            alterationKirikaeOrderPartsNumber.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
-            Integer num = this.kirikaeOrderPartsNumberDao.updateByPrimaryKeySelective(alterationKirikaeOrderPartsNumber);
+        for(KirikaeOrderPartsNumber kirikaeOrderPartsNumber : kirikaeOrderPartsNumberList){
+            kirikaeOrderPartsNumber.setUpdateBy(principal.getId());
+            kirikaeOrderPartsNumber.setUpdateTime(new Date());
+            kirikaeOrderPartsNumber.setDeleteState(CommonEnum.DeleteStateEnum.DELETE_STATE_YES.getCode());
+            Integer num = this.kirikaeOrderPartsNumberDao.updateByPrimaryKeySelective(kirikaeOrderPartsNumber);
             if(num == 0){
                 throw new Exception("更新品号变革异常！");
             }
@@ -55,7 +55,7 @@ public class KirikaeOrderPartsNumberServiceImpl implements KirikaeOrderPartsNumb
     }
 
     @Override
-    public List<KirikaeOrderPartsNumber> listAlterationKirikaeOrderPartsNumber(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery) throws Exception {
-        return this.kirikaeOrderPartsNumberDao.selectAlterationKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberQuery);
+    public List<KirikaeOrderPartsNumber> listKirikaeOrderPartsNumber(KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery) throws Exception {
+        return this.kirikaeOrderPartsNumberDao.selectKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberQuery);
     }
 }
