@@ -16,7 +16,7 @@ public class KirikaeOrderDao extends BaseDao {
      * @return 返回结果
      */
     public Integer insertSelective(KirikaeOrder alterationKirikaeOrder){
-        return this.writerSqlSession.insert("AlterationKirikaeOrderMapper.insertSelective", alterationKirikaeOrder);
+        return this.writerSqlSession.insert("KirikaeOrderMapper.insertSelective", alterationKirikaeOrder);
     }
 
     /**
@@ -25,7 +25,7 @@ public class KirikaeOrderDao extends BaseDao {
      * @return 返回结果
      */
     public Integer updateByPrimaryKeySelective(KirikaeOrder alterationKirikaeOrder){
-        return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
+        return this.writerSqlSession.update("KirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
     }
 
     /**
@@ -34,7 +34,7 @@ public class KirikaeOrderDao extends BaseDao {
      * @return 返回结果
      */
     public Integer updateByPrimaryKey(KirikaeOrder alterationKirikaeOrder){
-        return this.writerSqlSession.update("AlterationKirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
+        return this.writerSqlSession.update("KirikaeOrderMapper.updateByPrimaryKeySelective", alterationKirikaeOrder);
     }
 
     /**
@@ -43,7 +43,7 @@ public class KirikaeOrderDao extends BaseDao {
      * @return 返回结果
      */
     public KirikaeOrder selectByPrimaryKey(KirikaeOrder alterationKirikaeOrder){
-        return this.readSqlSession.selectOne("AlterationKirikaeOrderMapper.selectByPrimaryKey", alterationKirikaeOrder);
+        return this.readSqlSession.selectOne("KirikaeOrderMapper.selectByPrimaryKey", alterationKirikaeOrder);
     }
     
 }

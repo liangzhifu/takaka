@@ -6,10 +6,10 @@
     <%@include file="../../common/js.jsp"%>
 </head>
 <body ng-controller="kirikaeOrderAddOrEditController" ng-cloak>
-<form class="form-inline" id="kirikaeOrderAddOrEditForm">
-    <input type="hidden" name="id">
-    <input type="hidden" name="orderChannel">
-    <input type="hidden" name="alterationKirikaeOrder.id">
+<form class="form-inline" id="kirikaeOrderAddOrEditForm" >
+    <input type="hidden" name="id" id="id">
+    <input type="hidden" name="orderChannel" id="orderChannel">
+    <input type="hidden" name="kirikaeOrder.id" id="alterationKirikaeOrder.id">
     <div class="main-container container-fluid">
         <div class="main-content">
             <div class="page-content">
@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">切替单类型：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.kirikaeOrderType" name="alterationOrder.kirikaeOrder.kirikaeOrderType"
+                                        <select title="" id="kirikaeOrder.kirikaeOrderType" name="kirikaeOrder.kirikaeOrderType"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.kirikaeOrderType">
                                             <option value="">请选择</option>
                                             <option value="1">量产前</option>
@@ -34,17 +34,17 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">切替号：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.tkNo" name="alterationOrder.kirikaeOrder.tkNo"
+                                        <input title="" id="kirikaeOrder.tkNo" name="kirikaeOrder.tkNo"
                                                ng-model="alterationOrder.kirikaeOrder.tkNo" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">设变号：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.designChangeNo" name="alterationOrder.kirikaeOrder.designChangeNo"
+                                        <input title="" id="kirikaeOrder.designChangeNo" name="kirikaeOrder.designChangeNo"
                                                ng-model="alterationOrder.kirikaeOrder.designChangeNo" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">客户协议：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.salesCustomerProtocal" name="alterationOrder.kirikaeOrder.salesCustomerProtocal"
+                                        <select title="" id="kirikaeOrder.salesCustomerProtocal" name="kirikaeOrder.salesCustomerProtocal"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.salesCustomerProtocal">
                                             <option value="">请选择</option>
                                             <option value="0">否</option>
@@ -55,66 +55,66 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">营业-日期：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.salesDate" name="alterationOrder.kirikaeOrder.salesDate" data-type="date"
+                                        <input title="" id="kirikaeOrder.salesDate" name="kirikaeOrder.salesDate" data-type="date"
                                                ng-model="alterationOrder.kirikaeOrder.salesDate" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">营业-承认：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.salesApproved" name="alterationOrder.kirikaeOrder.salesApproved"
+                                        <input title="" id="kirikaeOrder.salesApproved" name="kirikaeOrder.salesApproved"
                                                ng-model="alterationOrder.kirikaeOrder.salesApproved" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">营业-确认：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.salesChecked" name="alterationOrder.kirikaeOrder.salesChecked"
+                                        <input title="" id="kirikaeOrder.salesChecked" name="kirikaeOrder.salesChecked"
                                                ng-model="alterationOrder.kirikaeOrder.salesChecked" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">营业-担当：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.salesPrepared" name="alterationOrder.kirikaeOrder.salesPrepared"
+                                        <input title="" id="kirikaeOrder.salesPrepared" name="kirikaeOrder.salesPrepared"
                                                ng-model="alterationOrder.kirikaeOrder.salesPrepared" class="form-control-order form-control clean">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">设计-日期：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.engineeringData" name="alterationOrder.kirikaeOrder.engineeringData" data-type="date"
+                                        <input title="" id="kirikaeOrder.engineeringData" name="kirikaeOrder.engineeringData" data-type="date"
                                                ng-model="alterationOrder.kirikaeOrder.engineeringData" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">设计-承认：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.engineeringApproved" name="alterationOrder.kirikaeOrder.engineeringApproved"
+                                        <input title="" id="kirikaeOrder.engineeringApproved" name="kirikaeOrder.engineeringApproved"
                                                ng-model="alterationOrder.kirikaeOrder.engineeringApproved" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">设计-确认：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.engineeringChecked" name="alterationOrder.kirikaeOrder.engineeringChecked"
+                                        <input title="" id="kirikaeOrder.engineeringChecked" name="kirikaeOrder.engineeringChecked"
                                                ng-model="alterationOrder.kirikaeOrder.engineeringChecked" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">设计-担当：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.engineeringPrepared" name="alterationOrder.kirikaeOrder.engineeringPrepared"
+                                        <input title="" id="kirikaeOrder.engineeringPrepared" name="kirikaeOrder.engineeringPrepared"
                                                ng-model="alterationOrder.kirikaeOrder.engineeringPrepared" class="form-control-order form-control clean">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">客户：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.customer" name="alterationOrder.kirikaeOrder.customer"
+                                        <input title="" id="kirikaeOrder.customer" name="kirikaeOrder.customer"
                                                ng-model="alterationOrder.kirikaeOrder.customer" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">车种名：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.vehicleName" name="alterationOrder.kirikaeOrder.vehicleName"
+                                        <input title="" id="kirikaeOrder.vehicleName" name="kirikaeOrder.vehicleName"
                                                ng-model="alterationOrder.kirikaeOrder.vehicleName" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">销售地：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.destination" name="alterationOrder.kirikaeOrder.destination"
+                                        <input title="" id="kirikaeOrder.destination" name="kirikaeOrder.destination"
                                                ng-model="alterationOrder.kirikaeOrder.destination" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">初回品处理：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.isirProcessing" name="alterationOrder.kirikaeOrder.isirProcessing"
+                                        <select title="" id="kirikaeOrder.isirProcessing" name="kirikaeOrder.isirProcessing"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.isirProcessing">
                                             <option value="">请选择</option>
                                             <option value="1">要</option>
@@ -125,7 +125,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">客户技术承认：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.customerEngineering" name="alterationOrder.kirikaeOrder.customerEngineering"
+                                        <select title="" id="kirikaeOrder.customerEngineering" name="kirikaeOrder.customerEngineering"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.customerEngineering">
                                             <option value="">请选择</option>
                                             <option value="1">要</option>
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">需要承认：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.customerEngineeringApproval" name="alterationOrder.kirikaeOrder.customerEngineeringApproval"
+                                        <select title="" id="kirikaeOrder.customerEngineeringApproval" name="kirikaeOrder.customerEngineeringApproval"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.customerEngineeringApproval">
                                             <option value="">请选择</option>
                                             <option value="1">承认</option>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">法规关系：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.regulation" name="alterationOrder.kirikaeOrder.regulation"
+                                        <select title="" id="kirikaeOrder.regulation" name="kirikaeOrder.regulation"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.regulation">
                                             <option value="">请选择</option>
                                             <option value="1">有</option>
@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">有关系：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.regulationApproval" name="alterationOrder.kirikaeOrder.regulationApproval"
+                                        <select title="" id="kirikaeOrder.regulationApproval" name="kirikaeOrder.regulationApproval"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.regulationApproval">
                                             <option value="">请选择</option>
                                             <option value="1">认可</option>
@@ -163,7 +163,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">互换性-旧：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.interchangeabilityOld" name="alterationOrder.kirikaeOrder.interchangeabilityOld"
+                                        <select title="" id="kirikaeOrder.interchangeabilityOld" name="kirikaeOrder.interchangeabilityOld"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.interchangeabilityOld">
                                             <option value="">请选择</option>
                                             <option value="A">A</option>
@@ -172,7 +172,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">互换性-新：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.interchangeabilityNew" name="alterationOrder.kirikaeOrder.interchangeabilityNew"
+                                        <select title="" id="kirikaeOrder.interchangeabilityNew" name="kirikaeOrder.interchangeabilityNew"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.interchangeabilityNew">
                                             <option value="">请选择</option>
                                             <option value="C">C</option>
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">售后服务：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.serviceSuplied" name="alterationOrder.kirikaeOrder.serviceSuplied"
+                                        <select title="" id="kirikaeOrder.serviceSuplied" name="kirikaeOrder.serviceSuplied"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.serviceSuplied">
                                             <option value="">请选择</option>
                                             <option value="1">有</option>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">模具设变费：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.designCosts" name="alterationOrder.kirikaeOrder.designCosts"
+                                        <select title="" id="kirikaeOrder.designCosts" name="kirikaeOrder.designCosts"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.designCosts">
                                             <option value="">请选择</option>
                                             <option value="1">有</option>
@@ -201,7 +201,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">模具费承担：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.designCostsPay" name="alterationOrder.kirikaeOrder.designCostsPay"
+                                        <select title="" id="kirikaeOrder.designCostsPay" name="kirikaeOrder.designCostsPay"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.designCostsPay">
                                             <option value="">请选择</option>
                                             <option value="1">客户</option>
@@ -211,12 +211,12 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">客户手配书：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.customerEo" name="alterationOrder.kirikaeOrder.customerEo"
+                                        <input title="" id="kirikaeOrder.customerEo" name="kirikaeOrder.customerEo"
                                                ng-model="alterationOrder.kirikaeOrder.customerEo" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">品号变更：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.partsNumberChange" name="alterationOrder.kirikaeOrder.partsNumberChange"
+                                        <select title="" id="kirikaeOrder.partsNumberChange" name="kirikaeOrder.partsNumberChange"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.partsNumberChange">
                                             <option value="">请选择</option>
                                             <option value="1">有</option>
@@ -225,7 +225,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">切替现场确认：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.presenceRequired" name="alterationOrder.kirikaeOrder.presenceRequired"
+                                        <select title="" id="kirikaeOrder.presenceRequired" name="kirikaeOrder.presenceRequired"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.presenceRequired">
                                             <option value="">请选择</option>
                                             <option value="1">需要</option>
@@ -236,12 +236,12 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="control-label" title="">切替时间：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.designChangeTiming" name="alterationOrder.kirikaeOrder.designChangeTiming" data-type="date"
+                                        <input title="" id="kirikaeOrder.designChangeTiming" name="kirikaeOrder.designChangeTiming" data-type="date"
                                                ng-model="alterationOrder.kirikaeOrder.designChangeTiming" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">切替类型：</label>
-                                        <select title="" id="alterationOrder.kirikaeOrder.desingChangeType" name="alterationOrder.kirikaeOrder.desingChangeType"
+                                        <select title="" id="kirikaeOrder.desingChangeType" name="kirikaeOrder.desingChangeType"
                                                 class="form-control-order form-control clean" ng-model="alterationOrder.kirikaeOrder.desingChangeType">
                                             <option value="">请选择</option>
                                             <option value="1">高田</option>
@@ -250,12 +250,12 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">制造内线：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.manufactureInternal" name="alterationOrder.kirikaeOrder.manufactureInternal"
+                                        <input title="" id="kirikaeOrder.manufactureInternal" name="kirikaeOrder.manufactureInternal"
                                                ng-model="alterationOrder.kirikaeOrder.manufactureInternal" class="form-control-order form-control clean">
                                     </div>
                                     <div class="col-md-3">
                                         <label class="control-label" title="">制造担当：</label>
-                                        <input title="" id="alterationOrder.kirikaeOrder.manufacturePrepared" name="alterationOrder.kirikaeOrder.manufacturePrepared"
+                                        <input title="" id="kirikaeOrder.manufacturePrepared" name="kirikaeOrder.manufacturePrepared"
                                                ng-model="alterationOrder.kirikaeOrder.manufacturePrepared" class="form-control-order form-control clean">
                                     </div>
                                 </div>
@@ -279,11 +279,11 @@
                                         <tbody>
                                             <tr ng-repeat="data in alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList">
                                                 <td>
-                                                    <input title="" id="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeChange" name="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeChange"
+                                                    <input title="" id="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeChange" name="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeChange"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$index].beforeChange" class="form-control-order form-control clean" style="width: 95%" />
                                                 </td>
                                                 <td>
-                                                    <input type="hidden" id="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeFileId" name="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeFileId"
+                                                    <input type="hidden" id="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeFileId" name="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].beforeFileId"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$index].beforeFileId" class="form-control-order form-control clean" />
                                                     <button class="btn btn-small btn-purple" type="button" ng-click="uploadBeforeFile($index)">
                                                         <i class="icon-edit icon-on-right bigger-110"></i>上传
@@ -291,11 +291,11 @@
                                                     {{data.beforeFileName}}
                                                 </td>
                                                 <td>
-                                                    <input title="" id="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].afterChange" name="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].afterChange"
+                                                    <input title="" id="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].afterChange" name="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].afterChange"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$index].afterChange" class="form-control-order form-control clean" style="width: 95%" />
                                                 </td>
                                                 <td>
-                                                    <input type="hidden" id="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].newFileId" name="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].newFileId"
+                                                    <input type="hidden" id="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].newFileId" name="kirikaeOrder.kirikaeOrderChangeContentList[{{$index}}].newFileId"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$index].newFileId" class="form-control-order form-control clean" />
                                                     <button class="btn btn-small btn-purple" type="button" ng-click="uploadNewFile($index)">
                                                         <i class="icon-edit icon-on-right bigger-110"></i>上传
@@ -330,11 +330,11 @@
                                         <tbody>
                                             <tr ng-repeat="data in alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList">
                                                 <td>
-                                                    <input title="" id="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].oldPartsNumber" name="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].oldPartsNumber"
+                                                    <input title="" id="kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].oldPartsNumber" name="kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].oldPartsNumber"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[$index].oldPartsNumber" class="form-control-order form-control clean" style="width: 95%" />
                                                 </td>
                                                 <td>
-                                                    <input title="" id="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].newPattsNumber" name="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].newPattsNumber"
+                                                    <input title="" id="kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].newPattsNumber" name="kirikaeOrder.kirikaeOrderPartsNumberList[{{$index}}].newPattsNumber"
                                                            ng-model="alterationOrder.kirikaeOrder.kirikaeOrderPartsNumberList[$index].newPattsNumber" class="form-control-order form-control clean" style="width: 95%" />
                                                 </td>
                                                 <td>
@@ -354,8 +354,8 @@
                     <div class="modal-footer">
                         <button type="button" ng-click="addKirikaeOrder()"
                                 class="btn btn-small btn-primary">确定</button>
-                        <button type="button"
-                                class="btn btn-small btn-primary" data-dismiss="modal">取消
+                        <button type="button" ng-click="closeKirikaeOrder()"
+                                class="btn btn-small btn-primary">取消
                         </button>
                     </div>
                 </div>

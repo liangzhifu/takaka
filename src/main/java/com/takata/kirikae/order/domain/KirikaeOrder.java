@@ -1,6 +1,7 @@
 package com.takata.kirikae.order.domain;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ public class KirikaeOrder {
 
     private String designChangeNo;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date salesDate;
 
     private String salesApproved;
@@ -29,6 +31,7 @@ public class KirikaeOrder {
 
     private Integer salesCustomerProtocal;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date engineeringData;
 
     private String engineeringApproved;
@@ -69,6 +72,7 @@ public class KirikaeOrder {
 
     private Integer presenceRequired;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date designChangeTiming;
 
     private Integer desingChangeType;

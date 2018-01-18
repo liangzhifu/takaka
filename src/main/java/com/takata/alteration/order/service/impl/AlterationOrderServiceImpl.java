@@ -55,15 +55,18 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
             throw new Exception("新增变更单异常！");
         }
 
-        //新增4M变更单
-        AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
-        alterationFourOrder.setOrderId(alterationOrder.getId());
-        this.alterationFourOrderService.addAlterationFourOrder(alterationFourOrder);
-
-        //新增切替变更单
-        KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
-        kirikaeOrder.setOrderId(alterationOrder.getId());
-        this.kirikaeOrderService.addAlterationKirikaeOrder(kirikaeOrder);
+        Integer orderChannel = alterationOrder.getOrderChannel();
+        if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_FOUR.getCode()){
+            //新增4M变更单
+            AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
+            alterationFourOrder.setOrderId(alterationOrder.getId());
+            this.alterationFourOrderService.addAlterationFourOrder(alterationFourOrder);
+        }else if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_KIRIKAE.getCode()){
+            //新增切替变更单
+            KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
+            kirikaeOrder.setOrderId(alterationOrder.getId());
+            this.kirikaeOrderService.addAlterationKirikaeOrder(kirikaeOrder);
+        }
     }
 
     @Override

@@ -1,10 +1,13 @@
 var kirikaeOrderAddOrEditApp = angular.module("kirikaeOrderAddOrEdit", []);
+kirikaeOrderAddOrEditApp.config(['$locationProvider', function($locationProvider) {
+    $locationProvider.html5Mode(true);
+}]);
 kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope", "$location", function ($scope, $location) {
     if(!($location.search().id == undefined || $location.search().id == null)){
-        $("#id").val(id);
+        $("#id").val($location.search().id);
     }
     if(!($location.search().orderChannel == undefined || $location.search().orderChannel == null)){
-        $("#orderChannel").val(orderChannel);
+        $("#orderChannel").val($location.search().orderChannel);
     }
 
     $scope.systemUserList = [];
@@ -19,6 +22,10 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
         return true;
     };
 
+    $scope.closeKirikaeOrder = function () {
+        window.location.href = BASE_URL + "/kirikae/order/getPageInfoDialog.do";
+    };
+
     $scope.addKirikaeOrder = function () {
         if(!$scope.validKirikaeOrder()){
             return;
@@ -27,10 +34,10 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
         var url = "";
         var comment = "";
         if(id == undefined || id == null || id == ""){
-            url = "/alteration/order/add.do";
+            url = "/kirikae/order/add.do";
             comment = "确定新增变更单！";
         }else {
-            url = "/alteration/order/edit.do";
+            url = "/kirikae/order/edit.do";
             comment = "确定修改变更单！";
         }
         var con = confirm(comment);
@@ -42,7 +49,7 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
                 success : function(resultJson) {
                     var result = angular.fromJson(resultJson);
                     if (result.success) {
-                        $scope.$apply();
+                        window.location.href = BASE_URL + "/kirikae/order/getPageInfoDialog.do";
                     }else {
                         alert(result.message);
                     }
@@ -112,17 +119,7 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
     $scope.getAlterAtionOrder = function () {
         var id = $("#id").val();
         if(id == undefined || id == null || id == ""){
-            $.ajax({
-                method: 'post',
-                url: BASE_URL + "/system/user/queryAllUser.do",
-                async: false,
-                success: function (resultJson) {
-                    var result = angular.fromJson(resultJson);
-                    if (result.success) {
 
-                    }
-                }
-            });
         }
     };
 
