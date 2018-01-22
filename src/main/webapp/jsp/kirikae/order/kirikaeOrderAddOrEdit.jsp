@@ -28,8 +28,8 @@
                                         <select title="" id="kirikaeOrder.kirikaeOrderType" name="kirikaeOrder.kirikaeOrderType"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.kirikaeOrderType==1">量产前</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.kirikaeOrderType==2">量产后</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.kirikaeOrderType==1">量产前</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.kirikaeOrderType==2">量产后</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -47,8 +47,8 @@
                                         <select title="" id="kirikaeOrder.salesCustomerProtocal" name="kirikaeOrder.salesCustomerProtocal"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="0" ng-select="alterationOrder.kirikaeOrder.salesCustomerProtocal==0">否</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.salesCustomerProtocal==1">是</option>
+                                            <option value="0" ng-selected="alterationOrder.kirikaeOrder.salesCustomerProtocal==0">否</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.salesCustomerProtocal==1">是</option>
                                         </select>
                                     </div>
                                 </div>
@@ -117,8 +117,8 @@
                                         <select title="" id="kirikaeOrder.isirProcessing" name="kirikaeOrder.isirProcessing"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.isirProcessing==1">要</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.isirProcessing==2">不要</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.isirProcessing==1">要</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.isirProcessing==2">不要</option>
                                         </select>
                                     </div>
                                 </div>
@@ -128,8 +128,8 @@
                                         <select title="" id="kirikaeOrder.customerEngineering" name="kirikaeOrder.customerEngineering"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.customerEngineering==1">要</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.customerEngineering==2">不要</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.customerEngineering==1">要</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.customerEngineering==2">不要</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -137,8 +137,8 @@
                                         <select title="" id="kirikaeOrder.customerEngineeringApproval" name="kirikaeOrder.customerEngineeringApproval"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.customerEngineeringApproval==1">承认</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.customerEngineeringApproval==2">未承认</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.customerEngineeringApproval==1">承认</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.customerEngineeringApproval==2">未承认</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -146,8 +146,8 @@
                                         <select title="" id="kirikaeOrder.regulation" name="kirikaeOrder.regulation"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.regulation==1">有</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.regulation==2">无</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.regulation==1">有</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.regulation==2">无</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -155,8 +155,8 @@
                                         <select title="" id="kirikaeOrder.regulationApproval" name="kirikaeOrder.regulationApproval"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.regulationApproval==1">认可</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.regulationApproval==2">不认可</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.regulationApproval==1">认可</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.regulationApproval==2">不认可</option>
                                         </select>
                                     </div>
                                 </div>
@@ -166,8 +166,8 @@
                                         <select title="" id="kirikaeOrder.interchangeabilityOld" name="kirikaeOrder.interchangeabilityOld"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="A" ng-select="alterationOrder.kirikaeOrder.interchangeabilityOld=='A'">A</option>
-                                            <option value="B" ng-select="alterationOrder.kirikaeOrder.interchangeabilityOld=='B'">B</option>
+                                            <option value="A" ng-selected="alterationOrder.kirikaeOrder.interchangeabilityOld=='A'">A</option>
+                                            <option value="B" ng-selected="alterationOrder.kirikaeOrder.interchangeabilityOld=='B'">B</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -175,8 +175,8 @@
                                         <select title="" id="kirikaeOrder.interchangeabilityNew" name="kirikaeOrder.interchangeabilityNew"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="C" ng-select="alterationOrder.kirikaeOrder.interchangeabilityNew=='C'">C</option>
-                                            <option value="D" ng-select="alterationOrder.kirikaeOrder.interchangeabilityNew=='D'">D</option>
+                                            <option value="C" ng-selected="alterationOrder.kirikaeOrder.interchangeabilityNew=='C'">C</option>
+                                            <option value="D" ng-selected="alterationOrder.kirikaeOrder.interchangeabilityNew=='D'">D</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -184,8 +184,8 @@
                                         <select title="" id="kirikaeOrder.serviceSuplied" name="kirikaeOrder.serviceSuplied"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.serviceSuplied==1">有</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.serviceSuplied==2">无</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.serviceSuplied==1">有</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.serviceSuplied==2">无</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -193,8 +193,8 @@
                                         <select title="" id="kirikaeOrder.designCosts" name="kirikaeOrder.designCosts"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.designCosts==1">有</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.designCosts==2">无</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.designCosts==1">有</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.designCosts==2">无</option>
                                         </select>
                                     </div>
                                 </div>
@@ -204,9 +204,9 @@
                                         <select title="" id="kirikaeOrder.designCostsPay" name="kirikaeOrder.designCostsPay"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.designCostsPay==1">客户</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.designCostsPay==2">高田</option>
-                                            <option value="3" ng-select="alterationOrder.kirikaeOrder.designCostsPay==3">供应商</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.designCostsPay==1">客户</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.designCostsPay==2">高田</option>
+                                            <option value="3" ng-selected="alterationOrder.kirikaeOrder.designCostsPay==3">供应商</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -219,8 +219,8 @@
                                         <select title="" id="kirikaeOrder.partsNumberChange" name="kirikaeOrder.partsNumberChange"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.partsNumberChange==1">有</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.partsNumberChange==2">无</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.partsNumberChange==1">有</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.partsNumberChange==2">无</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -228,8 +228,8 @@
                                         <select title="" id="kirikaeOrder.presenceRequired" name="kirikaeOrder.presenceRequired"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.presenceRequired==1">需要</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.presenceRequired==2">不需要</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.presenceRequired==1">需要</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.presenceRequired==2">不需要</option>
                                         </select>
                                     </div>
                                 </div>
@@ -244,8 +244,8 @@
                                         <select title="" id="kirikaeOrder.desingChangeType" name="kirikaeOrder.desingChangeType"
                                                 class="form-control-order form-control clean">
                                             <option value="">请选择</option>
-                                            <option value="1" ng-select="alterationOrder.kirikaeOrder.desingChangeType==1">高田</option>
-                                            <option value="2" ng-select="alterationOrder.kirikaeOrder.desingChangeType==2">客户</option>
+                                            <option value="1" ng-selected="alterationOrder.kirikaeOrder.desingChangeType==1">高田</option>
+                                            <option value="2" ng-selected="alterationOrder.kirikaeOrder.desingChangeType==2">客户</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
