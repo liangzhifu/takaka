@@ -103,7 +103,7 @@ public class KirikaeOrderController {
     private Object editOrder(AlterationOrder alterationOrder){
         Map<String, Object> map = new HashMap<String, Object>(2);
         try{
-
+            this.alterationOrderService.editAlterationOrder(alterationOrder);
             map.put("success", true);
         }catch (Exception e){
             log.error(e.getMessage());

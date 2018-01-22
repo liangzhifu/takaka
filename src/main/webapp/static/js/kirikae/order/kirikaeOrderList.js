@@ -64,7 +64,16 @@ alterationKirikaeOrderListApp.controller("alterationKirikaeOrderListController",
 
     //修改切替变更单
     $scope.editKirikaeOrder = function () {
-
+        var num = $('input[name="alterationKirikaeOrderCheck"]:checked').length;
+        if(num != 1){
+            alert("请选择一个切替单！");
+            return false;
+        }
+        var alterationOrderId = null;
+        $('input[name="alterationKirikaeOrderCheck"]:checked').each(function() {
+            alterationOrderId = $(this).val();
+        });
+        window.location.href = BASE_URL + "/kirikae/order/getAddDialog.do?orderChannel=2&id="+alterationOrderId;
     };
 
     //作废切替变更单

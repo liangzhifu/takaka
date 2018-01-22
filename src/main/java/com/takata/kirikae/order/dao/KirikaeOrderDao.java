@@ -51,6 +51,15 @@ public class KirikaeOrderDao extends BaseDao {
     }
 
     /**
+     * 获取单个切替变更单
+     * @param alterationOrderId 变更单ID
+     * @return 返回结果
+     */
+    public KirikaeOrder selectByAlterationOrderId(Integer alterationOrderId){
+        return this.readSqlSession.selectOne("KirikaeOrderMapper.selectByAlterationOrderId", alterationOrderId);
+    }
+
+    /**
      * 查询切替单列表--分页
      * @param kirikaeOrderQuery 查询条件
      * @return 返回结果

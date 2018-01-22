@@ -92,16 +92,22 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
     $scope.uplodFile = function () {
         if($("#uploadFile").val()){
             $("#excelForm").ajaxSubmit({
-                success:function(data){
-                    alert(data.message);
-                    if($scope.file.fileType == "beforeFile"){
-                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFileId = data.fileId;
-                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFile = data.fileName;
-                    }else {
-                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFileId = data.fileId;
-                        $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFile = data.fileName;
+                success:function(resultJson){
+                    var result = angular.fromJson(resultJson);
+                    if (result.success) {
+                        if($scope.file.fileType == "beforeFile"){
+                            $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFileId = result.fileId;
+                            $("#kirikaeOrder\\.kirikaeOrderChangeContentList\\["+$scope.file.fileIndex+"\\]\\.beforeFileId").val(result.fileId);
+                            $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].beforeFileName = result.fileName;
+                        }else {
+                            $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFileId = result.fileId;
+                            $("#kirikaeOrder\\.kirikaeOrderChangeContentList\\["+$scope.file.fileIndex+"\\]\\.newFileId").val(result.fileId);
+                            $scope.alterationOrder.kirikaeOrder.kirikaeOrderChangeContentList[$scope.file.fileIndex].newFileName = result.fileName;
+                        }
+                        $("#fileUploadModal").modal("hide");
                     }
-                    $("#fileUploadModal").modal("hide");
+                    $scope.$apply();
+                    alert(result.message);
                 }
             });
             $("#uploadFile").val('');
@@ -118,8 +124,23 @@ kirikaeOrderAddOrEditApp.controller("kirikaeOrderAddOrEditController", ["$scope"
 
     $scope.getAlterAtionOrder = function () {
         var id = $("#id").val();
-        if(id == undefined || id == null || id == ""){
-
+        if(!(id == undefined || id == null || id == "")){
+            $.ajax({
+                method: 'post',
+                url: BASE_URL + "/kirikae/order/detail.do",
+                data:{"orderId":id},
+                async: false,
+                success: function (resultJson) {
+                    var result = angular.fromJson(resultJson);
+                    if (result.success) {
+                        $scope.alterationOrder = result.alterationOrder;
+                        $("#kirikaeOrder\\.id").val($scope.alterationOrder.kirikaeOrder.id);
+                        $scope.$apply();
+                    }else {
+                        alert("请联系系统管理员！");
+                    }
+                }
+            });
         }
     };
 

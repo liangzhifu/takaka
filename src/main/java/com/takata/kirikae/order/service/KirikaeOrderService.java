@@ -32,11 +32,11 @@ public interface KirikaeOrderService {
 
     /**
      * 获取切替变更单--通过变更单ID
-     * @param orderId 变更单ID
+     * @param alterationOrderId 变更单ID
      * @return 返回结果
      * @throws Exception 异常
      */
-    KirikaeOrder getKirikaeOrderByAlterationOrderId(Integer orderId) throws Exception;
+    KirikaeOrder getKirikaeOrderByAlterationOrderId(Integer alterationOrderId) throws Exception;
 
     /**
      * 获取切替单列表--分页

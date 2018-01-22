@@ -34,10 +34,14 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
     @Override
     public AlterationOrder getAlterationOrder(AlterationOrder alterationOrder) throws Exception {
         alterationOrder = this.alterationOrderDao.selectAlterationOrder(alterationOrder);
-        AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
-        alterationOrder.setAlterationFourOrder(alterationFourOrder);
-        KirikaeOrder kirikaeOrder = this.kirikaeOrderService.getKirikaeOrderByAlterationOrderId(alterationOrder.getId());
-        alterationOrder.setKirikaeOrder(kirikaeOrder);
+        Integer orderChannel = alterationOrder.getOrderChannel();
+        if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_FOUR.getCode()){
+            AlterationFourOrder alterationFourOrder = this.alterationFourOrderService.getAlterationFourOrderByAlterationOrderId(alterationOrder.getId());
+            alterationOrder.setAlterationFourOrder(alterationFourOrder);
+        }else if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_KIRIKAE.getCode()){
+            KirikaeOrder kirikaeOrder = this.kirikaeOrderService.getKirikaeOrderByAlterationOrderId(alterationOrder.getId());
+            alterationOrder.setKirikaeOrder(kirikaeOrder);
+        }
         return alterationOrder;
     }
 
@@ -71,14 +75,17 @@ public class AlterationOrderServiceImpl implements AlterationOrderService {
 
     @Override
     public void editAlterationOrder(AlterationOrder alterationOrder) throws Exception {
-        //修改4M变更单
-        AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
-        alterationFourOrder.setOrderId(alterationOrder.getId());
-        this.alterationFourOrderService.editAlterationFourOrder(alterationFourOrder);
-
-        //修改切替变更单
-        KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
-        kirikaeOrder.setOrderId(alterationOrder.getId());
-        this.kirikaeOrderService.editKirikaeOrder(kirikaeOrder);
+        Integer orderChannel = alterationOrder.getOrderChannel();
+        if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_FOUR.getCode()){
+            //修改4M变更单
+            AlterationFourOrder alterationFourOrder = alterationOrder.getAlterationFourOrder();
+            alterationFourOrder.setOrderId(alterationOrder.getId());
+            this.alterationFourOrderService.editAlterationFourOrder(alterationFourOrder);
+        }else if(orderChannel.intValue() == AlterationOrderEnum.OrderChannelEnum.ORDER_CHANNEL_KIRIKAE.getCode()){
+            //修改切替变更单
+            KirikaeOrder kirikaeOrder = alterationOrder.getKirikaeOrder();
+            kirikaeOrder.setOrderId(alterationOrder.getId());
+            this.kirikaeOrderService.editKirikaeOrder(kirikaeOrder);
+        }
     }
 }

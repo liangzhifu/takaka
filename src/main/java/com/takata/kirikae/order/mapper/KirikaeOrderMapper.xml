@@ -52,7 +52,12 @@
     from kirikae_order
     where id = #{id,jdbcType=INTEGER}
   </select>
-
+  <select id="selectByAlterationOrderId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kirikae_order
+    where order_id = #{alterationOrderId,jdbcType=INTEGER}
+  </select>
   <insert id="insertSelective" parameterType="com.takata.kirikae.order.domain.KirikaeOrder" useGeneratedKeys="true" keyProperty="id">
     insert into kirikae_order
     <trim prefix="(" suffix=")" suffixOverrides="," >

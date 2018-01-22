@@ -41,6 +41,7 @@ public class KirikaeOrderPartsNumberServiceImpl implements KirikaeOrderPartsNumb
     @Override
     public void deleteKirikaeOrderPartsNumberByKirikaeOrderId(Integer kirikaeOrderId) throws Exception {
         KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery = new KirikaeOrderPartsNumberQuery();
+        kirikaeOrderPartsNumberQuery.setKirikaeOrderId(kirikaeOrderId);
         List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList = this.kirikaeOrderPartsNumberDao.selectKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberQuery);
         Principal principal = PrincipalUtils.getPrincipal();
         for(KirikaeOrderPartsNumber kirikaeOrderPartsNumber : kirikaeOrderPartsNumberList){

@@ -4,6 +4,8 @@ import com.takata.kirikae.order.dao.KirikaeOrderDao;
 import com.takata.kirikae.order.domain.KirikaeOrder;
 import com.takata.kirikae.order.domain.KirikaeOrderChangeContent;
 import com.takata.kirikae.order.domain.KirikaeOrderPartsNumber;
+import com.takata.kirikae.order.query.KirikaeOrderChangeContentQuery;
+import com.takata.kirikae.order.query.KirikaeOrderPartsNumberQuery;
 import com.takata.kirikae.order.query.KirikaeOrderQuery;
 import com.takata.kirikae.order.service.KirikaeOrderChangeContentService;
 import com.takata.kirikae.order.service.KirikaeOrderPartsNumberService;
@@ -38,7 +40,7 @@ public class KirikaeOrderServiceImpl implements KirikaeOrderService {
 
         List<KirikaeOrderChangeContent> kirikaeOrderChangeContentList = kirikaeOrder.getKirikaeOrderChangeContentList();
         for(KirikaeOrderChangeContent kirikaeOrderChangeContent : kirikaeOrderChangeContentList){
-            kirikaeOrderChangeContent.setKirikaeOrderId(kirikaeOrder.getOrderId());
+            kirikaeOrderChangeContent.setKirikaeOrderId(kirikaeOrder.getId());
         }
         this.kirikaeOrderChangeContentService.addKirikaeOrderChangeContentList(kirikaeOrderChangeContentList);
 
@@ -51,17 +53,40 @@ public class KirikaeOrderServiceImpl implements KirikaeOrderService {
 
     @Override
     public void editKirikaeOrder(KirikaeOrder kirikaeOrder) throws Exception {
+        this.kirikaeOrderDao.updateByPrimaryKeySelective(kirikaeOrder);
 
+        this.kirikaeOrderChangeContentService.deleteKirikaeOrderChangeContentByKirikaeOrderId(kirikaeOrder.getId());
+        List<KirikaeOrderChangeContent> kirikaeOrderChangeContentList = kirikaeOrder.getKirikaeOrderChangeContentList();
+        for(KirikaeOrderChangeContent kirikaeOrderChangeContent : kirikaeOrderChangeContentList){
+            kirikaeOrderChangeContent.setKirikaeOrderId(kirikaeOrder.getId());
+        }
+        this.kirikaeOrderChangeContentService.addKirikaeOrderChangeContentList(kirikaeOrderChangeContentList);
+
+        this.kirikaeOrderPartsNumberService.deleteKirikaeOrderPartsNumberByKirikaeOrderId(kirikaeOrder.getId());
+        List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList = kirikaeOrder.getKirikaeOrderPartsNumberList();
+        for(KirikaeOrderPartsNumber kirikaeOrderPartsNumber : kirikaeOrderPartsNumberList){
+            kirikaeOrderPartsNumber.setKirikaeOrderId(kirikaeOrder.getId());
+        }
+        this.kirikaeOrderPartsNumberService.addKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberList);
     }
 
     @Override
     public KirikaeOrder getKirikaeOrder(KirikaeOrder kirikaeOrder) throws Exception {
-        return null;
+        return this.kirikaeOrderDao.selectByPrimaryKey(kirikaeOrder);
     }
 
     @Override
-    public KirikaeOrder getKirikaeOrderByAlterationOrderId(Integer orderId) throws Exception {
-        return null;
+    public KirikaeOrder getKirikaeOrderByAlterationOrderId(Integer alterationOrderId) throws Exception {
+        KirikaeOrder kirikaeOrder = this.kirikaeOrderDao.selectByAlterationOrderId(alterationOrderId);
+        KirikaeOrderChangeContentQuery kirikaeOrderChangeContentQuery = new KirikaeOrderChangeContentQuery();
+        kirikaeOrderChangeContentQuery.setKirikaeOrderId(kirikaeOrder.getId());
+        List<KirikaeOrderChangeContent> kirikaeOrderChangeContentList = this.kirikaeOrderChangeContentService.listKirikaeOrderChangeContent(kirikaeOrderChangeContentQuery);
+        kirikaeOrder.setKirikaeOrderChangeContentList(kirikaeOrderChangeContentList);
+        KirikaeOrderPartsNumberQuery kirikaeOrderPartsNumberQuery = new KirikaeOrderPartsNumberQuery();
+        kirikaeOrderPartsNumberQuery.setKirikaeOrderId(kirikaeOrder.getId());
+        List<KirikaeOrderPartsNumber> kirikaeOrderPartsNumberList = this.kirikaeOrderPartsNumberService.listKirikaeOrderPartsNumber(kirikaeOrderPartsNumberQuery);
+        kirikaeOrder.setKirikaeOrderPartsNumberList(kirikaeOrderPartsNumberList);
+        return kirikaeOrder;
     }
 
     @Override
